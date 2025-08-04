@@ -73,11 +73,11 @@ const CSS3DDevice: React.FC<DeviceProps> = ({ deviceType, codeContent, isRunning
   const getScreenSize = () => {
     switch (deviceType) {
       case 'tablet':
-        return { width: '220px', height: '300px' };
+        return { width: '180px', height: '240px' };
       case 'desktop':
-        return { width: '350px', height: '200px' };
+        return { width: '280px', height: '160px' };
       default: // phone
-        return { width: '120px', height: '220px' };
+        return { width: '100px', height: '180px' };
     }
   };
 
