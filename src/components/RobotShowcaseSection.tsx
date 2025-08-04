@@ -40,7 +40,7 @@ const RobotShowcaseSection = () => {
               <span>Meet the Future</span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-4">
-              Precision Engineering Meets <span className="text-[#FC4D0A]">Adaptive AI</span>
+              Precision Engineering Meets <span style={{ color: 'hsl(var(--primary))' }}>Adaptive AI</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Our humanoid robot represents the perfect fusion of cutting-edge mechanical engineering and 

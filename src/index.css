@@ -89,14 +89,14 @@
 
   .dark {
     /* Alternative dark theme selector */
-    --background: 222.2 84% 4.9%;
+    --background: 240 5.9% 10%;
     --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
+    --card: 240 5.9% 10%;
     --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
+    --popover: 240 5.9% 10%;
     --popover-foreground: 210 40% 98%;
     --primary: var(--primary-h) var(--primary-s) var(--primary-l);
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary-foreground: 240 5.9% 10%;
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
@@ -162,16 +162,16 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: hsl(var(--muted));
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #888;
+    background: hsl(var(--muted-foreground));
     border-radius: 10px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: hsl(var(--primary));
   }
 }
 
@@ -219,6 +219,7 @@
     @apply font-medium py-3 px-6 rounded-full transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-[1.02] active:scale-[0.98];
     background-color: hsl(var(--primary));
     color: hsl(var(--primary-foreground));
+    border: 1px solid hsl(var(--primary));
   }
 
   .button-secondary {

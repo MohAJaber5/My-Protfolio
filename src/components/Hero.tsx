@@ -95,7 +95,9 @@ const Hero = () => {
         padding: isMobile ? '100px 12px 40px' : '120px 20px 60px'
       }}
     >
-      <div className="absolute -top-[10%] -right-[5%] w-1/2 h-[70%] bg-pulse-gradient opacity-20 blur-3xl rounded-full"></div>
+      <div className="absolute -top-[10%] -right-[5%] w-1/2 h-[70%] opacity-20 blur-3xl rounded-full" style={{
+        background: `linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)))`
+      }}></div>
       
       <div className="container px-4 sm:px-6 lg:px-8" ref={containerRef}>
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-12 items-center">
@@ -109,16 +111,18 @@ const Hero = () => {
             </div>
             
             <h1 
-              className="section-title text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-tight opacity-0 animate-fade-in text-white" 
+              className="section-title text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-tight opacity-0 animate-fade-in" 
               style={{ animationDelay: "0.3s" }}
             >
-              I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">Mohammad Jaber</span><br className="hidden sm:inline" />
+              I'm <span className="text-transparent bg-clip-text bg-gradient-to-r" style={{
+                backgroundImage: `linear-gradient(to right, hsl(var(--primary)), hsl(var(--secondary)))`
+              }}>Mohammad Jaber</span><br className="hidden sm:inline" />
               Flutter Developer
             </h1>
             
             <p 
               style={{ animationDelay: "0.5s" }} 
-              className="section-subtitle mt-3 sm:mt-6 mb-4 sm:mb-8 leading-relaxed opacity-0 animate-fade-in text-gray-300 font-normal text-base sm:text-lg text-left"
+              className="section-subtitle mt-3 sm:mt-6 mb-4 sm:mb-8 leading-relaxed opacity-0 animate-fade-in font-normal text-base sm:text-lg text-left"
             >
               2+ years of mobile development experience. Crown Prince Award Finalist & FinTech Rally Winner. 
               Building innovative mobile solutions from Amman, Jordan.
@@ -130,36 +134,14 @@ const Hero = () => {
             >
               <a 
                 href="#projects" 
-                className="flex items-center justify-center group w-full sm:w-auto text-center mr-4" 
-                style={{
-                  backgroundColor: '#FE5C02',
-                  borderRadius: '1440px',
-                  boxSizing: 'border-box',
-                  color: '#FFFFFF',
-                  cursor: 'pointer',
-                  fontSize: '14px',
-                  lineHeight: '20px',
-                  padding: '16px 24px',
-                  border: '1px solid white',
-                }}
+                className="flex items-center justify-center group w-full sm:w-auto text-center mr-4 button-primary" 
               >
                 View Projects
                 <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
               </a>
               <a 
                 href="#contact" 
-                className="flex items-center justify-center group w-full sm:w-auto text-center" 
-                style={{
-                  backgroundColor: 'transparent',
-                  borderRadius: '1440px',
-                  boxSizing: 'border-box',
-                  color: '#FFFFFF',
-                  cursor: 'pointer',
-                  fontSize: '14px',
-                  lineHeight: '20px',
-                  padding: '16px 24px',
-                  border: '1px solid rgba(255,255,255,0.3)',
-                }}
+                className="button-secondary flex items-center justify-center group w-full sm:w-auto text-center" 
               >
                 Get In Touch
               </a>
@@ -194,7 +176,9 @@ const Hero = () => {
         </div>
       </div>
       
-      <div className="hidden lg:block absolute bottom-0 left-1/4 w-64 h-64 bg-pulse-100/30 rounded-full blur-3xl -z-10 parallax" data-speed="0.05"></div>
+      <div className="hidden lg:block absolute bottom-0 left-1/4 w-64 h-64 rounded-full blur-3xl -z-10 parallax opacity-30" data-speed="0.05" style={{
+        background: `linear-gradient(135deg, hsl(var(--primary) / 0.3), hsl(var(--secondary) / 0.3))`
+      }}></div>
     </section>
   );
 };
