@@ -1,7 +1,5 @@
-import React, { useRef, Suspense } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
-import * as THREE from 'three';
+import React, { useState, useEffect } from 'react';
+import FlutterApp from './FlutterApp';
 
 interface DeviceProps {
   deviceType: 'phone' | 'tablet' | 'desktop';
@@ -9,93 +7,183 @@ interface DeviceProps {
   isRunning: boolean;
 }
 
-const MinimalDevice: React.FC<{ deviceType: string }> = ({ deviceType }) => {
-  const meshRef = useRef<THREE.Mesh>(null);
+const CSS3DDevice: React.FC<DeviceProps> = ({ deviceType, codeContent, isRunning }) => {
+  const [rotation, setRotation] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
 
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.3;
-    }
-  });
+  useEffect(() => {
+    let animationId: number;
+    
+    const animate = () => {
+      if (!isHovered) {
+        setRotation(prev => ({
+          x: Math.sin(Date.now() * 0.001) * 5,
+          y: prev.y + 0.5
+        }));
+      }
+      animationId = requestAnimationFrame(animate);
+    };
+    
+    animate();
+    return () => cancelAnimationFrame(animationId);
+  }, [isHovered]);
 
-  // Device dimensions
-  const getDeviceSize = () => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isHovered) return;
+    
+    const rect = e.currentTarget.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    const rotateX = (e.clientY - centerY) / 10;
+    const rotateY = (e.clientX - centerX) / 10;
+    
+    setRotation({ x: -rotateX, y: rotateY });
+  };
+
+  const getDeviceStyles = () => {
+    const baseStyles = {
+      transform: `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+      transformStyle: 'preserve-3d' as const,
+      transition: isHovered ? 'none' : 'transform 0.1s ease-out',
+    };
+
     switch (deviceType) {
       case 'tablet':
-        return [2.5, 3.5, 0.2];
+        return {
+          ...baseStyles,
+          width: '280px',
+          height: '400px',
+        };
       case 'desktop':
-        return [4, 3, 0.2];
+        return {
+          ...baseStyles,
+          width: '450px',
+          height: '300px',
+        };
       default: // phone
-        return [1.5, 3, 0.2];
+        return {
+          ...baseStyles,
+          width: '160px',
+          height: '320px',
+        };
     }
   };
 
-  const [width, height, depth] = getDeviceSize();
+  const getScreenSize = () => {
+    switch (deviceType) {
+      case 'tablet':
+        return { width: '260px', height: '370px' };
+      case 'desktop':
+        return { width: '420px', height: '270px' };
+      default: // phone
+        return { width: '140px', height: '280px' };
+    }
+  };
 
   return (
-    <group>
-      {/* Device Frame */}
-      <mesh ref={meshRef}>
-        <boxGeometry args={[width, height, depth]} />
-        <meshStandardMaterial color="#1a1a1a" />
-      </mesh>
+    <div className="w-full h-[500px] flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-xl overflow-hidden relative">
+      {/* Floating particles */}
+      <div className="absolute inset-0">
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-blue-400/30 rounded-full animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${2 + Math.random() * 2}s`
+            }}
+          />
+        ))}
+      </div>
 
-      {/* Screen */}
-      <mesh position={[0, 0, depth / 2 + 0.01]}>
-        <boxGeometry args={[width * 0.9, height * 0.8, 0.01]} />
-        <meshStandardMaterial 
-          color="#4285f4" 
-          emissive="#2563eb" 
-          emissiveIntensity={0.2} 
-        />
-      </mesh>
+      {/* Device Container */}
+      <div
+        className="relative cursor-pointer"
+        style={getDeviceStyles()}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onMouseMove={handleMouseMove}
+      >
+        {/* Device Frame */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-2xl border border-gray-700">
+          {/* Screen Bezel */}
+          <div className="absolute inset-2 bg-black rounded-xl overflow-hidden">
+            {/* Screen Content */}
+            <div 
+              className="absolute inset-1 bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg overflow-hidden"
+              style={getScreenSize()}
+            >
+              <FlutterApp 
+                codeContent={codeContent} 
+                isRunning={isRunning} 
+                deviceType={deviceType} 
+              />
+            </div>
+          </div>
 
-      {/* Screen Content Simulation */}
-      <mesh position={[0, 0, depth / 2 + 0.02]}>
-        <boxGeometry args={[width * 0.8, height * 0.7, 0.01]} />
-        <meshStandardMaterial 
-          color="#ffffff" 
-          emissive="#f8fafc" 
-          emissiveIntensity={0.1} 
+          {/* Device Details */}
+          {deviceType === 'phone' && (
+            <>
+              {/* Home indicator */}
+              <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-gray-600 rounded-full" />
+              {/* Camera notch */}
+              <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-12 h-2 bg-black rounded-full" />
+              {/* Side buttons */}
+              <div className="absolute left-0 top-16 w-1 h-8 bg-gray-700 rounded-r" />
+              <div className="absolute left-0 top-28 w-1 h-6 bg-gray-700 rounded-r" />
+            </>
+          )}
+
+          {deviceType === 'desktop' && (
+            <>
+              {/* Monitor stand */}
+              <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-16 h-8 bg-gray-800 rounded-t-lg" />
+              <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 w-24 h-4 bg-gray-900 rounded-lg" />
+              {/* Brand logo */}
+              <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs text-gray-500">
+                Flutter Display
+              </div>
+            </>
+          )}
+        </div>
+
+        {/* Glow effect */}
+        <div 
+          className={`absolute inset-0 rounded-2xl transition-opacity duration-300 ${
+            isHovered ? 'opacity-60' : 'opacity-30'
+          }`}
+          style={{
+            background: 'linear-gradient(45deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1))',
+            filter: 'blur(20px)',
+            transform: 'scale(1.1)',
+            zIndex: -1,
+          }}
         />
-      </mesh>
-    </group>
+
+        {/* Running animation overlay */}
+        {isRunning && (
+          <div className="absolute inset-0 bg-blue-500/10 rounded-2xl animate-pulse">
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-sm bg-blue-600/80 px-3 py-1 rounded-full">
+              Compiling...
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Control hints */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white/60 text-xs text-center">
+        <div>🖱️ Hover and move mouse to rotate</div>
+        <div>✨ Auto-rotation when not interacting</div>
+      </div>
+    </div>
   );
 };
 
-const LoadingFallback: React.FC = () => (
-  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-900 to-slate-800 rounded-xl">
-    <div className="text-white text-center">
-      <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin mx-auto mb-3"></div>
-      <div className="text-sm">Loading 3D Scene...</div>
-    </div>
-  </div>
-);
-
-const DeviceSimulator: React.FC<DeviceProps> = ({ deviceType, codeContent, isRunning }) => {
-  console.log('DeviceSimulator rendering - minimal version');
-
-  return (
-    <div className="w-full h-[500px] rounded-xl overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      <Suspense fallback={<LoadingFallback />}>
-        <Canvas camera={{ position: [0, 0, 6], fov: 50 }}>
-          {/* Basic Lighting */}
-          <ambientLight intensity={0.6} />
-          <directionalLight position={[5, 5, 5]} intensity={0.8} />
-          
-          {/* Minimal Device */}
-          <MinimalDevice deviceType={deviceType} />
-          
-          {/* Basic Controls */}
-          <OrbitControls 
-            enablePan={false}
-            enableZoom={true}
-            enableRotate={true}
-          />
-        </Canvas>
-      </Suspense>
-    </div>
-  );
+const DeviceSimulator: React.FC<DeviceProps> = (props) => {
+  return <CSS3DDevice {...props} />;
 };
 
 export default DeviceSimulator;
