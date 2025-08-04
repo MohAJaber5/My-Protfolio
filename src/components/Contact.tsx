@@ -108,10 +108,10 @@ const Contact = () => {
           <div className="pulse-chip mx-auto mb-4 opacity-0 fade-in-element">
             <span>Get In Touch</span>
           </div>
-          <h2 className="section-title text-white mb-4 opacity-0 fade-in-element">
+          <h2 className="section-title mb-4 opacity-0 fade-in-element">
             Let's Work Together
           </h2>
-          <p className="section-subtitle text-gray-300 mx-auto opacity-0 fade-in-element">
+          <p className="section-subtitle mx-auto opacity-0 fade-in-element">
             Ready to bring your mobile app idea to life? Let's discuss your project!
           </p>
         </div>
@@ -120,12 +120,12 @@ const Contact = () => {
           {/* Contact Form */}
           <div className="space-y-6 opacity-0 fade-in-element">
             <div className="glass-card p-8 border border-white/10">
-              <h3 className="text-2xl font-semibold text-white mb-6">Send Message</h3>
+              <h3 className="text-2xl font-semibold mb-6" style={{ color: 'hsl(var(--foreground))' }}>Send Message</h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="name" className="block text-gray-300 mb-2">
+                    <label htmlFor="name" className="block mb-2" style={{ color: 'hsl(var(--muted-foreground))' }}>
                       Name *
                     </label>
                     <input
@@ -135,12 +135,12 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-colors duration-200"
+                      className="w-full px-4 py-3 border rounded-lg transition-colors duration-200 bg-background/50 border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary"
                       placeholder="Your name"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-gray-300 mb-2">
+                    <label htmlFor="email" className="block mb-2" style={{ color: 'hsl(var(--muted-foreground))' }}>
                       Email *
                     </label>
                     <input
@@ -150,14 +150,14 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-colors duration-200"
+                      className="w-full px-4 py-3 border rounded-lg transition-colors duration-200 bg-background/50 border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary"
                       placeholder="your.email@example.com"
                     />
                   </div>
                 </div>
                 
                 <div>
-                  <label htmlFor="subject" className="block text-gray-300 mb-2">
+                  <label htmlFor="subject" className="block mb-2" style={{ color: 'hsl(var(--muted-foreground))' }}>
                     Subject *
                   </label>
                   <input
@@ -167,13 +167,13 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-colors duration-200"
+                    className="w-full px-4 py-3 border rounded-lg transition-colors duration-200 bg-background/50 border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary"
                     placeholder="Project inquiry"
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="message" className="block text-gray-300 mb-2">
+                  <label htmlFor="message" className="block mb-2" style={{ color: 'hsl(var(--muted-foreground))' }}>
                     Message *
                   </label>
                   <textarea
@@ -183,7 +183,7 @@ const Contact = () => {
                     onChange={handleInputChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-colors duration-200 resize-none"
+                    className="w-full px-4 py-3 border rounded-lg transition-colors duration-200 bg-background/50 border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary resize-none"
                     placeholder="Tell me about your project idea..."
                   />
                 </div>
@@ -194,8 +194,8 @@ const Contact = () => {
                   className={cn(
                     "w-full flex items-center justify-center space-x-2 px-6 py-3 rounded-lg font-semibold transition-all duration-200",
                     isSubmitting
-                      ? "bg-gray-600 cursor-not-allowed"
-                      : "bg-gradient-to-r from-yellow-400 to-orange-500 text-gray-900 hover:shadow-lg transform hover:scale-[1.02]"
+                      ? "bg-muted cursor-not-allowed text-muted-foreground"
+                      : "button-primary"
                   )}
                 >
                   {isSubmitting ? (
@@ -230,25 +230,29 @@ const Contact = () => {
           <div className="space-y-8 opacity-0 fade-in-element">
             {/* Contact Details */}
             <div className="glass-card p-8 border border-white/10">
-              <h3 className="text-2xl font-semibold text-white mb-6">Contact Information</h3>
+              <h3 className="text-2xl font-semibold mb-6" style={{ color: 'hsl(var(--foreground))' }}>Contact Information</h3>
               
               <div className="space-y-6">
                 {contactInfo.map((item, index) => (
                   <div key={index} className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-yellow-400/20 rounded-lg flex items-center justify-center text-yellow-400">
+                    <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{
+                      backgroundColor: 'hsl(var(--primary) / 0.2)',
+                      color: 'hsl(var(--primary))'
+                    }}>
                       {item.icon}
                     </div>
                     <div>
-                      <div className="text-gray-400 text-sm">{item.label}</div>
+                      <div className="text-sm" style={{ color: 'hsl(var(--muted-foreground))' }}>{item.label}</div>
                       {item.href ? (
                         <a
                           href={item.href}
-                          className="text-white hover:text-yellow-400 transition-colors duration-200"
+                          className="transition-colors duration-200 hover:text-primary"
+                          style={{ color: 'hsl(var(--foreground))' }}
                         >
                           {item.value}
                         </a>
                       ) : (
-                        <div className="text-white">{item.value}</div>
+                        <div style={{ color: 'hsl(var(--foreground))' }}>{item.value}</div>
                       )}
                     </div>
                   </div>
@@ -258,7 +262,7 @@ const Contact = () => {
 
             {/* Social Links */}
             <div className="glass-card p-8 border border-white/10">
-              <h3 className="text-2xl font-semibold text-white mb-6">Follow Me</h3>
+              <h3 className="text-2xl font-semibold mb-6" style={{ color: 'hsl(var(--foreground))' }}>Follow Me</h3>
               
               <div className="flex space-x-4">
                 {socialLinks.map((social, index) => (
@@ -267,7 +271,7 @@ const Contact = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 bg-white/5 border border-white/20 rounded-lg flex items-center justify-center text-gray-400 hover:text-yellow-400 hover:border-yellow-400/50 transition-all duration-200"
+                    className="w-12 h-12 border rounded-lg flex items-center justify-center transition-all duration-200 bg-background/50 border-border text-muted-foreground hover:text-primary hover:border-primary"
                   >
                     {social.icon}
                   </a>
@@ -277,12 +281,12 @@ const Contact = () => {
 
             {/* Availability */}
             <div className="glass-card p-8 border border-white/10">
-              <h3 className="text-2xl font-semibold text-white mb-4">Availability</h3>
+              <h3 className="text-2xl font-semibold mb-4" style={{ color: 'hsl(var(--foreground))' }}>Availability</h3>
               <div className="flex items-center space-x-3 mb-4">
                 <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
                 <span className="text-green-400 font-medium">Available for new projects</span>
               </div>
-              <p className="text-gray-300 text-sm">
+              <p className="text-sm" style={{ color: 'hsl(var(--muted-foreground))' }}>
                 Currently accepting freelance projects and full-time opportunities. 
                 Response time: 24-48 hours.
               </p>

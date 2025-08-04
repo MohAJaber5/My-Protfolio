@@ -76,15 +76,20 @@ const ProjectCard = ({ title, description, tech, image, liveUrl, githubUrl, inde
 
       {/* Project Info */}
       <div className="p-6">
-        <h3 className="text-xl font-semibold text-white mb-2">{title}</h3>
-        <p className="text-gray-300 mb-4 leading-relaxed">{description}</p>
+        <h3 className="text-xl font-semibold mb-2" style={{ color: 'hsl(var(--foreground))' }}>{title}</h3>
+        <p className="mb-4 leading-relaxed" style={{ color: 'hsl(var(--muted-foreground))' }}>{description}</p>
         
         {/* Tech Stack */}
         <div className="flex flex-wrap gap-2">
           {tech.map((technology, techIndex) => (
             <span
               key={techIndex}
-              className="px-3 py-1 bg-yellow-400/20 text-yellow-400 rounded-full text-xs font-medium border border-yellow-400/30"
+              className="px-3 py-1 rounded-full text-xs font-medium border"
+              style={{
+                backgroundColor: 'hsl(var(--primary) / 0.2)',
+                color: 'hsl(var(--primary))',
+                borderColor: 'hsl(var(--primary) / 0.3)'
+              }}
             >
               {technology}
             </span>
@@ -177,10 +182,10 @@ const Projects = () => {
           <div className="pulse-chip mx-auto mb-4 opacity-0 fade-in-element">
             <span>Portfolio</span>
           </div>
-          <h2 className="section-title text-white mb-4 opacity-0 fade-in-element">
+          <h2 className="section-title mb-4 opacity-0 fade-in-element">
             Featured Projects
           </h2>
-          <p className="section-subtitle text-gray-300 mx-auto opacity-0 fade-in-element">
+          <p className="section-subtitle mx-auto opacity-0 fade-in-element">
             A showcase of mobile applications that solve real-world problems
           </p>
         </div>
@@ -203,15 +208,15 @@ const Projects = () => {
         {/* CTA Section */}
         <div className="text-center mt-16 opacity-0 fade-in-element">
           <div className="max-w-2xl mx-auto">
-            <h3 className="text-2xl font-semibold text-white mb-4">
+            <h3 className="text-2xl font-semibold mb-4" style={{ color: 'hsl(var(--foreground))' }}>
               Interested in working together?
             </h3>
-            <p className="text-gray-300 mb-8">
+            <p className="mb-8" style={{ color: 'hsl(var(--muted-foreground))' }}>
               I'm always excited to take on new challenges and create amazing mobile experiences.
             </p>
             <a
               href="#contact"
-              className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-gray-900 font-semibold rounded-full hover:shadow-lg transform hover:scale-105 transition-all duration-200"
+              className="button-primary inline-flex items-center"
             >
               Let's Build Something Amazing
             </a>

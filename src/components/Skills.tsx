@@ -42,12 +42,12 @@ const SkillCard = ({ icon, title, skills, index }: SkillCardProps) => {
       style={{ animationDelay: `${0.1 * index}s` }}
     >
       <div className="text-4xl mb-4">{icon}</div>
-      <h3 className="text-xl font-semibold text-white mb-4">{title}</h3>
+      <h3 className="text-xl font-semibold mb-4" style={{ color: 'hsl(var(--foreground))' }}>{title}</h3>
       <div className="space-y-2">
         {skills.map((skill, skillIndex) => (
           <div key={skillIndex} className="flex items-center space-x-2">
-            <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-            <span className="text-gray-300">{skill}</span>
+            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: 'hsl(var(--primary))' }}></div>
+            <span style={{ color: 'hsl(var(--muted-foreground))' }}>{skill}</span>
           </div>
         ))}
       </div>
@@ -127,10 +127,10 @@ const Skills = () => {
           <div className="pulse-chip mx-auto mb-4 opacity-0 fade-in-element">
             <span>Technical Skills</span>
           </div>
-          <h2 className="section-title text-white mb-4 opacity-0 fade-in-element">
+          <h2 className="section-title mb-4 opacity-0 fade-in-element">
             Skills & Technologies
           </h2>
-          <p className="section-subtitle text-gray-300 mx-auto opacity-0 fade-in-element">
+          <p className="section-subtitle mx-auto opacity-0 fade-in-element">
             2+ years of mobile development expertise with 10+ technologies mastered
           </p>
         </div>
@@ -149,14 +149,19 @@ const Skills = () => {
 
         {/* Tech Stack Visualization */}
         <div className="mt-16 opacity-0 fade-in-element">
-          <h3 className="text-2xl font-semibold text-white text-center mb-8">
+          <h3 className="text-2xl font-semibold text-center mb-8" style={{ color: 'hsl(var(--foreground))' }}>
             Preferred Tech Stack
           </h3>
           <div className="flex flex-wrap justify-center gap-4">
             {['Flutter', 'Dart', 'Android', 'Java', 'Kotlin', 'Firebase', 'MVVM', 'IoT', 'Git'].map((tech, index) => (
               <div
                 key={index}
-                className="px-4 py-2 bg-gradient-to-r from-yellow-400/20 to-orange-500/20 rounded-full border border-yellow-400/30 text-yellow-400 font-medium hover:scale-105 transition-transform duration-200"
+                className="px-4 py-2 rounded-full border font-medium hover:scale-105 transition-transform duration-200"
+                style={{
+                  backgroundColor: 'hsl(var(--primary) / 0.2)',
+                  borderColor: 'hsl(var(--primary) / 0.3)',
+                  color: 'hsl(var(--primary))'
+                }}
               >
                 {tech}
               </div>
