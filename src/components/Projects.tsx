@@ -134,6 +134,14 @@ const Projects = () => {
 
   const projects = [
     {
+      title: 'Hakk Shop - E-commerce Marketplace',
+      description: 'Comprehensive Flutter e-commerce marketplace with clean architecture, multi-language support (Arabic/English), Firebase authentication, real-time search, payment integration (eFawateer), and advanced filtering system.',
+      tech: ['Flutter', 'Clean Architecture', 'Firebase', 'BLoC/Cubit', 'Payment Gateway', 'Multi-language', 'Real-time Search'],
+      image: '🛍️',
+      liveUrl: '#',
+      githubUrl: 'https://github.com/mjaber5'
+    },
+    {
       title: 'YOweMe - AI-Powered Expense Splitting',
       description: 'Fintech Rally 2025 hackathon project. AI-powered mobile & web solution for smart expense splitting with Google AI categorization, JoPACC API integration, and intelligent debt settlement system built in 48 hours.',
       tech: ['Flutter', 'Google AI', 'JoPACC API', 'Dart', 'Web Dashboard', 'Biometric Auth', 'Arabic/English'],
