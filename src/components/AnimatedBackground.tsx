@@ -1,12 +1,46 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import HALO from 'vanta/dist/vanta.halo.min';
-import { useTheme } from '@/contexts/ThemeContext';
+import { useTheme, colorSchemes } from '@/contexts/ThemeContext';
 
 const AnimatedBackground = () => {
-  const { theme } = useTheme();
+  const { theme, colorScheme } = useTheme();
   const vantaRef = useRef<HTMLDivElement>(null);
   const vantaEffect = useRef<any>(null);
+
+  // Convert HSL to HEX for Vanta.js
+  const hslToHex = (h: number, s: number, l: number) => {
+    const sNorm = s / 100;
+    const lNorm = l / 100;
+    const c = (1 - Math.abs(2 * lNorm - 1)) * sNorm;
+    const x = c * (1 - Math.abs((h / 60) % 2 - 1));
+    const m = lNorm - c / 2;
+    let r = 0, g = 0, b = 0;
+
+    if (0 <= h && h < 60) {
+      r = c; g = x; b = 0;
+    } else if (60 <= h && h < 120) {
+      r = x; g = c; b = 0;
+    } else if (120 <= h && h < 180) {
+      r = 0; g = c; b = x;
+    } else if (180 <= h && h < 240) {
+      r = 0; g = x; b = c;
+    } else if (240 <= h && h < 300) {
+      r = x; g = 0; b = c;
+    } else if (300 <= h && h < 360) {
+      r = c; g = 0; b = x;
+    }
+
+    r = Math.round((r + m) * 255);
+    g = Math.round((g + m) * 255);
+    b = Math.round((b + m) * 255);
+
+    return (r << 16) | (g << 8) | b;
+  };
+
+  const currentColors = colorSchemes[colorScheme];
+  const primaryColor = hslToHex(currentColors.primary.h, currentColors.primary.s, currentColors.primary.l);
+  const secondaryColor = hslToHex(currentColors.secondary.h, currentColors.secondary.s, currentColors.secondary.l);
 
   useEffect(() => {
     if (!vantaEffect.current && vantaRef.current) {
@@ -14,10 +48,10 @@ const AnimatedBackground = () => {
         el: vantaRef.current,
         THREE: THREE,
         amplitudeFactor: 1,
-        backgroundAlpha: 1,
+        backgroundAlpha: theme === 'light' ? 0.3 : 1,
         backgroundColor: theme === 'dark' ? 0x000000 : 0xffffff,
-        baseColor: 0x6745,
-        color2: 0xf2f901,
+        baseColor: primaryColor,
+        color2: secondaryColor,
         gyroControls: false,
         minHeight: 200.00,
         minWidth: 200.00,
@@ -43,14 +77,17 @@ const AnimatedBackground = () => {
     };
   }, []);
 
-  // Update background color when theme changes
+  // Update background color and colors when theme or color scheme changes
   useEffect(() => {
     if (vantaEffect.current) {
       vantaEffect.current.setOptions({
-        backgroundColor: theme === 'dark' ? 0x000000 : 0xffffff
+        backgroundColor: theme === 'dark' ? 0x000000 : 0xffffff,
+        backgroundAlpha: theme === 'light' ? 0.3 : 1,
+        baseColor: primaryColor,
+        color2: secondaryColor
       });
     }
-  }, [theme]);
+  }, [theme, primaryColor, secondaryColor]);
 
   useEffect(() => {
     const handleResize = () => {
