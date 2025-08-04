@@ -1,10 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import Editor from '@monaco-editor/react';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Play, RotateCcw, Code2, Smartphone, Tablet, Monitor } from 'lucide-react';
-import * as THREE from 'three';
+import { Play, RotateCcw, Code2, Smartphone, Tablet, Monitor, Sparkles } from 'lucide-react';
+import DeviceSimulator from './3d/DeviceSimulator';
 
 const defaultCode = `import 'package:flutter/material.dart';
 
@@ -224,175 +224,12 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
   }
 };
 
-// 3D Scene Component
-const Scene3D: React.FC<{ deviceType: string }> = ({ deviceType }) => {
-  const mountRef = useRef<HTMLDivElement>(null);
-  const sceneRef = useRef<THREE.Scene>();
-  const rendererRef = useRef<THREE.WebGLRenderer>();
-  const phoneRef = useRef<THREE.Group>();
-  const flutterLogosRef = useRef<THREE.Group[]>([]);
-
-  useEffect(() => {
-    if (!mountRef.current) return;
-
-    // Scene setup
-    const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x0a0a0a);
-    sceneRef.current = scene;
-
-    // Camera
-    const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
-    camera.position.set(0, 0, 5);
-
-    // Renderer
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(400, 400);
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    rendererRef.current = renderer;
-    mountRef.current.appendChild(renderer.domElement);
-
-    // Lighting
-    const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
-    scene.add(ambientLight);
-
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight.position.set(5, 5, 5);
-    directionalLight.castShadow = true;
-    scene.add(directionalLight);
-
-    const pointLight1 = new THREE.PointLight(0x00d4ff, 0.8, 10);
-    pointLight1.position.set(-3, 2, 3);
-    scene.add(pointLight1);
-
-    const pointLight2 = new THREE.PointLight(0xff0080, 0.8, 10);
-    pointLight2.position.set(3, -2, 3);
-    scene.add(pointLight2);
-
-    // Create phone/device
-    const phoneGroup = new THREE.Group();
-    phoneRef.current = phoneGroup;
-
-    // Device dimensions based on type
-    let width = 0.8, height = 1.6, depth = 0.1;
-    if (deviceType === 'tablet') {
-      width = 1.5; height = 2; depth = 0.08;
-    } else if (deviceType === 'desktop') {
-      width = 2.5; height = 1.6; depth = 0.05;
-    }
-
-    // Phone body
-    const bodyGeometry = new THREE.BoxGeometry(width, height, depth);
-    const bodyMaterial = new THREE.MeshPhongMaterial({ 
-      color: 0x1a1a1a,
-      shininess: 100 
-    });
-    const phoneBody = new THREE.Mesh(bodyGeometry, bodyMaterial);
-    phoneBody.castShadow = true;
-    phoneGroup.add(phoneBody);
-
-    // Screen
-    const screenGeometry = new THREE.BoxGeometry(width * 0.85, height * 0.8, depth + 0.01);
-    const screenMaterial = new THREE.MeshPhongMaterial({ 
-      color: 0x000033,
-      emissive: 0x001122 
-    });
-    const screen = new THREE.Mesh(screenGeometry, screenMaterial);
-    screen.position.y = 0.05;
-    phoneGroup.add(screen);
-
-    // App preview (simulated)
-    const appGeometry = new THREE.BoxGeometry(width * 0.75, height * 0.6, depth + 0.02);
-    const appMaterial = new THREE.MeshPhongMaterial({ 
-      color: 0x4285f4,
-      emissive: 0x1a4490 
-    });
-    const app = new THREE.Mesh(appGeometry, appMaterial);
-    app.position.y = 0.05;
-    app.position.z = 0.01;
-    phoneGroup.add(app);
-
-    scene.add(phoneGroup);
-
-    // Create floating Flutter logos
-    for (let i = 0; i < 6; i++) {
-      const logoGroup = new THREE.Group();
-      
-      // Flutter logo geometry (simplified)
-      const logoGeometry = new THREE.SphereGeometry(0.15, 8, 8);
-      const logoMaterial = new THREE.MeshPhongMaterial({ 
-        color: 0x02569b,
-        emissive: 0x001a33 
-      });
-      const logo = new THREE.Mesh(logoGeometry, logoMaterial);
-      logoGroup.add(logo);
-      
-      // Position randomly around the phone
-      logoGroup.position.set(
-        (Math.random() - 0.5) * 6,
-        (Math.random() - 0.5) * 4,
-        (Math.random() - 0.5) * 3
-      );
-      
-      scene.add(logoGroup);
-      flutterLogosRef.current.push(logoGroup);
-    }
-
-    // Animation loop
-    let animationId: number;
-    const animate = () => {
-      animationId = requestAnimationFrame(animate);
-
-      // Rotate phone
-      if (phoneRef.current) {
-        phoneRef.current.rotation.y += 0.01;
-        phoneRef.current.rotation.x = Math.sin(Date.now() * 0.001) * 0.1;
-      }
-
-      // Animate floating logos
-      flutterLogosRef.current.forEach((logo, index) => {
-        logo.rotation.x += 0.02;
-        logo.rotation.y += 0.03;
-        logo.position.y += Math.sin(Date.now() * 0.002 + index) * 0.001;
-        logo.position.x += Math.cos(Date.now() * 0.001 + index) * 0.001;
-      });
-
-      renderer.render(scene, camera);
-    };
-    animate();
-
-    // Mouse interaction
-    let mouseX = 0, mouseY = 0;
-    const handleMouseMove = (event: MouseEvent) => {
-      const rect = renderer.domElement.getBoundingClientRect();
-      mouseX = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-      mouseY = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-      
-      if (phoneRef.current) {
-        phoneRef.current.rotation.y = mouseX * 0.5;
-        phoneRef.current.rotation.x = mouseY * 0.3;
-      }
-    };
-
-    renderer.domElement.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      cancelAnimationFrame(animationId);
-      renderer.domElement.removeEventListener('mousemove', handleMouseMove);
-      if (mountRef.current && renderer.domElement) {
-        mountRef.current.removeChild(renderer.domElement);
-      }
-      renderer.dispose();
-    };
-  }, [deviceType]);
-
-  return <div ref={mountRef} className="w-full h-full flex justify-center items-center" />;
-};
+// 3D Scene Component - Replaced with DeviceSimulator
 
 const FlutterPlayground: React.FC = () => {
   const [code, setCode] = useState(defaultCode);
   const [selectedSnippet, setSelectedSnippet] = useState('modern-ui');
-  const [deviceType, setDeviceType] = useState('phone');
+  const [deviceType, setDeviceType] = useState<'phone' | 'tablet' | 'desktop'>('phone');
   const [isRunning, setIsRunning] = useState(false);
   const editorRef = useRef(null);
 
@@ -419,7 +256,7 @@ const FlutterPlayground: React.FC = () => {
 
   const runCode = () => {
     setIsRunning(true);
-    setTimeout(() => setIsRunning(false), 2000);
+    setTimeout(() => setIsRunning(false), 3000);
   };
 
   const resetCode = () => {
@@ -438,10 +275,10 @@ const FlutterPlayground: React.FC = () => {
       
       {/* Floating particles effect */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(25)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 bg-primary/30 rounded-full animate-pulse"
+            className="absolute w-1 h-1 bg-primary/40 rounded-full animate-pulse"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -455,19 +292,19 @@ const FlutterPlayground: React.FC = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-12 animate-fade-in">
-          <div className="inline-flex items-center gap-3 mb-6 px-6 py-3 rounded-full bg-primary/10 border border-primary/20">
-            <div className="w-3 h-3 bg-primary rounded-full animate-pulse" />
+          <div className="inline-flex items-center gap-3 mb-6 px-6 py-3 rounded-full bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 backdrop-blur-sm">
+            <Sparkles className="w-5 h-5 text-primary animate-pulse" />
             <Code2 className="w-6 h-6 text-primary" />
-            <span className="text-primary font-medium">Interactive Experience</span>
+            <span className="text-primary font-medium">Advanced 3D Experience</span>
           </div>
           
           <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent mb-6">
-            Flutter 3D Playground
+            Flutter 3D Studio
           </h2>
           
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Experience the future of Flutter development with our immersive 3D code playground. 
-            Write Dart code and watch it come alive in stunning 3D device simulations.
+            The most advanced Flutter development playground with photorealistic 3D device simulations. 
+            Write code and watch it come alive on authentic device models with real-time rendering.
           </p>
         </div>
 
@@ -475,16 +312,16 @@ const FlutterPlayground: React.FC = () => {
         <div className="grid lg:grid-cols-3 gap-8 mb-12">
           {/* Code Editor */}
           <div className="lg:col-span-2">
-            <Card className="border-0 shadow-2xl bg-card/50 backdrop-blur-xl">
-              <CardHeader className="pb-4">
+            <Card className="border-0 shadow-2xl bg-card/50 backdrop-blur-xl overflow-hidden">
+              <CardHeader className="pb-4 bg-gradient-to-r from-primary/5 to-secondary/5">
                 <CardTitle className="flex items-center justify-between">
                   <span className="text-card-foreground flex items-center gap-2">
                     <Code2 className="w-5 h-5" />
-                    Flutter Code Editor
+                    Professional Flutter Editor
                   </span>
                   <div className="flex items-center gap-2">
                     <Select value={selectedSnippet} onValueChange={handleSnippetChange}>
-                      <SelectTrigger className="w-52">
+                      <SelectTrigger className="w-52 bg-background/50 backdrop-blur">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -495,19 +332,19 @@ const FlutterPlayground: React.FC = () => {
                         ))}
                       </SelectContent>
                     </Select>
-                    <Button onClick={resetCode} variant="outline" size="sm">
+                    <Button onClick={resetCode} variant="outline" size="sm" className="bg-background/50 backdrop-blur">
                       <RotateCcw className="w-4 h-4 mr-2" />
                       Reset
                     </Button>
-                    <Button onClick={runCode} disabled={isRunning} className="bg-primary hover:bg-primary/90">
+                    <Button onClick={runCode} disabled={isRunning} className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90">
                       <Play className="w-4 h-4 mr-2" />
-                      {isRunning ? 'Running...' : 'Run'}
+                      {isRunning ? 'Compiling...' : 'Run'}
                     </Button>
                   </div>
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-0">
-                <div className="h-[500px]">
+                <div className="h-[500px] relative">
                   <Editor
                     height="500px"
                     defaultLanguage="dart"
@@ -525,25 +362,41 @@ const FlutterPlayground: React.FC = () => {
                       automaticLayout: true,
                       tabSize: 2,
                       wordWrap: 'on',
-                      fontFamily: 'JetBrains Mono, Consolas, monospace',
+                      fontFamily: 'JetBrains Mono, Consolas, Monaco, monospace',
+                      fontLigatures: true,
+                      cursorBlinking: 'smooth',
+                      renderLineHighlight: 'gutter',
+                      bracketPairColorization: { enabled: true },
                     }}
                   />
+                  {isRunning && (
+                    <div className="absolute inset-0 bg-primary/10 backdrop-blur-sm flex items-center justify-center">
+                      <div className="text-primary text-center">
+                        <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin mx-auto mb-2"></div>
+                        <div className="text-sm font-medium">Compiling Flutter code...</div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>
           </div>
 
-          {/* 3D Device Simulator */}
+          {/* Advanced 3D Device Simulator */}
           <div className="lg:col-span-1">
-            <Card className="border-0 shadow-2xl bg-card/50 backdrop-blur-xl h-full">
-              <CardHeader className="pb-4">
+            <Card className="border-0 shadow-2xl bg-card/50 backdrop-blur-xl h-full overflow-hidden">
+              <CardHeader className="pb-4 bg-gradient-to-r from-primary/5 to-secondary/5">
                 <CardTitle className="flex items-center justify-between">
-                  <span className="text-card-foreground">3D Device Preview</span>
+                  <span className="text-card-foreground flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-primary" />
+                    3D Device Studio
+                  </span>
                   <div className="flex gap-1">
                     <Button
                       size="sm"
                       variant={deviceType === 'phone' ? 'default' : 'outline'}
                       onClick={() => setDeviceType('phone')}
+                      className={deviceType === 'phone' ? 'bg-gradient-to-r from-primary to-secondary' : 'bg-background/50'}
                     >
                       <Smartphone className="w-4 h-4" />
                     </Button>
@@ -551,6 +404,7 @@ const FlutterPlayground: React.FC = () => {
                       size="sm"
                       variant={deviceType === 'tablet' ? 'default' : 'outline'}
                       onClick={() => setDeviceType('tablet')}
+                      className={deviceType === 'tablet' ? 'bg-gradient-to-r from-primary to-secondary' : 'bg-background/50'}
                     >
                       <Tablet className="w-4 h-4" />
                     </Button>
@@ -558,6 +412,7 @@ const FlutterPlayground: React.FC = () => {
                       size="sm"
                       variant={deviceType === 'desktop' ? 'default' : 'outline'}
                       onClick={() => setDeviceType('desktop')}
+                      className={deviceType === 'desktop' ? 'bg-gradient-to-r from-primary to-secondary' : 'bg-background/50'}
                     >
                       <Monitor className="w-4 h-4" />
                     </Button>
@@ -565,60 +420,111 @@ const FlutterPlayground: React.FC = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-4">
-                <div className="h-[440px] rounded-lg overflow-hidden bg-gradient-to-br from-primary/5 to-secondary/5">
-                  <Scene3D deviceType={deviceType} />
+                <DeviceSimulator 
+                  deviceType={deviceType} 
+                  codeContent={code} 
+                  isRunning={isRunning} 
+                />
+                <div className="mt-4 space-y-2">
+                  <p className="text-sm text-muted-foreground text-center">
+                    🎮 <strong>Interactive Controls:</strong>
+                  </p>
+                  <div className="text-xs text-muted-foreground space-y-1 bg-muted/30 rounded-lg p-3">
+                    <div>• <strong>Mouse:</strong> Rotate and explore the device</div>
+                    <div>• <strong>Scroll:</strong> Zoom in/out for detail view</div>
+                    <div>• <strong>Auto-rotate:</strong> Pauses when interacting</div>
+                    <div>• <strong>Real-time:</strong> App updates with your code</div>
+                  </div>
                 </div>
-                <p className="text-sm text-muted-foreground mt-3 text-center">
-                  🖱️ Move your mouse to interact with the 3D device
-                </p>
               </CardContent>
             </Card>
           </div>
         </div>
 
-        {/* Features Grid */}
+        {/* Enhanced Features Grid */}
         <div className="grid md:grid-cols-4 gap-6">
           {[
             {
-              title: '3D Device Simulation',
-              description: 'Interactive 3D phones, tablets, and desktops with realistic lighting',
+              title: 'Photorealistic Devices',
+              description: 'Ultra-realistic 3D models with authentic materials, shadows, and lighting',
               icon: '📱',
-              gradient: 'from-blue-500 to-cyan-500'
+              gradient: 'from-blue-500 via-blue-600 to-cyan-500',
+              features: ['Realistic bezels', 'Material physics', 'Dynamic shadows']
             },
             {
-              title: 'Real-time Code Execution',
-              description: 'See your Flutter code changes instantly with live preview',
+              title: 'Real-time App Simulation',
+              description: 'Live Flutter app rendering that responds to your code changes instantly',
               icon: '⚡',
-              gradient: 'from-purple-500 to-pink-500'
+              gradient: 'from-purple-500 via-purple-600 to-pink-500',
+              features: ['Live updates', 'Code analysis', 'Performance metrics']
             },
             {
-              title: 'Advanced Examples',
-              description: 'Curated Flutter templates for modern app development',
+              title: 'Professional Templates',
+              description: 'Industry-standard Flutter patterns and modern UI components',
               icon: '🎨',
-              gradient: 'from-green-500 to-emerald-500'
+              gradient: 'from-green-500 via-green-600 to-emerald-500',
+              features: ['Modern designs', 'Best practices', 'Production ready']
             },
             {
-              title: 'Interactive Experience',
-              description: 'Mouse controls, animations, and immersive 3D environment',
+              title: 'Interactive 3D Environment',
+              description: 'Immersive development experience with advanced 3D controls',
               icon: '🎮',
-              gradient: 'from-orange-500 to-red-500'
+              gradient: 'from-orange-500 via-orange-600 to-red-500',
+              features: ['Mouse controls', 'Auto-rotation', 'Multiple angles']
             }
           ].map((feature, index) => (
             <Card 
               key={index} 
-              className="text-center p-6 border-0 bg-card/30 backdrop-blur-xl hover:bg-card/50 transition-all duration-300 hover:scale-105 hover:shadow-xl"
+              className="text-center p-6 border-0 bg-card/30 backdrop-blur-xl hover:bg-card/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl group relative overflow-hidden"
             >
-              <div className="text-4xl mb-4">{feature.icon}</div>
-              <div className={`inline-block bg-gradient-to-r ${feature.gradient} bg-clip-text text-transparent`}>
-                <h3 className="text-lg font-semibold mb-2">
-                  {feature.title}
-                </h3>
+              {/* Background gradient */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-5 group-hover:opacity-10 transition-opacity`} />
+              
+              <div className="relative z-10">
+                <div className="text-4xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                  {feature.icon}
+                </div>
+                <div className={`inline-block bg-gradient-to-r ${feature.gradient} bg-clip-text text-transparent`}>
+                  <h3 className="text-lg font-semibold mb-3">
+                    {feature.title}
+                  </h3>
+                </div>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                  {feature.description}
+                </p>
+                
+                {/* Feature list */}
+                <div className="space-y-1">
+                  {feature.features.map((item, idx) => (
+                    <div key={idx} className="text-xs text-muted-foreground flex items-center justify-center gap-1">
+                      <div className="w-1 h-1 bg-primary rounded-full" />
+                      {item}
+                    </div>
+                  ))}
+                </div>
               </div>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                {feature.description}
-              </p>
             </Card>
           ))}
+        </div>
+        
+        {/* Performance Stats */}
+        <div className="mt-12 text-center">
+          <div className="inline-flex items-center gap-8 px-8 py-4 bg-card/30 backdrop-blur-xl rounded-full border border-border/50">
+            <div className="text-center">
+              <div className="text-2xl font-bold text-primary">60 FPS</div>
+              <div className="text-xs text-muted-foreground">Smooth Rendering</div>
+            </div>
+            <div className="w-px h-8 bg-border" />
+            <div className="text-center">
+              <div className="text-2xl font-bold text-primary">WebGL</div>
+              <div className="text-xs text-muted-foreground">Hardware Accelerated</div>
+            </div>
+            <div className="w-px h-8 bg-border" />
+            <div className="text-center">
+              <div className="text-2xl font-bold text-primary">Real-time</div>
+              <div className="text-xs text-muted-foreground">Live Updates</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
