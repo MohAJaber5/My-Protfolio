@@ -229,7 +229,7 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
 const FlutterPlayground: React.FC = () => {
   const [code, setCode] = useState(defaultCode);
   const [selectedSnippet, setSelectedSnippet] = useState('modern-ui');
-  const [deviceType, setDeviceType] = useState<'phone' | 'tablet' | 'desktop'>('phone');
+  const [deviceType, setDeviceType] = useState<'phone' | 'tablet'>('phone');
   const [isRunning, setIsRunning] = useState(false);
   const editorRef = useRef(null);
 
@@ -408,14 +408,8 @@ const FlutterPlayground: React.FC = () => {
                     >
                       <Tablet className="w-4 h-4" />
                     </Button>
-                    <Button
-                      size="sm"
-                      variant={deviceType === 'desktop' ? 'default' : 'outline'}
-                      onClick={() => setDeviceType('desktop')}
-                      className={deviceType === 'desktop' ? 'bg-gradient-to-r from-primary to-secondary' : 'bg-background/50'}
-                    >
-                      <Monitor className="w-4 h-4" />
-                    </Button>
+
+              
                   </div>
                 </CardTitle>
               </CardHeader>

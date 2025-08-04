@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import FlutterApp from './FlutterApp';
 
 interface DeviceProps {
-  deviceType: 'phone' | 'tablet' | 'desktop';
+  deviceType: 'phone' | 'tablet';
   codeContent: string;
   isRunning: boolean;
 }
@@ -52,20 +52,15 @@ const CSS3DDevice: React.FC<DeviceProps> = ({ deviceType, codeContent, isRunning
       case 'tablet':
         return {
           ...baseStyles,
-          width: '280px',
-          height: '400px',
+          width: '270px',
+          height: '500px',
         };
-      case 'desktop':
-        return {
-          ...baseStyles,
-          width: '450px',
-          height: '300px',
-        };
+    
       default: // phone
         return {
           ...baseStyles,
-          width: '160px',
-          height: '320px',
+          width: '200px',
+          height: '400px',
         };
     }
   };
@@ -73,11 +68,10 @@ const CSS3DDevice: React.FC<DeviceProps> = ({ deviceType, codeContent, isRunning
   const getScreenSize = () => {
     switch (deviceType) {
       case 'tablet':
-        return { width: '180px', height: '240px' };
-      case 'desktop':
-        return { width: '280px', height: '160px' };
+        return { width: '260px', height: '500px' };
+ 
       default: // phone
-        return { width: '100px', height: '180px' };
+        return { width: '190px', height: '380px' };
     }
   };
 
@@ -140,18 +134,6 @@ const CSS3DDevice: React.FC<DeviceProps> = ({ deviceType, codeContent, isRunning
               {/* Side buttons */}
               <div className="absolute left-0 top-16 w-1 h-8 bg-gray-700 rounded-r" />
               <div className="absolute left-0 top-28 w-1 h-6 bg-gray-700 rounded-r" />
-            </>
-          )}
-
-          {deviceType === 'desktop' && (
-            <>
-              {/* Monitor stand */}
-              <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-16 h-8 bg-gray-800 rounded-t-lg" />
-              <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 w-24 h-4 bg-gray-900 rounded-lg" />
-              {/* Brand logo */}
-              <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs text-gray-500">
-                Flutter Display
-              </div>
             </>
           )}
         </div>

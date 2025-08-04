@@ -70,12 +70,6 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: <Mail className="w-6 h-6" />,
-      label: 'Email',
-      value: 'mohjaber@ieee.org',
-      href: 'mailto:mohjaber@ieee.org'
-    },
-    {
-      icon: <Mail className="w-6 h-6" />,
       label: 'Email Alt',
       value: 'mhammdjbr555@gmail.com',
       href: 'mailto:mhammdjbr555@gmail.com'

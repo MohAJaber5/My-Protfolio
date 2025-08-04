@@ -51,17 +51,17 @@ const Footer = () => {
               <div className="flex items-center space-x-3">
                 <Mail className="w-4 h-4" style={{ color: 'hsl(var(--primary))' }} />
                 <a 
-                  href="mailto:mohammad.jaber@example.com" 
+                  href="mailto:mhammdjbr555@gmail.com" 
                   className="text-sm hover:underline transition-colors"
                   style={{ color: 'hsl(var(--muted-foreground))' }}
                 >
-                  mohammad.jaber@example.com
+                  mhammdjbr555@gmail.com
                 </a>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="w-4 h-4" style={{ color: 'hsl(var(--primary))' }} />
                 <span className="text-sm" style={{ color: 'hsl(var(--muted-foreground))' }}>
-                  Available for Remote Work
+                  0779294486
                 </span>
               </div>
             </div>
@@ -133,7 +133,6 @@ const Footer = () => {
             </p>
             <div className="flex items-center space-x-6 text-sm">
               <span style={{ color: 'hsl(var(--muted-foreground))' }}>
-                Built with React, TypeScript & ❤️
               </span>
               <div className="flex items-center space-x-2">
                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
