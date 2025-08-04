@@ -49,7 +49,7 @@ const AnimatedBackground = () => {
         THREE: THREE,
         amplitudeFactor: 1,
         backgroundAlpha: 0.1,
-        backgroundColor: theme === 'dark' ? 0x000000 : 0x000000,
+        backgroundColor: theme === 'dark' ? 0x000000 : 0xffffff,
         baseColor: primaryColor,
         color2: secondaryColor,
         gyroControls: false,
@@ -81,7 +81,7 @@ const AnimatedBackground = () => {
   useEffect(() => {
     if (vantaEffect.current) {
       vantaEffect.current.setOptions({
-        backgroundColor: theme === 'dark' ? 0x000000 : 0x000000,
+        backgroundColor: theme === 'dark' ? 0x000000 : 0xffffff,
         backgroundAlpha: 0.1,
         baseColor: primaryColor,
         color2: secondaryColor
@@ -107,7 +107,7 @@ const AnimatedBackground = () => {
       style={{ 
         background: theme === 'dark' 
           ? 'linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%)'
-          : 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%)'
+          : 'linear-gradient(135deg, #ffffff 0%, #f1f5f9 30%, #e2e8f0 70%, #cbd5e1 100%)'
       }}
     />
   );
