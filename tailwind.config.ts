@@ -63,6 +63,11 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
+				// Custom Black and White Colors
+				'custom-black': 'hsl(var(--black))',
+				'custom-white': 'hsl(var(--white))',
+				'gray-dark': 'hsl(var(--gray-dark))',
+				'gray-light': 'hsl(var(--gray-light))',
 				// Custom colors for Pulse Robot
 				pulse: {
 					"50": "#fff7ed",
