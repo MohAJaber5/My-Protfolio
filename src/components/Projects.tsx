@@ -134,6 +134,14 @@ const Projects = () => {
 
   const projects = [
     {
+      title: 'YOweMe - AI-Powered Expense Splitting',
+      description: 'Fintech Rally 2025 hackathon project. AI-powered mobile & web solution for smart expense splitting with Google AI categorization, JoPACC API integration, and intelligent debt settlement system built in 48 hours.',
+      tech: ['Flutter', 'Google AI', 'JoPACC API', 'Dart', 'Web Dashboard', 'Biometric Auth', 'Arabic/English'],
+      image: '💸',
+      liveUrl: '#',
+      githubUrl: 'https://github.com/mjaber5'
+    },
+    {
       title: 'Galaxy Coder Journey',
       description: 'Interactive space-themed portfolio website with stunning galaxy navigation, animated starfield, planetary sections, and immersive coding experience. A journey through the coding universe with React + TypeScript.',
       tech: ['React 18', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'shadcn/ui'],
