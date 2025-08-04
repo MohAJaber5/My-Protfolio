@@ -62,7 +62,7 @@ const Index = () => {
       <AnimatedBackground />
       <ThemeToggle />
       <Navbar />
-      <main className="relative z-10">
+      <main className="relative z-10 backdrop-blur-[1px] bg-background/80">
         <Hero />
         <About />
         <Skills />

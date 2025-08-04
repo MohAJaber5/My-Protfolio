@@ -48,7 +48,7 @@ const AnimatedBackground = () => {
         el: vantaRef.current,
         THREE: THREE,
         amplitudeFactor: 1,
-        backgroundAlpha: 0.1,
+        backgroundAlpha: theme === 'dark' ? 0.1 : 0.3,
         backgroundColor: theme === 'dark' ? 0x000000 : 0xffffff,
         baseColor: primaryColor,
         color2: secondaryColor,
@@ -82,7 +82,7 @@ const AnimatedBackground = () => {
     if (vantaEffect.current) {
       vantaEffect.current.setOptions({
         backgroundColor: theme === 'dark' ? 0x000000 : 0xffffff,
-        backgroundAlpha: 0.1,
+        backgroundAlpha: theme === 'dark' ? 0.1 : 0.3,
         baseColor: primaryColor,
         color2: secondaryColor
       });
