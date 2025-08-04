@@ -44,39 +44,37 @@ const About = () => {
             </div>
             
             <h2 className="section-title text-white opacity-0 fade-in-element">
-              Passionate About<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
-                Mobile Innovation
-              </span>
+              About <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">Mohammad Jaber</span>
             </h2>
             
             <div className="space-y-4 text-gray-300 opacity-0 fade-in-element">
               <p className="text-lg leading-relaxed">
-                I'm Mohammad Jaber, a mobile app developer based in Amman, Jordan, with a passion for creating 
-                exceptional mobile experiences. I specialize in Flutter and Android development, crafting 
-                applications that are not just functional, but beautiful and intuitive.
+                I'm Mohammad Jaber, a dedicated Flutter Mobile Developer with 2+ years of experience creating 
+                innovative mobile solutions. Currently working at Mujeer, I specialize in Flutter development, 
+                IoT integration, and real-time applications that solve real-world problems.
               </p>
               
               <p className="leading-relaxed">
-                My journey in mobile development began with a curiosity about how technology can solve 
-                real-world problems. Today, I focus on building scalable, smart applications that make 
-                a difference in people's daily lives.
+                My journey has been marked by significant achievements including being a Crown Prince Award 
+                Finalist for the Qanoni App and winning 2nd place at the FinTech Rally 2024. As a CSD Team 
+                Leader, I've led 6+ workshops, mentoring fellow developers and building community.
               </p>
               
               <p className="leading-relaxed">
-                When I'm not coding, you'll find me exploring the latest mobile development trends, 
-                contributing to open-source projects, or mentoring aspiring developers in my community.
+                "Technology should serve humanity, not the other way around. I strive to create mobile 
+                experiences that are intuitive, accessible, and meaningful. Every line of code I write 
+                is an opportunity to make someone's day a little bit better."
               </p>
             </div>
 
             <div className="grid grid-cols-2 gap-6 opacity-0 fade-in-element">
               <div className="text-center p-4 bg-white/5 rounded-lg backdrop-blur-sm border border-white/10">
-                <div className="text-2xl font-bold text-yellow-400">50+</div>
-                <div className="text-gray-400 text-sm">Projects Completed</div>
+                <div className="text-2xl font-bold text-yellow-400">2+</div>
+                <div className="text-gray-400 text-sm">Years Experience</div>
               </div>
               <div className="text-center p-4 bg-white/5 rounded-lg backdrop-blur-sm border border-white/10">
-                <div className="text-2xl font-bold text-yellow-400">3+</div>
-                <div className="text-gray-400 text-sm">Years Experience</div>
+                <div className="text-2xl font-bold text-yellow-400">10+</div>
+                <div className="text-gray-400 text-sm">Technologies Mastered</div>
               </div>
             </div>
           </div>
@@ -92,30 +90,34 @@ const About = () => {
                     </div>
                     <div>
                       <div className="text-white font-semibold">Mohammad Jaber</div>
-                      <div className="text-gray-400">Mobile Developer</div>
+                      <div className="text-gray-400">Flutter Mobile Developer @ Mujeer</div>
                     </div>
                   </div>
                   
                   <div className="space-y-3">
                     <div className="flex items-center space-x-3">
                       <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                      <span className="text-gray-300">📍 Amman, Jordan</span>
+                      <span className="text-gray-300">📍 Amman, Jordan (Remote Ready)</span>
                     </div>
                     <div className="flex items-center space-x-3">
                       <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                      <span className="text-gray-300">💼 Available for projects</span>
+                      <span className="text-gray-300">🏆 Crown Prince Award Finalist</span>
                     </div>
                     <div className="flex items-center space-x-3">
                       <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-                      <span className="text-gray-300">🚀 Flutter & Android specialist</span>
+                      <span className="text-gray-300">🥈 FinTech Rally Winner</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                      <span className="text-gray-300">👥 CSD Team Leader</span>
                     </div>
                   </div>
                   
                   <div className="pt-4 border-t border-gray-700">
-                    <div className="text-gray-400 text-sm mb-2">Currently Learning:</div>
-                    <div className="flex space-x-2">
-                      <span className="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs">Kotlin Multiplatform</span>
-                      <span className="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs">Jetpack Compose</span>
+                    <div className="text-gray-400 text-sm mb-2">Specializing in:</div>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs">IoT Integration</span>
+                      <span className="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs">Real-time Apps</span>
                     </div>
                   </div>
                 </div>

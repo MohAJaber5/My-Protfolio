@@ -129,52 +129,36 @@ const Projects = () => {
 
   const projects = [
     {
-      title: 'E-Commerce Mobile App',
-      description: 'A comprehensive e-commerce platform with real-time inventory, secure payments, and personalized recommendations. Built with Flutter for cross-platform compatibility.',
-      tech: ['Flutter', 'Firebase', 'Stripe API', 'Push Notifications'],
-      image: '🛒',
+      title: 'Smart-Home Flutter App',
+      description: 'IoT-integrated smart home application with real-time device control, energy tracking, automation, and security integration for comprehensive home management.',
+      tech: ['Flutter', 'Dart', 'IoT', 'Firebase', 'MQTT'],
+      image: '🏠',
       liveUrl: '#',
-      githubUrl: '#'
+      githubUrl: 'https://github.com/mjaber5'
     },
     {
-      title: 'Task Management App',
-      description: 'Collaborative task management application with real-time synchronization, offline support, and team collaboration features.',
-      tech: ['Android', 'Kotlin', 'Room Database', 'Retrofit'],
-      image: '✅',
+      title: 'Qanoni-App',
+      description: 'Crown Prince Award Finalist - Legal tech application with advanced PDF processing, digital signatures, legal compliance, and document versioning capabilities.',
+      tech: ['Flutter', 'Dart', 'PDF Processing', 'Digital Signatures'],
+      image: '⚖️',
       liveUrl: '#',
-      githubUrl: '#'
+      githubUrl: 'https://github.com/mjaber5'
     },
     {
-      title: 'Travel Companion',
-      description: 'Social travel app with GPS integration, trip planning, expense tracking, and social sharing features. Winner of local hackathon.',
-      tech: ['Flutter', 'Google Maps API', 'Node.js', 'MongoDB'],
-      image: '✈️',
+      title: 'Movie-API Android App',
+      description: 'MVVM architecture showcase with advanced search functionality, movie recommendations, and offline caching for seamless user experience.',
+      tech: ['Android', 'Kotlin', 'MVVM', 'Retrofit', 'Room DB'],
+      image: '🎬',
       liveUrl: '#',
-      githubUrl: '#'
+      githubUrl: 'https://github.com/mjaber5'
     },
     {
-      title: 'Fitness Tracker',
-      description: 'Health and fitness tracking app with workout plans, progress monitoring, and social challenges. Integrates with wearable devices.',
-      tech: ['Android', 'Health Connect', 'Charts', 'SQLite'],
-      image: '🏃‍♂️',
+      title: 'Community Projects',
+      description: 'Open source contributions and developer mentoring initiatives. Led 6+ workshops as CSD Team Leader, building developer community and sharing knowledge.',
+      tech: ['Flutter', 'Dart', 'Community Building', 'Open Source'],
+      image: '👥',
       liveUrl: '#',
-      githubUrl: '#'
-    },
-    {
-      title: 'Food Delivery App',
-      description: 'On-demand food delivery platform with real-time tracking, multiple payment options, and restaurant management dashboard.',
-      tech: ['Flutter', 'Node.js', 'Socket.io', 'Payment Gateway'],
-      image: '🍕',
-      liveUrl: '#',
-      githubUrl: '#'
-    },
-    {
-      title: 'Learning Management',
-      description: 'Educational platform with video streaming, progress tracking, quizzes, and interactive learning modules for students and educators.',
-      tech: ['Flutter', 'Video Player', 'Firebase', 'Analytics'],
-      image: '📚',
-      liveUrl: '#',
-      githubUrl: '#'
+      githubUrl: 'https://github.com/mjaber5'
     }
   ];
 

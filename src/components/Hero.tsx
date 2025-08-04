@@ -112,15 +112,16 @@ const Hero = () => {
               className="section-title text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-tight opacity-0 animate-fade-in text-white" 
               style={{ animationDelay: "0.3s" }}
             >
-              Mohammad Jaber<br className="hidden sm:inline" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">Mobile Developer</span>
+              I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">Mohammad Jaber</span><br className="hidden sm:inline" />
+              Flutter Developer
             </h1>
             
             <p 
               style={{ animationDelay: "0.5s" }} 
               className="section-subtitle mt-3 sm:mt-6 mb-4 sm:mb-8 leading-relaxed opacity-0 animate-fade-in text-gray-300 font-normal text-base sm:text-lg text-left"
             >
-              Flutter & Android specialist from Amman, Jordan. Building scalable, smart, and beautiful mobile applications that solve real-world problems.
+              2+ years of mobile development experience. Crown Prince Award Finalist & FinTech Rally Winner. 
+              Building innovative mobile solutions from Amman, Jordan.
             </p>
             
             <div 

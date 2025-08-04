@@ -71,19 +71,19 @@ const Contact = () => {
     {
       icon: <Mail className="w-6 h-6" />,
       label: 'Email',
-      value: 'mohammad.jaber@example.com',
-      href: 'mailto:mohammad.jaber@example.com'
+      value: 'mohjaber@ieee.org',
+      href: 'mailto:mohjaber@ieee.org'
     },
     {
-      icon: <Phone className="w-6 h-6" />,
-      label: 'Phone',
-      value: '+962 7X XXX XXXX',
-      href: 'tel:+962700000000'
+      icon: <Mail className="w-6 h-6" />,
+      label: 'Email Alt',
+      value: 'mhammdjbr555@gmail.com',
+      href: 'mailto:mhammdjbr555@gmail.com'
     },
     {
       icon: <MapPin className="w-6 h-6" />,
       label: 'Location',
-      value: 'Amman, Jordan',
+      value: 'Amman, Jordan (Remote Ready)',
       href: null
     }
   ];
@@ -92,12 +92,12 @@ const Contact = () => {
     {
       icon: <Github className="w-6 h-6" />,
       label: 'GitHub',
-      href: 'https://github.com/mohammadjaber'
+      href: 'https://github.com/mjaber5'
     },
     {
       icon: <Linkedin className="w-6 h-6" />,
       label: 'LinkedIn',
-      href: 'https://linkedin.com/in/mohammadjaber'
+      href: 'https://linkedin.com/in/mohammad-jaber-profile'
     }
   ];
 

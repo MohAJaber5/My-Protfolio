@@ -90,33 +90,33 @@ const Skills = () => {
   const skillCategories = [
     {
       icon: '📱',
-      title: 'Mobile Development',
-      skills: ['Flutter (Dart)', 'Android (Java/Kotlin)', 'iOS Development', 'Cross-platform Apps']
+      title: 'Mobile Development (90%)',
+      skills: ['Flutter', 'Android', 'Dart', 'Mobile UI/UX']
+    },
+    {
+      icon: '💻',
+      title: 'Programming Languages',
+      skills: ['Dart (90%)', 'Java (80%)', 'JavaScript (75%)', 'Python (70%)']
+    },
+    {
+      icon: '🏗️',
+      title: 'Architecture & Patterns (85%)',
+      skills: ['MVVM', 'Clean Architecture', 'SOLID Principles', 'Design Patterns']
     },
     {
       icon: '⚙️',
-      title: 'Backend & APIs',
-      skills: ['Node.js', 'REST APIs', 'Firebase', 'Supabase', 'GraphQL']
+      title: 'Backend & Database',
+      skills: ['Firebase (85%)', 'MySQL (75%)', '.NET Core (70%)', 'REST APIs (80%)']
     },
     {
       icon: '🛠️',
-      title: 'Tools & Technologies',
-      skills: ['Git/GitHub', 'Docker', 'CI/CD', 'Database Design', 'Cloud Services']
+      title: 'Development Tools',
+      skills: ['Git & GitHub (85%)', 'Postman (80%)', 'CI/CD (70%)', 'Testing (75%)']
     },
     {
-      icon: '🎨',
-      title: 'UI/UX Design',
-      skills: ['Material Design', 'Cupertino Design', 'Responsive Design', 'User Experience']
-    },
-    {
-      icon: '☁️',
-      title: 'Cloud & DevOps',
-      skills: ['AWS', 'Google Cloud', 'Azure', 'DevOps Practices', 'Microservices']
-    },
-    {
-      icon: '🧪',
-      title: 'Testing & Quality',
-      skills: ['Unit Testing', 'Integration Testing', 'Code Review', 'Performance Optimization']
+      icon: '🌐',
+      title: 'Specialized Skills',
+      skills: ['IoT Integration (75%)', 'Real-time Apps (80%)', 'Performance Optimization (75%)', 'Security Best Practices (70%)']
     }
   ];
 
@@ -128,10 +128,10 @@ const Skills = () => {
             <span>Technical Skills</span>
           </div>
           <h2 className="section-title text-white mb-4 opacity-0 fade-in-element">
-            Technologies I Work With
+            Skills & Technologies
           </h2>
           <p className="section-subtitle text-gray-300 mx-auto opacity-0 fade-in-element">
-            A comprehensive toolkit for building modern mobile applications
+            2+ years of mobile development expertise with 10+ technologies mastered
           </p>
         </div>
 
@@ -153,7 +153,7 @@ const Skills = () => {
             Preferred Tech Stack
           </h3>
           <div className="flex flex-wrap justify-center gap-4">
-            {['Flutter', 'Dart', 'Android', 'Kotlin', 'Firebase', 'Node.js', 'TypeScript', 'Git'].map((tech, index) => (
+            {['Flutter', 'Dart', 'Android', 'Java', 'Kotlin', 'Firebase', 'MVVM', 'IoT', 'Git'].map((tech, index) => (
               <div
                 key={index}
                 className="px-4 py-2 bg-gradient-to-r from-yellow-400/20 to-orange-500/20 rounded-full border border-yellow-400/30 text-yellow-400 font-medium hover:scale-105 transition-transform duration-200"
