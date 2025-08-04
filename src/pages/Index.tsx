@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
+import Experience from "@/components/Experience";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
-import TerminalPlayground from "@/components/TerminalPlayground";
-import FlutterPlayground from "@/components/FlutterPlayground";
+import Achievements from "@/components/Achievements";
 import Contact from "@/components/Contact";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -79,10 +79,10 @@ const Index = () => {
             <main className="relative z-10 backdrop-blur-[1px] bg-background/80">
               <Hero />
               <About />
+              <Experience />
               <Skills />
               <Projects />
-              <TerminalPlayground />
-              <FlutterPlayground />
+              <Achievements />
               <Contact />
             </main>
             <Footer />
@@ -100,10 +100,10 @@ const Index = () => {
       <main className="relative z-10 backdrop-blur-[1px] bg-background/80">
         <Hero />
         <About />
+        <Experience />
         <Skills />
         <Projects />
-        <TerminalPlayground />
-        <FlutterPlayground />
+        <Achievements />
         <Contact />
       </main>
       <Footer />

@@ -79,9 +79,10 @@ const Navbar = () => {
             Home
           </a>
           <a href="#about" className="nav-link">About</a>
+          <a href="#experience" className="nav-link">Experience</a>
           <a href="#skills" className="nav-link">Skills</a>
           <a href="#projects" className="nav-link">Projects</a>
-          <a href="#terminal" className="nav-link">Terminal</a>
+          <a href="#achievements" className="nav-link">Achievements</a>
           <a href="#contact" className="nav-link">Contact</a>
         </nav>
 
@@ -137,6 +138,17 @@ const Navbar = () => {
             About
           </a>
           <a 
+            href="#experience" 
+            className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg transition-colors duration-200 hover:bg-accent" 
+            style={{ color: 'hsl(var(--foreground))' }}
+            onClick={() => {
+              setIsMenuOpen(false);
+              document.body.style.overflow = '';
+            }}
+          >
+            Experience
+          </a>
+          <a 
             href="#skills" 
             className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg transition-colors duration-200 hover:bg-accent" 
             style={{ color: 'hsl(var(--foreground))' }}
@@ -159,7 +171,7 @@ const Navbar = () => {
             Projects
           </a>
           <a 
-            href="#terminal" 
+            href="#achievements" 
             className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg transition-colors duration-200 hover:bg-accent" 
             style={{ color: 'hsl(var(--foreground))' }}
             onClick={() => {
@@ -167,7 +179,7 @@ const Navbar = () => {
               document.body.style.overflow = '';
             }}
           >
-            Terminal
+            Achievements
           </a>
           <a 
             href="#contact" 

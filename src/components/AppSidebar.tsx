@@ -16,10 +16,10 @@ import {
 const navItems = [
   { title: "Home", url: "/", icon: Home },
   { title: "About", url: "#about", icon: User },
-  { title: "Skills", url: "#skills", icon: Code },
+  { title: "Experience", url: "#experience", icon: Code },
+  { title: "Skills", url: "#skills", icon: Terminal },
   { title: "Projects", url: "#projects", icon: Menu },
-  { title: "Terminal", url: "#terminal", icon: Terminal },
-  { title: "Flutter Playground", url: "#flutter-playground", icon: Smartphone },
+  { title: "Achievements", url: "#achievements", icon: Smartphone },
   { title: "Contact", url: "#contact", icon: Mail },
 ];
 
