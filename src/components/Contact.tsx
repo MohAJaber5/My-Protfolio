@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { cn } from '@/lib/utils';
 import { Mail, MapPin, Phone, Send, Github, Linkedin } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,12 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const sectionRef = useRef<HTMLDivElement>(null);
+  const form = useRef<HTMLFormElement>(null);
+
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init("TXG2kGhNAMU5x3Jtn");
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -54,12 +61,22 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      if (form.current) {
+        // Send email using EmailJS
+        const result = await emailjs.sendForm(
+          'service_xja4mkn',
+          'template_b8tn94i',
+          form.current,
+          'TXG2kGhNAMU5x3Jtn'
+        );
+        
+        console.log('Email sent successfully:', result.text);
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      }
     } catch (error) {
+      console.error('Failed to send email:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -112,13 +129,13 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="flex justify-center">
           {/* Contact Form */}
-          <div className="space-y-6 opacity-0 fade-in-element">
+          <div className="w-full max-w-2xl space-y-6 opacity-0 fade-in-element">
             <div className="glass-card p-8 border border-white/10">
               <h3 className="text-2xl font-semibold mb-6" style={{ color: 'hsl(var(--foreground))' }}>Send Message</h3>
               
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form ref={form} onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className="block mb-2" style={{ color: 'hsl(var(--muted-foreground))' }}>
@@ -207,6 +224,13 @@ const Contact = () => {
                   )}
                 </button>
                 
+                {/* Friendly message */}
+                <div className="text-center">
+                  <p className="text-sm text-muted-foreground italic">
+                    💬 I love to listen and collaborate on exciting projects!
+                  </p>
+                </div>
+                
                 {submitStatus === 'success' && (
                   <div className="text-green-400 text-center p-3 bg-green-400/10 rounded-lg border border-green-400/20">
                     Message sent successfully! I'll get back to you soon.
@@ -219,73 +243,6 @@ const Contact = () => {
                   </div>
                 )}
               </form>
-            </div>
-          </div>
-
-          {/* Contact Info */}
-          <div className="space-y-8 opacity-0 fade-in-element">
-            {/* Contact Details */}
-            <div className="glass-card p-8 border border-white/10">
-              <h3 className="text-2xl font-semibold mb-6" style={{ color: 'hsl(var(--foreground))' }}>Contact Information</h3>
-              
-              <div className="space-y-6">
-                {contactInfo.map((item, index) => (
-                  <div key={index} className="flex items-center space-x-4">
-                    <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{
-                      backgroundColor: 'hsl(var(--primary) / 0.2)',
-                      color: 'hsl(var(--primary))'
-                    }}>
-                      {item.icon}
-                    </div>
-                    <div>
-                      <div className="text-sm" style={{ color: 'hsl(var(--muted-foreground))' }}>{item.label}</div>
-                      {item.href ? (
-                        <a
-                          href={item.href}
-                          className="transition-colors duration-200 hover:text-primary"
-                          style={{ color: 'hsl(var(--foreground))' }}
-                        >
-                          {item.value}
-                        </a>
-                      ) : (
-                        <div style={{ color: 'hsl(var(--foreground))' }}>{item.value}</div>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Social Links */}
-            <div className="glass-card p-8 border border-white/10">
-              <h3 className="text-2xl font-semibold mb-6" style={{ color: 'hsl(var(--foreground))' }}>Follow Me</h3>
-              
-              <div className="flex space-x-4">
-                {socialLinks.map((social, index) => (
-                  <a
-                    key={index}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 border rounded-lg flex items-center justify-center transition-all duration-200 bg-background/50 border-border text-muted-foreground hover:text-primary hover:border-primary"
-                  >
-                    {social.icon}
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            {/* Availability */}
-            <div className="glass-card p-8 border border-white/10">
-              <h3 className="text-2xl font-semibold mb-4" style={{ color: 'hsl(var(--foreground))' }}>Availability</h3>
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                <span className="text-green-400 font-medium">Available for new projects</span>
-              </div>
-              <p className="text-sm" style={{ color: 'hsl(var(--muted-foreground))' }}>
-                Currently accepting freelance projects and full-time opportunities. 
-                Response time: 24-48 hours.
-              </p>
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, memo } from "react";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 import LottieAnimation from "./LottieAnimation";
@@ -205,4 +205,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default memo(Hero);

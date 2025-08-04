@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run build:*)",
+      "Bash(dir:*)",
+      "Bash(ls:*)",
+      "Bash(npx @squoosh/cli:*)",
+      "Bash(npm install:*)"
+    ],
+    "deny": []
+  }
+}

@@ -1,23 +1,15 @@
-import React, { useEffect } from "react";
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Experience from "@/components/Experience";
-import Skills from "@/components/Skills";
-import Projects from "@/components/Projects";
-import Achievements from "@/components/Achievements";
-import TerminalPlayground from "@/components/TerminalPlayground";
-import FlutterPlayground from "@/components/FlutterPlayground";
-import Contact from "@/components/Contact";
+import React, { useEffect, lazy, Suspense } from "react";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ThemeToggle from "@/components/ThemeToggle";
-import Footer from "@/components/Footer";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/AppSidebar";
-import { useIsMobile } from "@/hooks/use-mobile";
 
+// Lazy load components
+const Navbar = lazy(() => import("@/components/Navbar"));
+const Hero = lazy(() => import("@/components/HeroNew"));
+const About = lazy(() => import("@/components/AboutNew"));
+const Projects = lazy(() => import("@/components/Projects"));
+const Achievements = lazy(() => import("@/components/Achievements"));
+const Contact = lazy(() => import("@/components/Contact"));
 const Index = () => {
-  const isMobile = useIsMobile();
 
   // Initialize intersection observer to detect when elements enter viewport
   useEffect(() => {
@@ -64,55 +56,31 @@ const Index = () => {
     });
   }, []);
 
-  if (isMobile) {
-    return (
-      <SidebarProvider>
-        <div className="min-h-screen flex w-full">
-          <AppSidebar />
-          <div className="flex-1 relative">
-            <AnimatedBackground />
-            <ThemeToggle />
-            
-            {/* Mobile Sidebar Trigger */}
-            <div className="fixed top-4 left-4 z-50">
-              <SidebarTrigger className="bg-background/80 backdrop-blur-md border border-border/50 hover:bg-accent/50 rounded-lg p-2" />
-            </div>
-            
-            <main className="relative z-10 backdrop-blur-[0.5px] bg-background/80">
-              <Hero />
-              <About />
-              <Experience />
-              <Skills />
-              <Projects />
-              <Achievements />
-              <TerminalPlayground />
-              <FlutterPlayground />
-              <Contact />
-            </main>
-            <Footer />
-          </div>
-        </div>
-      </SidebarProvider>
-    );
-  }
 
   return (
     <div className="min-h-screen relative">
       <AnimatedBackground />
       <ThemeToggle />
-      <Navbar />
-      <main className="relative z-10 backdrop-blur-[0.5px] bg-background/80">
-        <Hero />
-        <About />
-        <Experience />
-        <Skills />
-        <Projects />
-        <Achievements />
-        <TerminalPlayground />
-        <FlutterPlayground />
-        <Contact />
+      <Suspense fallback={<div className="h-16 bg-background/50"></div>}>
+        <Navbar />
+      </Suspense>
+      <main className="relative z-10">
+        <Suspense fallback={<div className="h-screen flex items-center justify-center">Loading...</div>}>
+          <Hero />
+        </Suspense>
+        <Suspense fallback={<div className="h-64 flex items-center justify-center">Loading...</div>}>
+          <About />
+        </Suspense>
+        <Suspense fallback={<div className="h-64 flex items-center justify-center">Loading...</div>}>
+          <Projects />
+        </Suspense>
+        <Suspense fallback={<div className="h-64 flex items-center justify-center">Loading...</div>}>
+          <Achievements />
+        </Suspense>
+        <Suspense fallback={<div className="h-64 flex items-center justify-center">Loading...</div>}>
+          <Contact />
+        </Suspense>
       </main>
-      <Footer />
     </div>
   );
 };

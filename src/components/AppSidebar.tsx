@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { Home, User, Code, Terminal, Mail, Menu, Smartphone } from "lucide-react";
+import { Home, User, Code, Trophy, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   Sidebar,
@@ -16,10 +16,8 @@ import {
 const navItems = [
   { title: "Home", url: "/", icon: Home },
   { title: "About", url: "#about", icon: User },
-  { title: "Experience", url: "#experience", icon: Code },
-  { title: "Skills", url: "#skills", icon: Terminal },
-  { title: "Projects", url: "#projects", icon: Menu },
-  { title: "Achievements", url: "#achievements", icon: Smartphone },
+  { title: "Projects", url: "#projects", icon: Code },
+  { title: "Achievements", url: "#achievements", icon: Trophy },
   { title: "Contact", url: "#contact", icon: Mail },
 ];
 

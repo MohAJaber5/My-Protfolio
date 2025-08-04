@@ -24,16 +24,16 @@ const ThemeToggle = () => {
           onClick={toggleTheme}
           className={cn(
             "w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300",
-            "bg-white/10 backdrop-blur-md border border-white/20",
-            "hover:bg-white/20 hover:scale-110",
+            "bg-background/80 backdrop-blur-md border border-border",
+            "hover:bg-background/90 hover:scale-110",
             "shadow-lg"
           )}
           aria-label="Toggle theme"
         >
           {theme === 'dark' ? (
-            <Sun className="w-5 h-5 text-yellow-400" />
+            <Sun className="w-5 h-5 text-primary" />
           ) : (
-            <Moon className="w-5 h-5 text-blue-600" />
+            <Moon className="w-5 h-5 text-primary" />
           )}
         </button>
 
@@ -42,10 +42,10 @@ const ThemeToggle = () => {
           onClick={() => setShowCustomizer(!showCustomizer)}
           className={cn(
             "w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300",
-            "bg-white/10 backdrop-blur-md border border-white/20",
-            "hover:bg-white/20 hover:scale-110",
+            "bg-background/80 backdrop-blur-md border border-border",
+            "hover:bg-background/90 hover:scale-110",
             "shadow-lg",
-            showCustomizer && "bg-primary/20 border-primary/30"
+            showCustomizer && "bg-primary/20 border-primary/50"
           )}
           aria-label="Customize theme"
         >
@@ -57,17 +57,17 @@ const ThemeToggle = () => {
       {showCustomizer && (
         <div className={cn(
           "absolute top-0 right-16 w-72 rounded-lg transition-all duration-300",
-          "bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl",
+          "bg-background/90 backdrop-blur-md border border-border shadow-2xl",
           "p-6"
         )}>
           <div className="flex items-center space-x-2 mb-4">
             <Settings className="w-5 h-5 text-primary" />
-            <h3 className="text-lg font-semibold text-white">Customize Theme</h3>
+            <h3 className="text-lg font-semibold text-foreground">Customize Theme</h3>
           </div>
 
           {/* Theme Mode */}
           <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-300 mb-3">
+            <label className="block text-sm font-medium text-muted-foreground mb-3">
               Theme Mode
             </label>
             <div className="flex space-x-2">
@@ -76,8 +76,8 @@ const ThemeToggle = () => {
                 className={cn(
                   "flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all duration-200",
                   theme === 'light'
-                    ? "bg-primary text-white shadow-md"
-                    : "bg-white/5 text-gray-300 hover:bg-white/10"
+                    ? "bg-primary text-primary-foreground shadow-md"
+                    : "bg-muted/50 text-muted-foreground hover:bg-muted"
                 )}
               >
                 <Sun className="w-4 h-4 inline mr-2" />
@@ -88,8 +88,8 @@ const ThemeToggle = () => {
                 className={cn(
                   "flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all duration-200",
                   theme === 'dark'
-                    ? "bg-primary text-white shadow-md"
-                    : "bg-white/5 text-gray-300 hover:bg-white/10"
+                    ? "bg-primary text-primary-foreground shadow-md"
+                    : "bg-muted/50 text-muted-foreground hover:bg-muted"
                 )}
               >
                 <Moon className="w-4 h-4 inline mr-2" />
@@ -100,7 +100,7 @@ const ThemeToggle = () => {
 
           {/* Color Schemes */}
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-3">
+            <label className="block text-sm font-medium text-muted-foreground mb-3">
               Color Scheme
             </label>
             <div className="grid grid-cols-2 gap-2">
@@ -113,7 +113,7 @@ const ThemeToggle = () => {
                     "border-2",
                     colorScheme === option.scheme
                       ? "border-primary bg-primary/10"
-                      : "border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20"
+                      : "border-border bg-muted/30 hover:bg-muted/50 hover:border-border/50"
                   )}
                 >
                   <div className="flex items-center space-x-2 mb-2">
@@ -127,7 +127,7 @@ const ThemeToggle = () => {
                       ))}
                     </div>
                   </div>
-                  <div className="text-xs font-medium text-white">
+                  <div className="text-xs font-medium text-foreground">
                     {option.name}
                   </div>
                 </button>
@@ -138,7 +138,7 @@ const ThemeToggle = () => {
           {/* Close Button */}
           <button
             onClick={() => setShowCustomizer(false)}
-            className="w-full mt-4 py-2 px-4 bg-white/5 border border-white/20 rounded-lg text-sm text-gray-300 hover:bg-white/10 transition-colors duration-200"
+            className="w-full mt-4 py-2 px-4 bg-muted/30 border border-border rounded-lg text-sm text-muted-foreground hover:bg-muted/50 transition-colors duration-200"
           >
             Close
           </button>

@@ -165,23 +165,6 @@ const Achievements = () => {
           ))}
         </div>
 
-        {/* Call to Action */}
-        <div className="text-center mt-16 opacity-0 fade-in-element">
-          <div className="glass-card p-8 border border-border max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold mb-4 text-foreground">
-              Ready to Build Something Amazing?
-            </h3>
-            <p className="mb-6 text-muted-foreground">
-              Let's collaborate on your next mobile project and create solutions that make a difference.
-            </p>
-            <a 
-              href="#contact" 
-              className="inline-flex items-center px-8 py-3 button-primary text-lg font-semibold"
-            >
-              Start a Project
-            </a>
-          </div>
-        </div>
       </div>
     </section>
   );

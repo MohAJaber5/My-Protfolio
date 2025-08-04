@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { memo } from "react";
 import Lottie from "lottie-react";
 
 interface LottieAnimationProps {
@@ -30,4 +30,4 @@ const LottieAnimation = ({
   );
 };
 
-export default LottieAnimation;
+export default memo(LottieAnimation);
