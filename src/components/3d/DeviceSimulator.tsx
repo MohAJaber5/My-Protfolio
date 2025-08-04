@@ -73,11 +73,11 @@ const CSS3DDevice: React.FC<DeviceProps> = ({ deviceType, codeContent, isRunning
   const getScreenSize = () => {
     switch (deviceType) {
       case 'tablet':
-        return { width: '260px', height: '370px' };
+        return { width: '220px', height: '300px' };
       case 'desktop':
-        return { width: '420px', height: '270px' };
+        return { width: '350px', height: '200px' };
       default: // phone
-        return { width: '140px', height: '280px' };
+        return { width: '120px', height: '220px' };
     }
   };
 
@@ -113,8 +113,14 @@ const CSS3DDevice: React.FC<DeviceProps> = ({ deviceType, codeContent, isRunning
           <div className="absolute inset-2 bg-black rounded-xl overflow-hidden">
             {/* Screen Content */}
             <div 
-              className="absolute inset-1 bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg overflow-hidden"
-              style={getScreenSize()}
+              className="absolute inset-1 bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg overflow-hidden flex items-center justify-center"
+              style={{
+                width: getScreenSize().width,
+                height: getScreenSize().height,
+                left: '50%',
+                top: '50%',
+                transform: 'translate(-50%, -50%)'
+              }}
             >
               <FlutterApp 
                 codeContent={codeContent} 
