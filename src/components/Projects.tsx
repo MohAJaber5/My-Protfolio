@@ -129,6 +129,14 @@ const Projects = () => {
 
   const projects = [
     {
+      title: 'Galaxy Coder Journey',
+      description: 'Interactive space-themed portfolio website with stunning galaxy navigation, animated starfield, planetary sections, and immersive coding experience. A journey through the coding universe with React + TypeScript.',
+      tech: ['React 18', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'shadcn/ui'],
+      image: '🌌',
+      liveUrl: '#',
+      githubUrl: 'https://github.com/mjaber5'
+    },
+    {
       title: 'Smart-Home Flutter App',
       description: 'IoT-integrated smart home application with real-time device control, energy tracking, automation, and security integration for comprehensive home management.',
       tech: ['Flutter', 'Dart', 'IoT', 'Firebase', 'MQTT'],
