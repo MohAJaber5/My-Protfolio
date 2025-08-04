@@ -1,14 +1,11 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { 
   OrbitControls, 
   Environment, 
-  PerspectiveCamera, 
-  RoundedBox, 
+  PerspectiveCamera,
   Text,
   Html,
-  useTexture,
-  Shadow,
   ContactShadows
 } from '@react-three/drei';
 import * as THREE from 'three';
@@ -38,29 +35,20 @@ const PhoneDevice: React.FC<{ codeContent: string; isRunning: boolean }> = ({ co
       onPointerOut={() => setHovered(false)}
     >
       {/* Phone Frame */}
-      <RoundedBox
-        args={[1.6, 3.2, 0.15]}
-        radius={0.15}
-        smoothness={4}
-        position={[0, 0, 0]}
-      >
+      <mesh position={[0, 0, 0]}>
+        <boxGeometry args={[1.6, 3.2, 0.15]} />
         <meshPhysicalMaterial
           color="#1a1a1a"
           metalness={0.8}
           roughness={0.2}
           clearcoat={1}
           clearcoatRoughness={0.1}
-          reflectivity={0.9}
         />
-      </RoundedBox>
+      </mesh>
 
       {/* Screen Bezel */}
-      <RoundedBox
-        args={[1.45, 2.9, 0.02]}
-        radius={0.1}
-        smoothness={4}
-        position={[0, 0, 0.08]}
-      >
+      <mesh position={[0, 0, 0.08]}>
+        <boxGeometry args={[1.45, 2.9, 0.02]} />
         <meshPhysicalMaterial
           color="#000000"
           metalness={0.1}
@@ -68,15 +56,11 @@ const PhoneDevice: React.FC<{ codeContent: string; isRunning: boolean }> = ({ co
           emissive="#001122"
           emissiveIntensity={0.1}
         />
-      </RoundedBox>
+      </mesh>
 
       {/* Screen Content */}
-      <RoundedBox
-        args={[1.35, 2.7, 0.01]}
-        radius={0.08}
-        smoothness={4}
-        position={[0, 0, 0.09]}
-      >
+      <mesh position={[0, 0, 0.09]}>
+        <boxGeometry args={[1.35, 2.7, 0.01]} />
         <meshPhysicalMaterial
           color="#ffffff"
           emissive="#4285f4"
@@ -84,35 +68,32 @@ const PhoneDevice: React.FC<{ codeContent: string; isRunning: boolean }> = ({ co
           metalness={0}
           roughness={0.1}
         />
-      </RoundedBox>
+      </mesh>
 
       {/* Flutter App Simulation */}
       <Html
         transform
         occlude
         position={[0, 0, 0.1]}
-        scale={0.15}
+        scale={[0.15, 0.15, 0.15]}
         rotation={[0, 0, 0]}
       >
         <FlutterApp codeContent={codeContent} isRunning={isRunning} deviceType="phone" />
       </Html>
 
-      {/* Home Indicator (iPhone style) */}
-      <RoundedBox
-        args={[0.25, 0.05, 0.01]}
-        radius={0.025}
-        position={[0, -1.3, 0.08]}
-      >
+      {/* Home Indicator */}
+      <mesh position={[0, -1.3, 0.08]}>
+        <boxGeometry args={[0.25, 0.05, 0.01]} />
         <meshPhysicalMaterial
           color="#333333"
           metalness={0.3}
           roughness={0.7}
         />
-      </RoundedBox>
+      </mesh>
 
       {/* Camera Notch */}
       <mesh position={[0, 1.2, 0.08]}>
-        <capsuleGeometry args={[0.02, 0.15, 4, 8]} />
+        <sphereGeometry args={[0.08, 8, 8]} />
         <meshPhysicalMaterial
           color="#000000"
           metalness={0.8}
@@ -121,29 +102,23 @@ const PhoneDevice: React.FC<{ codeContent: string; isRunning: boolean }> = ({ co
       </mesh>
 
       {/* Side Buttons */}
-      <RoundedBox
-        args={[0.05, 0.3, 0.08]}
-        radius={0.02}
-        position={[-0.85, 0.5, 0]}
-      >
+      <mesh position={[-0.85, 0.5, 0]}>
+        <boxGeometry args={[0.05, 0.3, 0.08]} />
         <meshPhysicalMaterial
           color="#1a1a1a"
           metalness={0.8}
           roughness={0.3}
         />
-      </RoundedBox>
+      </mesh>
 
-      <RoundedBox
-        args={[0.05, 0.15, 0.08]}
-        radius={0.02}
-        position={[-0.85, 0, 0]}
-      >
+      <mesh position={[-0.85, 0, 0]}>
+        <boxGeometry args={[0.05, 0.15, 0.08]} />
         <meshPhysicalMaterial
           color="#1a1a1a"
           metalness={0.8}
           roughness={0.3}
         />
-      </RoundedBox>
+      </mesh>
     </group>
   );
 };
@@ -161,11 +136,8 @@ const TabletDevice: React.FC<{ codeContent: string; isRunning: boolean }> = ({ c
   return (
     <group ref={groupRef}>
       {/* Tablet Frame */}
-      <RoundedBox
-        args={[2.8, 4, 0.12]}
-        radius={0.2}
-        smoothness={4}
-      >
+      <mesh>
+        <boxGeometry args={[2.8, 4, 0.12]} />
         <meshPhysicalMaterial
           color="#2a2a2a"
           metalness={0.7}
@@ -173,15 +145,11 @@ const TabletDevice: React.FC<{ codeContent: string; isRunning: boolean }> = ({ c
           clearcoat={0.8}
           clearcoatRoughness={0.2}
         />
-      </RoundedBox>
+      </mesh>
 
       {/* Screen */}
-      <RoundedBox
-        args={[2.6, 3.7, 0.01]}
-        radius={0.15}
-        smoothness={4}
-        position={[0, 0, 0.07]}
-      >
+      <mesh position={[0, 0, 0.07]}>
+        <boxGeometry args={[2.6, 3.7, 0.01]} />
         <meshPhysicalMaterial
           color="#ffffff"
           emissive="#4285f4"
@@ -189,14 +157,14 @@ const TabletDevice: React.FC<{ codeContent: string; isRunning: boolean }> = ({ c
           metalness={0}
           roughness={0.1}
         />
-      </RoundedBox>
+      </mesh>
 
       {/* Flutter App */}
       <Html
         transform
         occlude
         position={[0, 0, 0.08]}
-        scale={0.25}
+        scale={[0.25, 0.25, 0.25]}
       >
         <FlutterApp codeContent={codeContent} isRunning={isRunning} deviceType="tablet" />
       </Html>
@@ -226,39 +194,28 @@ const DesktopDevice: React.FC<{ codeContent: string; isRunning: boolean }> = ({ 
       </mesh>
 
       {/* Monitor Arm */}
-      <RoundedBox
-        args={[0.1, 1.5, 0.1]}
-        radius={0.05}
-        position={[0, -1.3, 0]}
-      >
+      <mesh position={[0, -1.3, 0]}>
+        <boxGeometry args={[0.1, 1.5, 0.1]} />
         <meshPhysicalMaterial
           color="#1a1a1a"
           metalness={0.9}
           roughness={0.1}
         />
-      </RoundedBox>
+      </mesh>
 
       {/* Monitor Frame */}
-      <RoundedBox
-        args={[4.5, 3, 0.15]}
-        radius={0.1}
-        smoothness={4}
-        position={[0, 0, 0]}
-      >
+      <mesh position={[0, 0, 0]}>
+        <boxGeometry args={[4.5, 3, 0.15]} />
         <meshPhysicalMaterial
           color="#0a0a0a"
           metalness={0.6}
           roughness={0.4}
         />
-      </RoundedBox>
+      </mesh>
 
       {/* Screen */}
-      <RoundedBox
-        args={[4.2, 2.7, 0.01]}
-        radius={0.05}
-        smoothness={4}
-        position={[0, 0, 0.08]}
-      >
+      <mesh position={[0, 0, 0.08]}>
+        <boxGeometry args={[4.2, 2.7, 0.01]} />
         <meshPhysicalMaterial
           color="#ffffff"
           emissive="#4285f4"
@@ -266,14 +223,14 @@ const DesktopDevice: React.FC<{ codeContent: string; isRunning: boolean }> = ({ 
           metalness={0}
           roughness={0.1}
         />
-      </RoundedBox>
+      </mesh>
 
       {/* Flutter App */}
       <Html
         transform
         occlude
         position={[0, 0, 0.09]}
-        scale={0.4}
+        scale={[0.4, 0.4, 0.4]}
       >
         <FlutterApp codeContent={codeContent} isRunning={isRunning} deviceType="desktop" />
       </Html>
@@ -308,14 +265,16 @@ const FloatingElements: React.FC = () => {
 
   return (
     <>
-      {[...Array(8)].map((_, index) => (
+      {[...Array(6)].map((_, index) => (
         <group
           key={index}
-          ref={(el) => el && (elementsRef.current[index] = el)}
+          ref={(el) => {
+            if (el) elementsRef.current[index] = el;
+          }}
           position={[
-            (Math.random() - 0.5) * 12,
             (Math.random() - 0.5) * 8,
-            (Math.random() - 0.5) * 6
+            (Math.random() - 0.5) * 6,
+            (Math.random() - 0.5) * 4
           ]}
         >
           <mesh>
@@ -336,64 +295,75 @@ const FloatingElements: React.FC = () => {
   );
 };
 
+const LoadingFallback: React.FC = () => (
+  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-900 to-slate-800 rounded-xl">
+    <div className="text-white text-center">
+      <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin mx-auto mb-3"></div>
+      <div className="text-sm">Loading 3D Scene...</div>
+    </div>
+  </div>
+);
+
 const DeviceSimulator: React.FC<DeviceProps> = ({ deviceType, codeContent, isRunning }) => {
   return (
     <div className="w-full h-[500px] rounded-xl overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      <Canvas
-        shadows
-        gl={{ 
-          antialias: true, 
-          alpha: true,
-          powerPreference: "high-performance"
-        }}
-        dpr={[1, 2]}
-      >
-        <PerspectiveCamera makeDefault position={[0, 0, 8]} fov={50} />
-        
-        {/* Lighting Setup */}
-        <ambientLight intensity={0.4} />
-        <directionalLight 
-          position={[10, 10, 5]} 
-          intensity={1}
-          castShadow
-          shadow-mapSize-width={2048}
-          shadow-mapSize-height={2048}
-        />
-        <pointLight position={[-10, -10, -10]} intensity={0.5} color="#02569b" />
-        <pointLight position={[10, 10, 10]} intensity={0.5} color="#54c5f8" />
-        
-        {/* Environment */}
-        <Environment preset="city" background={false} />
-        
-        {/* Devices */}
-        {deviceType === 'phone' && <PhoneDevice codeContent={codeContent} isRunning={isRunning} />}
-        {deviceType === 'tablet' && <TabletDevice codeContent={codeContent} isRunning={isRunning} />}
-        {deviceType === 'desktop' && <DesktopDevice codeContent={codeContent} isRunning={isRunning} />}
-        
-        {/* Floating Elements */}
-        <FloatingElements />
-        
-        {/* Ground Shadow */}
-        <ContactShadows 
-          position={[0, -3, 0]} 
-          opacity={0.4} 
-          scale={10} 
-          blur={2} 
-          far={4} 
-        />
-        
-        {/* Controls */}
-        <OrbitControls 
-          enablePan={false}
-          enableZoom={true}
-          enableRotate={true}
-          minDistance={4}
-          maxDistance={12}
-          maxPolarAngle={Math.PI / 1.8}
-          autoRotate={!isRunning}
-          autoRotateSpeed={0.5}
-        />
-      </Canvas>
+      <Suspense fallback={<LoadingFallback />}>
+        <Canvas
+          shadows
+          gl={{ 
+            antialias: true, 
+            alpha: true,
+            powerPreference: "high-performance"
+          }}
+          dpr={[1, 2]}
+        >
+          <PerspectiveCamera makeDefault position={[0, 0, 8]} fov={50} />
+          
+          {/* Lighting Setup */}
+          <ambientLight intensity={0.4} />
+          <directionalLight 
+            position={[10, 10, 5]} 
+            intensity={1}
+            castShadow
+            shadow-mapSize-width={2048}
+            shadow-mapSize-height={2048}
+          />
+          <pointLight position={[-10, -10, -10]} intensity={0.5} color="#02569b" />
+          <pointLight position={[10, 10, 10]} intensity={0.5} color="#54c5f8" />
+          
+          {/* Environment */}
+          <Environment preset="city" background={false} />
+          
+          {/* Devices */}
+          {deviceType === 'phone' && <PhoneDevice codeContent={codeContent} isRunning={isRunning} />}
+          {deviceType === 'tablet' && <TabletDevice codeContent={codeContent} isRunning={isRunning} />}
+          {deviceType === 'desktop' && <DesktopDevice codeContent={codeContent} isRunning={isRunning} />}
+          
+          {/* Floating Elements */}
+          <FloatingElements />
+          
+          {/* Ground Shadow */}
+          <ContactShadows 
+            position={[0, -3, 0]} 
+            opacity={0.4} 
+            scale={10} 
+            blur={2} 
+            far={4} 
+          />
+          
+          {/* Controls */}
+          <OrbitControls 
+            enablePan={false}
+            enableZoom={true}
+            enableRotate={true}
+            minDistance={4}
+            maxDistance={12}
+            maxPolarAngle={Math.PI / 1.8}
+            autoRotate={!isRunning}
+            autoRotateSpeed={0.5}
+          />
+        </Canvas>
+      </Suspense>
     </div>
   );
 };
