@@ -88,11 +88,11 @@ const Hero = () => {
   
   return (
     <section 
-      className="overflow-hidden relative min-h-screen flex items-center" 
+      className="overflow-hidden relative min-h-screen flex items-center pt-0" 
       id="hero" 
       style={{
         background: 'transparent',
-        padding: isMobile ? '100px 12px 40px' : '120px 20px 60px'
+        padding: isMobile ? '80px 12px 40px' : '80px 20px 60px'
       }}
     >
       <div className="absolute -top-[10%] -right-[5%] w-1/2 h-[70%] opacity-20 blur-3xl rounded-full" style={{
