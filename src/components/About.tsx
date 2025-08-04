@@ -51,7 +51,7 @@ const About = () => {
             
             <div className="space-y-6 opacity-0 fade-in-element" style={{ color: 'hsl(var(--muted-foreground))' }}>
               <p className="text-lg leading-relaxed">
-                As a Senior Flutter Developer at Mujeer, I specialize in architecting scalable mobile solutions 
+                As a Flutter Developer at Mujeer, I specialize in architecting scalable mobile solutions 
                 that bridge cutting-edge technology with real-world business needs. My expertise spans from 
                 IoT integration to real-time application development, delivering measurable impact across diverse industries.
               </p>
@@ -98,7 +98,7 @@ const About = () => {
                     </div>
                     <div>
                       <div className="text-xl font-bold" style={{ color: 'hsl(var(--foreground))' }}>Mohammad Jaber</div>
-                      <div className="font-medium" style={{ color: 'hsl(var(--muted-foreground))' }}>Senior Flutter Developer @ Mujeer</div>
+                      <div className="font-medium" style={{ color: 'hsl(var(--muted-foreground))' }}>Flutter Developer @ Mujeer</div>
                     </div>
                   </div>
                   

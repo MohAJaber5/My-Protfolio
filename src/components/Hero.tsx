@@ -120,7 +120,7 @@ const Hero = () => {
               <span className="text-transparent bg-clip-text bg-gradient-to-r" style={{
                 backgroundImage: `linear-gradient(to right, hsl(var(--primary)), hsl(var(--secondary)))`
               }}>Mohammad Jaber</span><br className="hidden sm:inline" />
-              <span className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-medium" style={{ color: 'hsl(var(--muted-foreground))' }}>Senior Flutter Developer</span>
+              <span className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-medium" style={{ color: 'hsl(var(--muted-foreground))' }}>Flutter Developer</span>
             </h1>
             
             <p 
