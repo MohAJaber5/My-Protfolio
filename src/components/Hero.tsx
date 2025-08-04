@@ -127,7 +127,7 @@ const Hero = () => {
               style={{ animationDelay: "0.5s" }} 
               className="section-subtitle mt-6 sm:mt-8 mb-8 sm:mb-10 leading-relaxed opacity-0 animate-fade-in font-normal text-lg sm:text-xl text-left max-w-2xl"
             >
-              Transforming ideas into exceptional mobile experiences. Award-winning developer with expertise in Flutter, IoT integration, and scalable mobile solutions. Currently building the future at Mujeer.
+              Transforming ideas into exceptional mobile experiences. Award-winning developer with expertise in Flutter, IoT integration, and scalable mobile solutions. Currently building the future with Mujeer.
             </p>
             
             <div 

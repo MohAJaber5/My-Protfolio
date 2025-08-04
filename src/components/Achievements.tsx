@@ -34,6 +34,14 @@ const Achievements = () => {
   }, []);
 
   const achievements = [
+        {
+      icon: Award,
+      title: 'FinTech Rally 2025',
+      description: 'YOweMe AI-powered expense splitting solution',
+      year: '2025',
+      category: 'Competition',
+      color: 'hsl(var(--primary))'
+    },
     {
       icon: Trophy,
       title: 'Crown Prince Award Finalist',
@@ -42,30 +50,23 @@ const Achievements = () => {
       category: 'Innovation',
       color: 'hsl(var(--primary))'
     },
-    {
-      icon: Award,
-      title: 'FinTech Rally 2024 - 2nd Place',
-      description: 'YOweMe AI-powered expense splitting solution',
-      year: '2024',
-      category: 'Competition',
-      color: 'hsl(var(--secondary))'
-    },
-    {
+       {
       icon: Users,
       title: 'CSD Team Leadership',
       description: 'Leading community development and mentoring developers',
-      year: '2023-Present',
+      year: '2024-2025',
       category: 'Leadership',
       color: 'hsl(var(--primary))'
     },
     {
-      icon: Star,
-      title: 'Technical Excellence',
-      description: '4.8+ star rating across all published mobile applications',
-      year: '2022-2024',
-      category: 'Recognition',
-      color: 'hsl(var(--secondary))'
-    }
+      icon: Award,
+      title: 'FinTech Rally 2024 - 2nd Place',
+      description: 'Disput Management System solution',
+      year: '2024',
+      category: 'Competition',
+      color: 'hsl(var(--primary))'
+    },
+ 
   ];
 
   const stats = [

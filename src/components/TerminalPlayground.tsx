@@ -53,17 +53,11 @@ Tools & Technologies:
 
     projects: () => `Featured Projects:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-1. E-Commerce Mobile App
-   • Flutter, Firebase, Payment Integration
-   • 10k+ downloads on Play Store
    
-2. Task Management App
+1. Task Management App
    • Real-time sync, Offline support
-   • Android & iOS platforms
+   • Android & iOS platforms`,
    
-3. Travel Companion App
-   • GPS integration, Social features
-   • Winner of local hackathon`,
 
     contact: () => `Contact Information:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
