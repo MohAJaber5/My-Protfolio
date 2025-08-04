@@ -97,12 +97,21 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Navigation - improved for better touch experience */}
-      <div className={cn(
-        "fixed inset-0 z-40 backdrop-blur-md flex flex-col pt-16 px-6 md:hidden transition-all duration-300 ease-in-out",
-        "bg-background/95 border-r border-border",
-        isMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none"
-      )}>
-        <nav className="flex flex-col space-y-6 items-center mt-8">
+      <div 
+        className={cn(
+          "fixed inset-0 z-40 backdrop-blur-md flex flex-col pt-16 px-6 md:hidden transition-all duration-300 ease-in-out",
+          "bg-background/95",
+          isMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none"
+        )}
+        onClick={(e) => {
+          // Close menu when clicking the backdrop
+          if (e.target === e.currentTarget) {
+            setIsMenuOpen(false);
+            document.body.style.overflow = '';
+          }
+        }}
+      >
+        <nav className="flex flex-col space-y-6 items-center mt-8" onClick={(e) => e.stopPropagation()}>
           <a 
             href="#" 
             className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg transition-colors duration-200 hover:bg-accent" 
