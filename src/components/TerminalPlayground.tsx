@@ -147,10 +147,10 @@ Type 'about' to learn more about me.`,
     <section className="py-16 md:py-24" id="terminal">
       <div className="section-container">
         <div className="text-center mb-12">
-          <h2 className="section-title mb-4" style={{ color: 'hsl(var(--foreground))' }}>
+          <h2 className="section-title mb-4" style={{ color: 'hsl(var(--primary))' }}>
             Interactive Terminal
           </h2>
-          <p className="section-subtitle mx-auto" style={{ color: 'hsl(var(--muted-foreground))' }}>
+          <p className="section-subtitle mx-auto" style={{ color: 'hsl(var(--secondary-foreground))' }}>
             Explore my portfolio through a command-line interface
           </p>
         </div>
@@ -214,7 +214,7 @@ Type 'about' to learn more about me.`,
           </div>
           
           <div className="mt-6 text-center">
-            <p className="text-sm" style={{ color: 'hsl(var(--muted-foreground))' }}>
+            <p className="text-sm" style={{ color: 'hsl(var(--primary-))' }}>
               Try commands like <code className="px-2 py-1 rounded" style={{ 
                 backgroundColor: 'hsl(var(--muted))', 
                 color: 'hsl(var(--primary))' 

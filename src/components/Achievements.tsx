@@ -40,7 +40,8 @@ const Achievements = () => {
       description: 'YOweMe AI-powered expense splitting solution',
       year: '2025',
       category: 'Competition',
-      color: 'hsl(var(--primary))'
+      color: 'hsl(var(--primary))',
+        variant: 'primary'
     },
     {
       icon: Trophy,
@@ -56,7 +57,7 @@ const Achievements = () => {
       description: 'YOweMe AI-powered expense splitting solution',
       year: '2024',
       category: 'Competition',
-      variant: 'secondary'
+      variant: 'primary'
     },
     {
       icon: Users,
@@ -72,15 +73,15 @@ const Achievements = () => {
       description: '4.8+ star rating across all published mobile applications',
       year: '2022-2024',
       category: 'Recognition',
-      variant: 'secondary'
+      variant: 'primary'
     }
   ];
 
   const stats = [
     { number: '2', label: 'Major Awards', variant: 'primary' },
-    { number: '15+', label: 'Projects Delivered', variant: 'secondary' },
-    { number: '30+', label: 'Developers Mentored', variant: 'primary' },
-    { number: '10k+', label: 'App Downloads', variant: 'secondary' }
+    { number: '15+', label: 'Projects Delivered', variant: 'primary' },
+    { number: '10+', label: 'Developers Mentored', variant: 'primary' },
+{ number: '20+', label: 'App Testers', variant: 'primary' }
   ];
 
   return (

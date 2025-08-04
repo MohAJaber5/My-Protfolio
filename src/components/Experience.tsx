@@ -38,11 +38,11 @@ const Experience = () => {
       title: 'Flutter Developer',
       company: 'Mujeer',
       location: 'Amman, Jordan',
-      period: '2023 - Present',
+      period: '2025 - Present',
       type: 'Full-time',
-      description: 'Leading mobile development initiatives with focus on scalable Flutter applications and IoT integration.',
+      description: 'Leading mobile development initiatives with focus on scalable Flutter applications.',
       achievements: [
-        'Architected and delivered 8+ enterprise mobile applications',
+        'Architected and delivered 3+ enterprise mobile applications',
         'Implemented real-time data synchronization reducing load times by 40%',
         'Led code reviews and mentored junior developers',
         'Integrated IoT devices with mobile applications for smart solutions'
@@ -52,7 +52,7 @@ const Experience = () => {
       title: 'CSD Team Leader',
       company: 'Community Development',
       location: 'Amman, Jordan',
-      period: '2023 - Present',
+      period: '2024 - 2025',
       type: 'Leadership',
       description: 'Leading technical workshops and community development initiatives in software engineering.',
       achievements: [
@@ -66,7 +66,7 @@ const Experience = () => {
       title: 'Mobile Developer',
       company: 'Freelance',
       location: 'Remote',
-      period: '2022 - 2023',
+      period: '2023 - 2025',
       type: 'Contract',
       description: 'Developed custom mobile solutions for startups and small businesses across various industries.',
       achievements: [
@@ -132,9 +132,9 @@ const Experience = () => {
                           {exp.company}
                         </span>
                         <span className="text-sm px-2 py-1 rounded-full border" style={{
-                          backgroundColor: 'hsl(var(--secondary) / 0.1)',
-                          color: 'hsl(var(--secondary))',
-                          borderColor: 'hsl(var(--secondary) / 0.3)'
+                          backgroundColor: 'hsl(var(--primary) / 0.1)',
+                          color: 'hsl(var(--primary))',
+                          borderColor: 'hsl(var(--primary) / 0.3)'
                         }}>
                           {exp.type}
                         </span>

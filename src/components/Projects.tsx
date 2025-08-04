@@ -134,7 +134,7 @@ const Projects = () => {
 
   const projects = [
     {
-      title: 'Hakk Shop - E-commerce Marketplace',
+      title: 'Hakk Shop at Mujeer - E-commerce Marketplace',
       description: 'Comprehensive Flutter e-commerce marketplace with clean architecture, multi-language support (Arabic/English), Firebase authentication, real-time search, payment integration (eFawateer), and advanced filtering system.',
       tech: ['Flutter', 'Clean Architecture', 'Firebase', 'BLoC/Cubit', 'Payment Gateway', 'Multi-language', 'Real-time Search'],
       image: '🛍️',

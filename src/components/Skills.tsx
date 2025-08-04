@@ -106,7 +106,7 @@ const Skills = () => {
     {
       icon: '⚙️',
       title: 'Backend & Database',
-      skills: ['Firebase (85%)', 'MySQL (75%)', '.NET Core (70%)', 'REST APIs (80%)']
+      skills: ['Firebase (85%)', 'MySQL (75%)', 'REST APIs (80%)']
     },
     {
       icon: '🛠️',
