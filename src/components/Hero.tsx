@@ -88,11 +88,10 @@ const Hero = () => {
   
   return (
     <section 
-      className="overflow-hidden relative bg-cover" 
+      className="overflow-hidden relative min-h-screen flex items-center" 
       id="hero" 
       style={{
-        backgroundImage: 'url("/Header-background.webp")',
-        backgroundPosition: 'center 30%', 
+        background: 'transparent',
         padding: isMobile ? '100px 12px 40px' : '120px 20px 60px'
       }}
     >
@@ -105,22 +104,23 @@ const Hero = () => {
               className="pulse-chip mb-3 sm:mb-6 opacity-0 animate-fade-in" 
               style={{ animationDelay: "0.1s" }}
             >
-              <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">01</span>
-              <span>Purpose</span>
+              <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">👋</span>
+              <span>Hello World</span>
             </div>
             
             <h1 
-              className="section-title text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-tight opacity-0 animate-fade-in" 
+              className="section-title text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-tight opacity-0 animate-fade-in text-white" 
               style={{ animationDelay: "0.3s" }}
             >
-              Atlas: Where Code<br className="hidden sm:inline" />Meets Motion
+              Mohammad Jaber<br className="hidden sm:inline" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">Mobile Developer</span>
             </h1>
             
             <p 
               style={{ animationDelay: "0.5s" }} 
-              className="section-subtitle mt-3 sm:mt-6 mb-4 sm:mb-8 leading-relaxed opacity-0 animate-fade-in text-gray-950 font-normal text-base sm:text-lg text-left"
+              className="section-subtitle mt-3 sm:mt-6 mb-4 sm:mb-8 leading-relaxed opacity-0 animate-fade-in text-gray-300 font-normal text-base sm:text-lg text-left"
             >
-              The humanoid companion that learns and adapts alongside you.
+              Flutter & Android specialist from Amman, Jordan. Building scalable, smart, and beautiful mobile applications that solve real-world problems.
             </p>
             
             <div 
@@ -128,8 +128,8 @@ const Hero = () => {
               style={{ animationDelay: "0.7s" }}
             >
               <a 
-                href="#get-access" 
-                className="flex items-center justify-center group w-full sm:w-auto text-center" 
+                href="#projects" 
+                className="flex items-center justify-center group w-full sm:w-auto text-center mr-4" 
                 style={{
                   backgroundColor: '#FE5C02',
                   borderRadius: '1440px',
@@ -138,12 +138,29 @@ const Hero = () => {
                   cursor: 'pointer',
                   fontSize: '14px',
                   lineHeight: '20px',
-                  padding: '16px 24px', // Slightly reduced padding for mobile
+                  padding: '16px 24px',
                   border: '1px solid white',
                 }}
               >
-                Request Access
+                View Projects
                 <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </a>
+              <a 
+                href="#contact" 
+                className="flex items-center justify-center group w-full sm:w-auto text-center" 
+                style={{
+                  backgroundColor: 'transparent',
+                  borderRadius: '1440px',
+                  boxSizing: 'border-box',
+                  color: '#FFFFFF',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  lineHeight: '20px',
+                  padding: '16px 24px',
+                  border: '1px solid rgba(255,255,255,0.3)',
+                }}
+              >
+                Get In Touch
               </a>
             </div>
           </div>
@@ -162,14 +179,13 @@ const Hero = () => {
               <>
               <div className="absolute inset-0 bg-dark-900 rounded-2xl sm:rounded-3xl -z-10 shadow-xl"></div>
               <div className="relative transition-all duration-500 ease-out overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl">
-                <img 
-                  ref={imageRef} 
-                  src="/lovable-uploads/5663820f-6c97-4492-9210-9eaa1a8dc415.png" 
-                  alt="Atlas Robot" 
-                  className="w-full h-auto object-cover transition-transform duration-500 ease-out" 
-                  style={{ transformStyle: 'preserve-3d' }} 
-                />
-                <div className="absolute inset-0" style={{ backgroundImage: 'url("/hero-image.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', mixBlendMode: 'overlay', opacity: 0.5 }}></div>
+                <div className="w-full h-96 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center text-white">
+                  <div className="text-center">
+                    <div className="text-6xl mb-4">💻</div>
+                    <div className="text-xl font-semibold">Mobile Developer</div>
+                    <div className="text-gray-400">Flutter • Android • iOS</div>
+                  </div>
+                </div>
               </div>
               </>
             )}
