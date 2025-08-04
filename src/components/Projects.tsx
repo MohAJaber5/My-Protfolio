@@ -150,6 +150,14 @@ const Projects = () => {
       githubUrl: 'https://github.com/mjaber5'
     },
     {
+      title: 'Emotion Prediction from Twitter Posts',
+      description: 'Machine learning project implementing multiple classification models (KNN, SVM, Decision Tree, Random Forest, Neural Network) to predict emotions from Twitter posts using NLP techniques and TF-IDF vectorization.',
+      tech: ['Python', 'Machine Learning', 'NLP', 'TF-IDF', 'Scikit-learn', 'Data Visualization'],
+      image: '🧠',
+      liveUrl: '#',
+      githubUrl: 'https://github.com/mjaber5'
+    },
+    {
       title: 'Galaxy Coder Journey',
       description: 'Interactive space-themed portfolio website with stunning galaxy navigation, animated starfield, planetary sections, and immersive coding experience. A journey through the coding universe with React + TypeScript.',
       tech: ['React 18', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'shadcn/ui'],
