@@ -48,32 +48,39 @@ const Achievements = () => {
       description: 'Recognized for innovative legal technology platform Qanoni',
       year: '2024',
       category: 'Innovation',
-      color: 'hsl(var(--primary))'
+      variant: 'primary'
     },
-       {
+    {
+      icon: Award,
+      title: 'FinTech Rally 2024 - 2nd Place',
+      description: 'YOweMe AI-powered expense splitting solution',
+      year: '2024',
+      category: 'Competition',
+      variant: 'secondary'
+    },
+    {
       icon: Users,
       title: 'CSD Team Leadership',
       description: 'Leading community development and mentoring developers',
       year: '2024-2025',
       category: 'Leadership',
-      color: 'hsl(var(--primary))'
+      variant: 'primary'
     },
     {
-      icon: Award,
-      title: 'FinTech Rally 2024 - 2nd Place',
-      description: 'Disput Management System solution',
-      year: '2024',
-      category: 'Competition',
-      color: 'hsl(var(--primary))'
-    },
- 
+      icon: Star,
+      title: 'Technical Excellence',
+      description: '4.8+ star rating across all published mobile applications',
+      year: '2022-2024',
+      category: 'Recognition',
+      variant: 'secondary'
+    }
   ];
 
   const stats = [
-    { number: '2', label: 'Major Awards', color: 'hsl(var(--primary))' },
-    { number: '15+', label: 'Projects Delivered', color: 'hsl(var(--secondary))' },
-    { number: '30+', label: 'Developers Mentored', color: 'hsl(var(--primary))' },
-    { number: '10k+', label: 'App Downloads', color: 'hsl(var(--secondary))' }
+    { number: '2', label: 'Major Awards', variant: 'primary' },
+    { number: '15+', label: 'Projects Delivered', variant: 'secondary' },
+    { number: '30+', label: 'Developers Mentored', variant: 'primary' },
+    { number: '10k+', label: 'App Downloads', variant: 'secondary' }
   ];
 
   return (
@@ -99,10 +106,10 @@ const Achievements = () => {
               className="text-center opacity-0 fade-in-element glass-card p-6 border border-border"
               style={{ animationDelay: `${0.1 + index * 0.1}s` }}
             >
-              <div className="text-3xl font-bold mb-2" style={{ color: stat.color }}>
+              <div className={`text-3xl font-bold mb-2 ${stat.variant === 'primary' ? 'text-primary' : 'text-secondary'}`}>
                 {stat.number}
               </div>
-              <div className="text-sm font-medium" style={{ color: 'hsl(var(--muted-foreground))' }}>
+              <div className="text-sm font-medium text-muted-foreground">
                 {stat.label}
               </div>
             </div>
@@ -118,35 +125,37 @@ const Achievements = () => {
               style={{ animationDelay: `${0.3 + index * 0.1}s` }}
             >
               <div className="flex items-start gap-6">
-                <div 
-                  className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0"
-                  style={{
-                    backgroundColor: `${achievement.color} / 0.1`,
-                    border: `1px solid ${achievement.color} / 0.3`
-                  }}
-                >
-                  <achievement.icon className="w-8 h-8" style={{ color: achievement.color }} />
+                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 border ${
+                  achievement.variant === 'primary' 
+                    ? 'bg-primary/10 border-primary/30' 
+                    : 'bg-secondary/10 border-secondary/30'
+                }`}>
+                  <achievement.icon className={`w-8 h-8 ${
+                    achievement.variant === 'primary' ? 'text-primary' : 'text-secondary'
+                  }`} />
                 </div>
                 
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-xl font-bold" style={{ color: 'hsl(var(--foreground))' }}>
+                    <h3 className="text-xl font-bold text-foreground">
                       {achievement.title}
                     </h3>
-                    <span className="text-sm px-3 py-1 rounded-full border" style={{
-                      backgroundColor: `${achievement.color} / 0.1`,
-                      color: achievement.color,
-                      borderColor: `${achievement.color} / 0.3`
-                    }}>
+                    <span className={`text-sm px-3 py-1 rounded-full border ${
+                      achievement.variant === 'primary'
+                        ? 'bg-primary/10 text-primary border-primary/30'
+                        : 'bg-secondary/10 text-secondary border-secondary/30'
+                    }`}>
                       {achievement.category}
                     </span>
                   </div>
                   
-                  <p className="leading-relaxed mb-3" style={{ color: 'hsl(var(--muted-foreground))' }}>
+                  <p className="leading-relaxed mb-3 text-muted-foreground">
                     {achievement.description}
                   </p>
                   
-                  <div className="text-sm font-semibold" style={{ color: achievement.color }}>
+                  <div className={`text-sm font-semibold ${
+                    achievement.variant === 'primary' ? 'text-primary' : 'text-secondary'
+                  }`}>
                     {achievement.year}
                   </div>
                 </div>
@@ -158,10 +167,10 @@ const Achievements = () => {
         {/* Call to Action */}
         <div className="text-center mt-16 opacity-0 fade-in-element">
           <div className="glass-card p-8 border border-border max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold mb-4" style={{ color: 'hsl(var(--foreground))' }}>
+            <h3 className="text-2xl font-bold mb-4 text-foreground">
               Ready to Build Something Amazing?
             </h3>
-            <p className="mb-6" style={{ color: 'hsl(var(--muted-foreground))' }}>
+            <p className="mb-6 text-muted-foreground">
               Let's collaborate on your next mobile project and create solutions that make a difference.
             </p>
             <a 
