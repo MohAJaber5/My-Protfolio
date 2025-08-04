@@ -153,10 +153,10 @@ Type 'about' to learn more about me.`,
     <section className="py-16 md:py-24" id="terminal">
       <div className="section-container">
         <div className="text-center mb-12">
-          <h2 className="section-title text-white mb-4">
+          <h2 className="section-title mb-4" style={{ color: 'hsl(var(--foreground))' }}>
             Interactive Terminal
           </h2>
-          <p className="section-subtitle text-gray-300 mx-auto">
+          <p className="section-subtitle mx-auto" style={{ color: 'hsl(var(--muted-foreground))' }}>
             Explore my portfolio through a command-line interface
           </p>
         </div>
@@ -220,10 +220,19 @@ Type 'about' to learn more about me.`,
           </div>
           
           <div className="mt-6 text-center">
-            <p className="text-gray-400 text-sm">
-              Try commands like <code className="bg-gray-800 px-2 py-1 rounded text-green-400">help</code>, 
-              <code className="bg-gray-800 px-2 py-1 rounded text-green-400 ml-1">about</code>, or 
-              <code className="bg-gray-800 px-2 py-1 rounded text-green-400 ml-1">skills</code>
+            <p className="text-sm" style={{ color: 'hsl(var(--muted-foreground))' }}>
+              Try commands like <code className="px-2 py-1 rounded" style={{ 
+                backgroundColor: 'hsl(var(--muted))', 
+                color: 'hsl(var(--primary))' 
+              }}>help</code>, 
+              <code className="px-2 py-1 rounded ml-1" style={{ 
+                backgroundColor: 'hsl(var(--muted))', 
+                color: 'hsl(var(--primary))' 
+              }}>about</code>, or 
+              <code className="px-2 py-1 rounded ml-1" style={{ 
+                backgroundColor: 'hsl(var(--muted))', 
+                color: 'hsl(var(--primary))' 
+              }}>skills</code>
             </p>
           </div>
         </div>
