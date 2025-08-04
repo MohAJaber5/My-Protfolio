@@ -124,21 +124,15 @@ const About = () => {
                   <div className="pt-6 border-t border-border">
                     <div className="text-sm font-medium mb-3" style={{ color: 'hsl(var(--muted-foreground))' }}>Core Expertise:</div>
                     <div className="flex flex-wrap gap-3">
-                      <span className="px-4 py-2 rounded-full text-sm font-medium border" style={{
-                        backgroundColor: 'hsl(var(--primary) / 0.1)',
-                        color: 'hsl(var(--primary))',
-                        borderColor: 'hsl(var(--primary) / 0.3)'
-                      }}>Flutter Development</span>
-                      <span className="px-4 py-2 rounded-full text-sm font-medium border" style={{
-                        backgroundColor: 'hsl(var(--secondary) / 0.1)',
-                        color: 'hsl(var(--secondary))',
-                        borderColor: 'hsl(var(--secondary) / 0.3)'
-                      }}>IoT Integration</span>
-                      <span className="px-4 py-2 rounded-full text-sm font-medium border" style={{
-                        backgroundColor: 'hsl(var(--primary) / 0.1)',
-                        color: 'hsl(var(--primary))',
-                        borderColor: 'hsl(var(--primary) / 0.3)'
-                      }}>Real-time Systems</span>
+                      <span className="px-4 py-2 rounded-full text-sm font-medium border bg-primary/10 text-primary border-primary/30">
+                        Flutter Development
+                      </span>
+                      <span className="px-4 py-2 rounded-full text-sm font-medium border bg-secondary/10 text-secondary border-secondary/30">
+                        IoT Integration
+                      </span>
+                      <span className="px-4 py-2 rounded-full text-sm font-medium border bg-primary/10 text-primary border-primary/30">
+                        Real-time Systems
+                      </span>
                     </div>
                   </div>
                 </div>
