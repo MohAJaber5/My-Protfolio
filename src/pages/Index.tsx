@@ -5,6 +5,7 @@ import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import TerminalPlayground from "@/components/TerminalPlayground";
+import FlutterPlayground from "@/components/FlutterPlayground";
 import Contact from "@/components/Contact";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -81,6 +82,7 @@ const Index = () => {
               <Skills />
               <Projects />
               <TerminalPlayground />
+              <FlutterPlayground />
               <Contact />
             </main>
             <Footer />
@@ -101,6 +103,7 @@ const Index = () => {
         <Skills />
         <Projects />
         <TerminalPlayground />
+        <FlutterPlayground />
         <Contact />
       </main>
       <Footer />
