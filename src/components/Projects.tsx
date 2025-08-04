@@ -144,7 +144,7 @@ const Projects = () => {
     {
       title: 'YOweMe - AI-Powered Expense Splitting',
       description: 'Fintech Rally 2025 hackathon project. AI-powered mobile & web solution for smart expense splitting with Google AI categorization, JoPACC API integration, and intelligent debt settlement system built in 48 hours.',
-      tech: ['Flutter', 'Google AI', 'JoPACC API', 'Dart', 'Web Dashboard', 'Biometric Auth', 'Arabic/English'],
+      tech: ['Flutter', 'Google AI', 'JoPACC API', 'Web Dashboard', 'Biometric Auth', 'Arabic/English'],
       image: '💸',
       liveUrl: '#',
       githubUrl: 'https://github.com/mjaber5'
