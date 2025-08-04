@@ -79,6 +79,15 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     document.documentElement.setAttribute('data-theme', theme);
     document.documentElement.setAttribute('data-color-scheme', colorScheme);
     
+    // Also add/remove dark class for better compatibility
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
+    } else {
+      document.documentElement.classList.add('light');
+      document.documentElement.classList.remove('dark');
+    }
+    
     // Update CSS custom properties
     const colors = colorSchemes[colorScheme];
     const root = document.documentElement;
