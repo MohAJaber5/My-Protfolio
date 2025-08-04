@@ -86,6 +86,10 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
       document.documentElement.classList.remove('dark');
     }
     
+    // Also update the body class for consistency
+    document.body.className = document.body.className.replace(/\b(light|dark)\b/g, '');
+    document.body.classList.add(theme);
+    
     // Update CSS custom properties
     const colors = colorSchemes[colorScheme];
     const root = document.documentElement;
