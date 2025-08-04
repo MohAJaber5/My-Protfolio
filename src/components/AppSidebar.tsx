@@ -47,7 +47,7 @@ export function AppSidebar() {
       )}
       collapsible="icon"
     >
-      <SidebarContent className="bg-background/80 backdrop-blur-md border-r border-border/50">
+      <SidebarContent className="bg-background/70 backdrop-blur-xl border-r border-white/10 shadow-2xl">
         {/* Logo Section */}
         <div className="p-4 border-b border-border/50">
           <div className="flex items-center space-x-3">
