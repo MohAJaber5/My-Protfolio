@@ -10,8 +10,13 @@ import Contact from "@/components/Contact";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ThemeToggle from "@/components/ThemeToggle";
 import Footer from "@/components/Footer";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/AppSidebar";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Index = () => {
+  const isMobile = useIsMobile();
+
   // Initialize intersection observer to detect when elements enter viewport
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -56,6 +61,35 @@ const Index = () => {
       });
     });
   }, []);
+
+  if (isMobile) {
+    return (
+      <SidebarProvider>
+        <div className="min-h-screen flex w-full">
+          <AppSidebar />
+          <div className="flex-1 relative">
+            <AnimatedBackground />
+            <ThemeToggle />
+            
+            {/* Mobile Sidebar Trigger */}
+            <div className="fixed top-4 left-4 z-50">
+              <SidebarTrigger className="bg-background/80 backdrop-blur-md border border-border/50 hover:bg-accent/50 rounded-lg p-2" />
+            </div>
+            
+            <main className="relative z-10 backdrop-blur-[1px] bg-background/80">
+              <Hero />
+              <About />
+              <Skills />
+              <Projects />
+              <TerminalPlayground />
+              <Contact />
+            </main>
+            <Footer />
+          </div>
+        </div>
+      </SidebarProvider>
+    );
+  }
 
   return (
     <div className="min-h-screen relative">
