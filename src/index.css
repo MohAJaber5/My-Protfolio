@@ -185,10 +185,16 @@
   }
 
   .pulse-chip {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
+    @apply inline-flex items-center px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300;
     background-color: hsl(var(--primary) / 0.1);
     color: hsl(var(--primary));
-    border: 1px solid hsl(var(--primary) / 0.2);
+    border: 1px solid hsl(var(--primary) / 0.3);
+    backdrop-filter: blur(12px);
+  }
+
+  .pulse-chip:hover {
+    background-color: hsl(var(--primary) / 0.15);
+    border-color: hsl(var(--primary) / 0.4);
   }
   
   .section-container {
@@ -196,13 +202,16 @@
   }
 
   .section-title {
-    @apply text-3xl md:text-4xl lg:text-5xl font-display font-bold tracking-tight;
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold mb-8 tracking-tight;
     color: hsl(var(--foreground));
+    line-height: 1.1;
+    letter-spacing: -0.025em;
   }
 
   .section-subtitle {
-    @apply text-lg md:text-xl mt-4 max-w-3xl;
+    @apply text-lg md:text-xl leading-relaxed;
     color: hsl(var(--muted-foreground));
+    line-height: 1.6;
   }
 
   .glass-card {
@@ -216,16 +225,31 @@
   }
   
   .button-primary {
-    @apply font-medium py-3 px-6 rounded-full transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-[1.02] active:scale-[0.98];
-    background-color: hsl(var(--primary));
+    @apply px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 shadow-lg;
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
     color: hsl(var(--primary-foreground));
-    border: 1px solid hsl(var(--primary));
+    box-shadow: 0 8px 24px hsl(var(--primary) / 0.25);
+    border: 1px solid hsl(var(--primary) / 0.2);
+  }
+
+  .button-primary:hover {
+    box-shadow: 0 12px 32px hsl(var(--primary) / 0.35);
+    transform: translateY(-2px) scale(1.02);
   }
 
   .button-secondary {
-    @apply bg-transparent border font-medium py-3 px-6 rounded-full transition-all duration-300;
-    border-color: hsl(var(--border));
+    @apply px-8 py-4 rounded-lg font-semibold transition-all duration-300 border hover:scale-105 shadow-md;
+    background: hsl(var(--background) / 0.9);
     color: hsl(var(--foreground));
+    border-color: hsl(var(--border));
+    backdrop-filter: blur(16px);
+  }
+
+  .button-secondary:hover {
+    background: hsl(var(--accent) / 0.8);
+    border-color: hsl(var(--primary) / 0.5);
+    box-shadow: 0 8px 24px hsl(var(--primary) / 0.15);
+    transform: translateY(-2px) scale(1.02);
   }
   
   .nav-link {

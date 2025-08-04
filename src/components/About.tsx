@@ -40,41 +40,46 @@ const About = () => {
           {/* Text Content */}
           <div className="space-y-6">
             <div className="pulse-chip opacity-0 fade-in-element">
-              <span>About Me</span>
+              <span>About</span>
             </div>
             
-            <h2 className="section-title text-white opacity-0 fade-in-element">
-              About <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">Mohammad Jaber</span>
+            <h2 className="section-title opacity-0 fade-in-element">
+              Crafting Digital Excellence Through <span className="text-transparent bg-clip-text bg-gradient-to-r" style={{
+                backgroundImage: `linear-gradient(to right, hsl(var(--primary)), hsl(var(--secondary)))`
+              }}>Mobile Innovation</span>
             </h2>
             
-            <div className="space-y-4 text-gray-300 opacity-0 fade-in-element">
+            <div className="space-y-6 opacity-0 fade-in-element" style={{ color: 'hsl(var(--muted-foreground))' }}>
               <p className="text-lg leading-relaxed">
-                I'm Mohammad Jaber, a dedicated Flutter Mobile Developer with 2+ years of experience creating 
-                innovative mobile solutions. Currently working at Mujeer, I specialize in Flutter development, 
-                IoT integration, and real-time applications that solve real-world problems.
+                As a Senior Flutter Developer at Mujeer, I specialize in architecting scalable mobile solutions 
+                that bridge cutting-edge technology with real-world business needs. My expertise spans from 
+                IoT integration to real-time application development, delivering measurable impact across diverse industries.
               </p>
               
               <p className="leading-relaxed">
-                My journey has been marked by significant achievements including being a Crown Prince Award 
-                Finalist for the Qanoni App and winning 2nd place at the FinTech Rally 2024. As a CSD Team 
-                Leader, I've led 6+ workshops, mentoring fellow developers and building community.
+                My professional journey is distinguished by recognition as a Crown Prince Award Finalist for the 
+                Qanoni legal technology platform and securing 2nd place at FinTech Rally 2024. As a CSD Team Leader, 
+                I've spearheaded technical workshops and mentored emerging developers, contributing to Jordan's 
+                growing tech ecosystem.
               </p>
               
-              <p className="leading-relaxed">
-                "Technology should serve humanity, not the other way around. I strive to create mobile 
-                experiences that are intuitive, accessible, and meaningful. Every line of code I write 
-                is an opportunity to make someone's day a little bit better."
-              </p>
+              <blockquote className="border-l-4 pl-6 italic leading-relaxed" style={{ 
+                borderColor: 'hsl(var(--primary))',
+                color: 'hsl(var(--foreground))'
+              }}>
+                "Excellence in mobile development isn't just about writing clean code—it's about creating digital 
+                experiences that genuinely improve people's lives while driving business success."
+              </blockquote>
             </div>
 
             <div className="grid grid-cols-2 gap-6 opacity-0 fade-in-element">
-              <div className="text-center p-4 bg-white/5 rounded-lg backdrop-blur-sm border border-white/10">
-                <div className="text-2xl font-bold text-yellow-400">2+</div>
-                <div className="text-gray-400 text-sm">Years Experience</div>
+              <div className="text-center p-6 glass-card border border-border">
+                <div className="text-3xl font-bold mb-2" style={{ color: 'hsl(var(--primary))' }}>2+</div>
+                <div className="text-sm font-medium" style={{ color: 'hsl(var(--muted-foreground))' }}>Years Experience</div>
               </div>
-              <div className="text-center p-4 bg-white/5 rounded-lg backdrop-blur-sm border border-white/10">
-                <div className="text-2xl font-bold text-yellow-400">10+</div>
-                <div className="text-gray-400 text-sm">Technologies Mastered</div>
+              <div className="text-center p-6 glass-card border border-border">
+                <div className="text-3xl font-bold mb-2" style={{ color: 'hsl(var(--primary))' }}>15+</div>
+                <div className="text-sm font-medium" style={{ color: 'hsl(var(--muted-foreground))' }}>Projects Delivered</div>
               </div>
             </div>
           </div>
@@ -82,42 +87,58 @@ const About = () => {
           {/* Image/Visual Content */}
           <div className="relative opacity-0 fade-in-element">
             <div className="relative z-10">
-              <div className="w-full h-96 bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 border border-gray-700 shadow-2xl">
-                <div className="h-full flex flex-col justify-center space-y-6">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center">
-                      <span className="text-gray-900 font-bold text-xl">MJ</span>
+              <div className="w-full glass-card border border-border rounded-2xl p-8 shadow-2xl">
+                <div className="h-full flex flex-col justify-center space-y-8">
+                  <div className="flex items-center space-x-6">
+                    <div className="w-16 h-16 rounded-full flex items-center justify-center font-bold text-xl" style={{
+                      background: `linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)))`,
+                      color: 'hsl(var(--primary-foreground))'
+                    }}>
+                      MJ
                     </div>
                     <div>
-                      <div className="text-white font-semibold">Mohammad Jaber</div>
-                      <div className="text-gray-400">Flutter Mobile Developer @ Mujeer</div>
+                      <div className="text-xl font-bold" style={{ color: 'hsl(var(--foreground))' }}>Mohammad Jaber</div>
+                      <div className="font-medium" style={{ color: 'hsl(var(--muted-foreground))' }}>Senior Flutter Developer @ Mujeer</div>
                     </div>
                   </div>
                   
-                  <div className="space-y-3">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                      <span className="text-gray-300">📍 Amman, Jordan (Remote Ready)</span>
+                  <div className="space-y-4">
+                    <div className="flex items-center space-x-4">
+                      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'hsl(var(--primary))' }}></div>
+                      <span style={{ color: 'hsl(var(--foreground))' }}>📍 Amman, Jordan (Remote Ready)</span>
                     </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                      <span className="text-gray-300">🏆 Crown Prince Award Finalist</span>
+                    <div className="flex items-center space-x-4">
+                      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'hsl(var(--secondary))' }}></div>
+                      <span style={{ color: 'hsl(var(--foreground))' }}>🏆 Crown Prince Award Finalist</span>
                     </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-                      <span className="text-gray-300">🥈 FinTech Rally Winner</span>
+                    <div className="flex items-center space-x-4">
+                      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'hsl(var(--primary))' }}></div>
+                      <span style={{ color: 'hsl(var(--foreground))' }}>🥈 FinTech Rally 2024 Winner</span>
                     </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                      <span className="text-gray-300">👥 CSD Team Leader</span>
+                    <div className="flex items-center space-x-4">
+                      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'hsl(var(--secondary))' }}></div>
+                      <span style={{ color: 'hsl(var(--foreground))' }}>👥 Technical Team Lead</span>
                     </div>
                   </div>
                   
-                  <div className="pt-4 border-t border-gray-700">
-                    <div className="text-gray-400 text-sm mb-2">Specializing in:</div>
-                    <div className="flex flex-wrap gap-2">
-                      <span className="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs">IoT Integration</span>
-                      <span className="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs">Real-time Apps</span>
+                  <div className="pt-6 border-t border-border">
+                    <div className="text-sm font-medium mb-3" style={{ color: 'hsl(var(--muted-foreground))' }}>Core Expertise:</div>
+                    <div className="flex flex-wrap gap-3">
+                      <span className="px-4 py-2 rounded-full text-sm font-medium border" style={{
+                        backgroundColor: 'hsl(var(--primary) / 0.1)',
+                        color: 'hsl(var(--primary))',
+                        borderColor: 'hsl(var(--primary) / 0.3)'
+                      }}>Flutter Development</span>
+                      <span className="px-4 py-2 rounded-full text-sm font-medium border" style={{
+                        backgroundColor: 'hsl(var(--secondary) / 0.1)',
+                        color: 'hsl(var(--secondary))',
+                        borderColor: 'hsl(var(--secondary) / 0.3)'
+                      }}>IoT Integration</span>
+                      <span className="px-4 py-2 rounded-full text-sm font-medium border" style={{
+                        backgroundColor: 'hsl(var(--primary) / 0.1)',
+                        color: 'hsl(var(--primary))',
+                        borderColor: 'hsl(var(--primary) / 0.3)'
+                      }}>Real-time Systems</span>
                     </div>
                   </div>
                 </div>
@@ -125,8 +146,12 @@ const About = () => {
             </div>
             
             {/* Background decorations */}
-            <div className="absolute -top-4 -right-4 w-20 h-20 bg-yellow-400/20 rounded-full blur-xl"></div>
-            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-orange-500/20 rounded-full blur-xl"></div>
+            <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full blur-2xl opacity-20" style={{
+              background: `linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)))`
+            }}></div>
+            <div className="absolute -bottom-6 -left-6 w-32 h-32 rounded-full blur-2xl opacity-20" style={{
+              background: `linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--primary)))`
+            }}></div>
           </div>
         </div>
       </div>

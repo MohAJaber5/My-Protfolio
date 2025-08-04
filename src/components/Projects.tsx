@@ -178,15 +178,16 @@ const Projects = () => {
   return (
     <section className="py-16 md:py-24 relative" id="projects" ref={sectionRef}>
       <div className="section-container">
-        <div className="text-center mb-16">
-          <div className="pulse-chip mx-auto mb-4 opacity-0 fade-in-element">
+        <div className="text-center mb-20">
+          <div className="pulse-chip mx-auto mb-6 opacity-0 fade-in-element">
             <span>Portfolio</span>
           </div>
-          <h2 className="section-title mb-4 opacity-0 fade-in-element">
-            Featured Projects
+          <h2 className="section-title mb-6 opacity-0 fade-in-element">
+            Featured Projects & Solutions
           </h2>
-          <p className="section-subtitle mx-auto opacity-0 fade-in-element">
-            A showcase of mobile applications that solve real-world problems
+          <p className="section-subtitle mx-auto max-w-3xl opacity-0 fade-in-element">
+            A curated selection of mobile applications and platforms that demonstrate technical excellence, 
+            innovative problem-solving, and measurable business impact across diverse industries.
           </p>
         </div>
 
@@ -206,20 +207,29 @@ const Projects = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="text-center mt-16 opacity-0 fade-in-element">
-          <div className="max-w-2xl mx-auto">
-            <h3 className="text-2xl font-semibold mb-4" style={{ color: 'hsl(var(--foreground))' }}>
-              Interested in working together?
+        <div className="text-center mt-20 opacity-0 fade-in-element">
+          <div className="max-w-3xl mx-auto glass-card p-12 border border-border">
+            <h3 className="text-3xl font-bold mb-6" style={{ color: 'hsl(var(--foreground))' }}>
+              Ready to Transform Your Ideas into Reality?
             </h3>
-            <p className="mb-8" style={{ color: 'hsl(var(--muted-foreground))' }}>
-              I'm always excited to take on new challenges and create amazing mobile experiences.
+            <p className="text-lg mb-8 leading-relaxed" style={{ color: 'hsl(var(--muted-foreground))' }}>
+              Whether you're looking to build a cutting-edge mobile application, integrate IoT solutions, 
+              or scale your existing platform, I'm here to deliver exceptional results that drive business growth.
             </p>
-            <a
-              href="#contact"
-              className="button-primary inline-flex items-center"
-            >
-              Let's Build Something Amazing
-            </a>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="#contact"
+                className="button-primary inline-flex items-center px-8 py-4 text-lg font-semibold"
+              >
+                Start Your Project
+              </a>
+              <a
+                href="#about"
+                className="button-secondary inline-flex items-center px-8 py-4 text-lg font-semibold"
+              >
+                Learn More About Me
+              </a>
+            </div>
           </div>
         </div>
       </div>

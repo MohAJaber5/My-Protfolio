@@ -47,20 +47,23 @@ const Navbar = () => {
       <div className="container flex items-center justify-between px-4 sm:px-6 lg:px-8">
         <a 
           href="#" 
-          className="flex items-center space-x-2"
+          className="flex items-center space-x-3 transition-all duration-300 hover:scale-105"
           onClick={(e) => {
             e.preventDefault();
             scrollToTop();
           }}
           aria-label="Mohammad Jaber Portfolio"
         >
-          <div className="w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm" style={{
+          <div className="w-10 h-10 rounded-lg flex items-center justify-center font-bold text-sm shadow-lg" style={{
             background: `linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)))`,
             color: 'hsl(var(--primary-foreground))'
           }}>
             MJ
           </div>
-          <span className="font-semibold" style={{ color: 'hsl(var(--foreground))' }}>Mohammad Jaber</span>
+          <div className="hidden sm:block">
+            <div className="font-bold text-lg" style={{ color: 'hsl(var(--foreground))' }}>Mohammad Jaber</div>
+            <div className="text-xs font-medium" style={{ color: 'hsl(var(--muted-foreground))' }}>Flutter Developer</div>
+          </div>
         </a>
 
         {/* Desktop Navigation */}

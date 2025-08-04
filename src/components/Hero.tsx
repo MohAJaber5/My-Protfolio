@@ -103,48 +103,69 @@ const Hero = () => {
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-12 items-center">
           <div className="w-full lg:w-1/2">
             <div 
-              className="pulse-chip mb-3 sm:mb-6 opacity-0 animate-fade-in" 
+              className="pulse-chip mb-6 sm:mb-8 opacity-0 animate-fade-in" 
               style={{ animationDelay: "0.1s" }}
             >
-              <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">👋</span>
-              <span>Hello World</span>
+              <span className="inline-flex items-center justify-center w-5 h-5 rounded-full mr-3" style={{
+                backgroundColor: 'hsl(var(--primary))',
+                color: 'hsl(var(--primary-foreground))'
+              }}>✓</span>
+              <span>Available for Projects</span>
             </div>
             
             <h1 
-              className="section-title text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-tight opacity-0 animate-fade-in" 
+              className="section-title text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-tight opacity-0 animate-fade-in font-bold tracking-tight" 
               style={{ animationDelay: "0.3s" }}
             >
-              I'm <span className="text-transparent bg-clip-text bg-gradient-to-r" style={{
+              <span className="text-transparent bg-clip-text bg-gradient-to-r" style={{
                 backgroundImage: `linear-gradient(to right, hsl(var(--primary)), hsl(var(--secondary)))`
               }}>Mohammad Jaber</span><br className="hidden sm:inline" />
-              Flutter Developer
+              <span className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-medium" style={{ color: 'hsl(var(--muted-foreground))' }}>Senior Flutter Developer</span>
             </h1>
             
             <p 
               style={{ animationDelay: "0.5s" }} 
-              className="section-subtitle mt-3 sm:mt-6 mb-4 sm:mb-8 leading-relaxed opacity-0 animate-fade-in font-normal text-base sm:text-lg text-left"
+              className="section-subtitle mt-6 sm:mt-8 mb-8 sm:mb-10 leading-relaxed opacity-0 animate-fade-in font-normal text-lg sm:text-xl text-left max-w-2xl"
             >
-              2+ years of mobile development experience. Crown Prince Award Finalist & FinTech Rally Winner. 
-              Building innovative mobile solutions from Amman, Jordan.
+              Transforming ideas into exceptional mobile experiences. Award-winning developer with expertise in Flutter, IoT integration, and scalable mobile solutions. Currently building the future at Mujeer.
             </p>
             
             <div 
-              className="flex flex-col sm:flex-row gap-4 opacity-0 animate-fade-in" 
+              className="flex flex-col sm:flex-row gap-6 opacity-0 animate-fade-in" 
               style={{ animationDelay: "0.7s" }}
             >
               <a 
                 href="#projects" 
-                className="flex items-center justify-center group w-full sm:w-auto text-center mr-4 button-primary" 
+                className="flex items-center justify-center group px-8 py-4 button-primary text-lg font-semibold" 
               >
-                View Projects
-                <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                View My Work
+                <ArrowRight className="ml-3 w-5 h-5 transition-transform group-hover:translate-x-1" />
               </a>
               <a 
                 href="#contact" 
-                className="button-secondary flex items-center justify-center group w-full sm:w-auto text-center" 
+                className="button-secondary flex items-center justify-center group px-8 py-4 text-lg font-semibold" 
               >
-                Get In Touch
+                Let's Connect
               </a>
+            </div>
+            
+            {/* Professional stats */}
+            <div 
+              className="flex flex-wrap gap-8 mt-12 opacity-0 animate-fade-in" 
+              style={{ animationDelay: "0.9s" }}
+            >
+              <div className="text-center">
+                <div className="text-2xl font-bold" style={{ color: 'hsl(var(--primary))' }}>2+</div>
+                <div className="text-sm" style={{ color: 'hsl(var(--muted-foreground))' }}>Years Experience</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold" style={{ color: 'hsl(var(--primary))' }}>15+</div>
+                <div className="text-sm" style={{ color: 'hsl(var(--muted-foreground))' }}>Projects Delivered</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold" style={{ color: 'hsl(var(--primary))' }}>2</div>
+                <div className="text-sm" style={{ color: 'hsl(var(--muted-foreground))' }}>Awards Won</div>
+              </div>
             </div>
           </div>
           

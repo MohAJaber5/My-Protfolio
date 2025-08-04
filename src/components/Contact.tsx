@@ -104,15 +104,17 @@ const Contact = () => {
   return (
     <section className="py-16 md:py-24 relative" id="contact" ref={sectionRef}>
       <div className="section-container">
-        <div className="text-center mb-16">
-          <div className="pulse-chip mx-auto mb-4 opacity-0 fade-in-element">
+        <div className="text-center mb-20">
+          <div className="pulse-chip mx-auto mb-6 opacity-0 fade-in-element">
             <span>Get In Touch</span>
           </div>
-          <h2 className="section-title mb-4 opacity-0 fade-in-element">
-            Let's Work Together
+          <h2 className="section-title mb-6 opacity-0 fade-in-element">
+            Let's Build Something Extraordinary
           </h2>
-          <p className="section-subtitle mx-auto opacity-0 fade-in-element">
-            Ready to bring your mobile app idea to life? Let's discuss your project!
+          <p className="section-subtitle mx-auto max-w-3xl opacity-0 fade-in-element">
+            Have a project in mind? Looking for a technical partner? Or simply want to discuss the latest 
+            in mobile development? I'd love to hear from you and explore how we can create exceptional 
+            digital experiences together.
           </p>
         </div>
 
