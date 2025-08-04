@@ -142,6 +142,14 @@ const Projects = () => {
       githubUrl: 'https://github.com/mjaber5'
     },
     {
+      title: 'TaskZen - Simplify Tasks, Amplify Focus',
+      description: 'Modern task management mobile application with Firebase authentication, Firestore integration, and customizable theming. Features animated splash screen, bottom navigation, and robust state management with flutter_bloc.',
+      tech: ['Flutter', 'Firebase Auth', 'Firestore', 'Flutter Bloc', 'Go Router', 'Dark/Light Theme'],
+      image: '✅',
+      liveUrl: '#',
+      githubUrl: 'https://github.com/mjaber5'
+    },
+    {
       title: 'Galaxy Coder Journey',
       description: 'Interactive space-themed portfolio website with stunning galaxy navigation, animated starfield, planetary sections, and immersive coding experience. A journey through the coding universe with React + TypeScript.',
       tech: ['React 18', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'shadcn/ui'],
