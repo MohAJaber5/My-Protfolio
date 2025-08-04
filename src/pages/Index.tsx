@@ -6,6 +6,8 @@ import Experience from "@/components/Experience";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Achievements from "@/components/Achievements";
+import TerminalPlayground from "@/components/TerminalPlayground";
+import FlutterPlayground from "@/components/FlutterPlayground";
 import Contact from "@/components/Contact";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -83,6 +85,8 @@ const Index = () => {
               <Skills />
               <Projects />
               <Achievements />
+              <TerminalPlayground />
+              <FlutterPlayground />
               <Contact />
             </main>
             <Footer />
@@ -104,6 +108,8 @@ const Index = () => {
         <Skills />
         <Projects />
         <Achievements />
+        <TerminalPlayground />
+        <FlutterPlayground />
         <Contact />
       </main>
       <Footer />
