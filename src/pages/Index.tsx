@@ -8,6 +8,7 @@ import Projects from "@/components/Projects";
 import TerminalPlayground from "@/components/TerminalPlayground";
 import Contact from "@/components/Contact";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import ThemeToggle from "@/components/ThemeToggle";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -59,6 +60,7 @@ const Index = () => {
   return (
     <div className="min-h-screen relative">
       <AnimatedBackground />
+      <ThemeToggle />
       <Navbar />
       <main className="relative z-10">
         <Hero />
