@@ -76,7 +76,7 @@ const Index = () => {
               <SidebarTrigger className="bg-background/80 backdrop-blur-md border border-border/50 hover:bg-accent/50 rounded-lg p-2" />
             </div>
             
-            <main className="relative z-10 backdrop-blur-[1px] bg-background/80">
+            <main className="relative z-10 backdrop-blur-[0.5px] bg-background/80">
               <Hero />
               <About />
               <Experience />
@@ -97,7 +97,7 @@ const Index = () => {
       <AnimatedBackground />
       <ThemeToggle />
       <Navbar />
-      <main className="relative z-10 backdrop-blur-[1px] bg-background/80">
+      <main className="relative z-10 backdrop-blur-[0.5px] bg-background/80">
         <Hero />
         <About />
         <Experience />
