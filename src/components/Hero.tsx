@@ -183,13 +183,11 @@ const Hero = () => {
               <>
               <div className="absolute inset-0 bg-dark-900 rounded-2xl sm:rounded-3xl -z-10 shadow-xl"></div>
               <div className="relative transition-all duration-500 ease-out overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl">
-                <div className="w-full h-96 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center text-white">
-                  <div className="text-center">
-                    <div className="text-6xl mb-4">💻</div>
-                    <div className="text-xl font-semibold">Mobile Developer</div>
-                    <div className="text-gray-400">Flutter • Android • iOS</div>
-                  </div>
-                </div>
+                <img 
+                  src="/lovable-uploads/9352b437-50ec-416b-9eff-3beba72126da.png"
+                  alt="Mohammad Jaber - Flutter Developer"
+                  className="w-full h-96 object-cover"
+                />
               </div>
               </>
             )}
