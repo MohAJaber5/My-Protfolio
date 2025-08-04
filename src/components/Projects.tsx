@@ -158,6 +158,14 @@ const Projects = () => {
       githubUrl: 'https://github.com/mjaber5'
     },
     {
+      title: 'Tweet Classification with Machine Learning',
+      description: 'Comprehensive tweet classification system using supervised ML algorithms. Features data preprocessing, TF-IDF vectorization, and comparative analysis of KNN, SVM, Decision Trees, Random Forest, and Neural Networks.',
+      tech: ['Python', 'Scikit-learn', 'NLP', 'TF-IDF', 'Data Science', 'Classification'],
+      image: '🐦',
+      liveUrl: '#',
+      githubUrl: 'https://github.com/mjaber5'
+    },
+    {
       title: 'Galaxy Coder Journey',
       description: 'Interactive space-themed portfolio website with stunning galaxy navigation, animated starfield, planetary sections, and immersive coding experience. A journey through the coding universe with React + TypeScript.',
       tech: ['React 18', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'shadcn/ui'],
