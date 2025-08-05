@@ -54,7 +54,7 @@ const Achievements = () => {
     {
       icon: Award,
       title: 'FinTech Rally 2024 - 2nd Place',
-      description: 'Dispute aanagement system solution',
+      description: 'Dispute management system solution',
       year: '2024',
       category: 'Competition',
       variant: 'primary'
