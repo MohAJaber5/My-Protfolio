@@ -49,9 +49,10 @@ const Hero = () => {
               size="lg"
               className="px-8 py-3 text-lg font-semibold border-2"
               onClick={() => {
-                // Create download link for CV
+                // Create download link for CV - handle both local dev and GitHub Pages
                 const link = document.createElement('a');
-                link.href = '/Mohammed-Jaber.pdf';
+                const basePath = import.meta.env.BASE_URL || '/';
+                link.href = `${basePath}Mohammed-Jaber.pdf`;
                 link.download = 'Mohammed-Jaber.pdf';
                 link.target = '_blank';
                 document.body.appendChild(link);
