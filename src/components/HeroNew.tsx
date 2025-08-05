@@ -49,9 +49,10 @@ const Hero = () => {
               size="lg"
               className="px-8 py-3 text-lg font-semibold border-2"
               onClick={() => {
-                // Create download link for CV
+                // Create download link for CV - handle both local dev and GitHub Pages
                 const link = document.createElement('a');
-                link.href = '/Mohammed-Jaber.pdf';
+                const basePath = import.meta.env.BASE_URL || '/';
+                link.href = `${basePath}Mohammed-Jaber.pdf`;
                 link.download = 'Mohammed-Jaber.pdf';
                 link.target = '_blank';
                 document.body.appendChild(link);
@@ -90,7 +91,7 @@ const Hero = () => {
           <div className="relative">
             <div className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full overflow-hidden shadow-2xl border-4 border-primary/20">
               <img 
-                src="/lovable-uploads/9352b437-50ec-416b-9eff-3beba72126da.png"
+                src="./lovable-uploads/9352b437-50ec-416b-9eff-3beba72126da.png"
                 alt="Mohammad Jaber - Flutter Developer"
                 className="w-full h-full object-cover"
                 loading="eager"
