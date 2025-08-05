@@ -187,7 +187,7 @@ const Hero = () => {
               <div className="absolute inset-0 bg-dark-900 rounded-2xl sm:rounded-3xl -z-10 shadow-xl"></div>
               <div className="relative transition-all duration-500 ease-out overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl">
                 <img 
-                  src="/lovable-uploads/9352b437-50ec-416b-9eff-3beba72126da.png"
+                  src="./lovable-uploads/9352b437-50ec-416b-9eff-3beba72126da.png"
                   alt="Mohammad Jaber - Flutter Developer"
                   className="w-full h-96 object-cover"
                 />
