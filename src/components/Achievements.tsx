@@ -54,7 +54,7 @@ const Achievements = () => {
     {
       icon: Award,
       title: 'FinTech Rally 2024 - 2nd Place',
-      description: 'YOweMe AI-powered expense splitting solution',
+      description: 'Dispute aanagement system solution',
       year: '2024',
       category: 'Competition',
       variant: 'primary'
