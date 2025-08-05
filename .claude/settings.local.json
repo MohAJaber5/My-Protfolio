@@ -5,7 +5,9 @@
       "Bash(dir:*)",
       "Bash(ls:*)",
       "Bash(npx @squoosh/cli:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(npm run deploy:*)",
+      "Bash(git add:*)"
     ],
     "deny": []
   }
