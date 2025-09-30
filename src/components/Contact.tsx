@@ -132,117 +132,147 @@ const Contact = () => {
         <div className="flex justify-center">
           {/* Contact Form */}
           <div className="w-full max-w-2xl space-y-6 opacity-0 fade-in-element">
-            <div className="glass-card p-8 border border-white/10">
-              <h3 className="text-2xl font-semibold mb-6" style={{ color: 'hsl(var(--foreground))' }}>Send Message</h3>
+            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-background/80 to-background/60 backdrop-blur-xl border border-white/10 shadow-2xl">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5"></div>
+              <div className="relative z-10 p-8">
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                  <h3 className="text-2xl font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">Send Message</h3>
+                </div>
               
-              <form ref={form} onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="name" className="block mb-2" style={{ color: 'hsl(var(--muted-foreground))' }}>
-                      Name *
+                <form ref={form} onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="group">
+                      <label htmlFor="name" className="block mb-3 text-sm font-medium" style={{ color: 'hsl(var(--muted-foreground))' }}>
+                        Name *
+                      </label>
+                      <div className="relative">
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full px-5 py-4 border rounded-xl transition-all duration-300 bg-background/50 border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:bg-background/80 focus:shadow-lg focus:shadow-primary/10 hover:border-border group-hover:border-primary/50"
+                          placeholder="Your full name"
+                        />
+                        <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/10 to-secondary/10 opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 -z-10"></div>
+                      </div>
+                    </div>
+                    <div className="group">
+                      <label htmlFor="email" className="block mb-3 text-sm font-medium" style={{ color: 'hsl(var(--muted-foreground))' }}>
+                        Email *
+                      </label>
+                      <div className="relative">
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full px-5 py-4 border rounded-xl transition-all duration-300 bg-background/50 border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:bg-background/80 focus:shadow-lg focus:shadow-primary/10 hover:border-border group-hover:border-primary/50"
+                          placeholder="your.email@example.com"
+                        />
+                        <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/10 to-secondary/10 opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 -z-10"></div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="group">
+                    <label htmlFor="subject" className="block mb-3 text-sm font-medium" style={{ color: 'hsl(var(--muted-foreground))' }}>
+                      Subject *
                     </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 border rounded-lg transition-colors duration-200 bg-background/50 border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary"
-                      placeholder="Your name"
-                    />
+                    <div className="relative">
+                      <input
+                        type="text"
+                        id="subject"
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-5 py-4 border rounded-xl transition-all duration-300 bg-background/50 border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:bg-background/80 focus:shadow-lg focus:shadow-primary/10 hover:border-border group-hover:border-primary/50"
+                        placeholder="Project inquiry or collaboration"
+                      />
+                      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/10 to-secondary/10 opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 -z-10"></div>
+                    </div>
                   </div>
-                  <div>
-                    <label htmlFor="email" className="block mb-2" style={{ color: 'hsl(var(--muted-foreground))' }}>
-                      Email *
+                  
+                  <div className="group">
+                    <label htmlFor="message" className="block mb-3 text-sm font-medium" style={{ color: 'hsl(var(--muted-foreground))' }}>
+                      Message *
                     </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 border rounded-lg transition-colors duration-200 bg-background/50 border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary"
-                      placeholder="your.email@example.com"
-                    />
+                    <div className="relative">
+                      <textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        required
+                        rows={6}
+                        className="w-full px-5 py-4 border rounded-xl transition-all duration-300 bg-background/50 border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:bg-background/80 focus:shadow-lg focus:shadow-primary/10 hover:border-border group-hover:border-primary/50 resize-none"
+                        placeholder="Tell me about your project idea, timeline, and how I can help bring your vision to life..."
+                      />
+                      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/10 to-secondary/10 opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 -z-10"></div>
+                    </div>
                   </div>
-                </div>
-                
-                <div>
-                  <label htmlFor="subject" className="block mb-2" style={{ color: 'hsl(var(--muted-foreground))' }}>
-                    Subject *
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 border rounded-lg transition-colors duration-200 bg-background/50 border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary"
-                    placeholder="Project inquiry"
-                  />
-                </div>
-                
-                <div>
-                  <label htmlFor="message" className="block mb-2" style={{ color: 'hsl(var(--muted-foreground))' }}>
-                    Message *
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    required
-                    rows={6}
-                    className="w-full px-4 py-3 border rounded-lg transition-colors duration-200 bg-background/50 border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary resize-none"
-                    placeholder="Tell me about your project idea..."
-                  />
-                </div>
-                
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className={cn(
-                    "w-full flex items-center justify-center space-x-2 px-6 py-3 rounded-lg font-semibold transition-all duration-200",
-                    isSubmitting
-                      ? "bg-muted cursor-not-allowed text-muted-foreground"
-                      : "button-primary"
+                  
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={cn(
+                      "relative w-full flex items-center justify-center space-x-3 px-8 py-4 rounded-xl font-semibold text-base transition-all duration-300 group overflow-hidden",
+                      isSubmitting
+                        ? "bg-muted/50 cursor-not-allowed text-muted-foreground border border-muted"
+                        : "bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:shadow-xl hover:shadow-primary/25 hover:scale-[1.02] active:scale-[0.98] border border-primary/20"
+                    )}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    {isSubmitting ? (
+                      <>
+                        <div className="w-5 h-5 border-2 border-muted-foreground border-t-transparent rounded-full animate-spin" />
+                        <span>Sending Message...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                        <span className="relative z-10">Send Message</span>
+                      </>
+                    )}
+                  </button>
+                  
+                  {/* Friendly message */}
+                  <div className="text-center p-4 rounded-xl bg-gradient-to-r from-primary/5 to-secondary/5 border border-primary/10">
+                    <p className="text-sm text-muted-foreground italic flex items-center justify-center space-x-2">
+                      <span className="text-lg">💬</span>
+                      <span>I love to listen and collaborate on exciting projects!</span>
+                    </p>
+                  </div>
+                  
+                  {submitStatus === 'success' && (
+                    <div className="text-green-400 text-center p-4 bg-green-400/10 rounded-xl border border-green-400/20 animate-in slide-in-from-bottom duration-300">
+                      <div className="flex items-center justify-center space-x-2">
+                        <div className="w-5 h-5 bg-green-400 rounded-full flex items-center justify-center">
+                          <span className="text-white text-xs">✓</span>
+                        </div>
+                        <span className="font-medium">Message sent successfully! I'll get back to you soon.</span>
+                      </div>
+                    </div>
                   )}
-                >
-                  {isSubmitting ? (
-                    <>
-                      <div className="w-5 h-5 border-2 border-gray-300 border-t-transparent rounded-full animate-spin" />
-                      <span>Sending...</span>
-                    </>
-                  ) : (
-                    <>
-                      <Send className="w-5 h-5" />
-                      <span>Send Message</span>
-                    </>
+                  
+                  {submitStatus === 'error' && (
+                    <div className="text-red-400 text-center p-4 bg-red-400/10 rounded-xl border border-red-400/20 animate-in slide-in-from-bottom duration-300">
+                      <div className="flex items-center justify-center space-x-2">
+                        <div className="w-5 h-5 bg-red-400 rounded-full flex items-center justify-center">
+                          <span className="text-white text-xs">×</span>
+                        </div>
+                        <span className="font-medium">Failed to send message. Please try again or contact me directly.</span>
+                      </div>
+                    </div>
                   )}
-                </button>
-                
-                {/* Friendly message */}
-                <div className="text-center">
-                  <p className="text-sm text-muted-foreground italic">
-                    💬 I love to listen and collaborate on exciting projects!
-                  </p>
-                </div>
-                
-                {submitStatus === 'success' && (
-                  <div className="text-green-400 text-center p-3 bg-green-400/10 rounded-lg border border-green-400/20">
-                    Message sent successfully! I'll get back to you soon.
-                  </div>
-                )}
-                
-                {submitStatus === 'error' && (
-                  <div className="text-red-400 text-center p-3 bg-red-400/10 rounded-lg border border-red-400/20">
-                    Failed to send message. Please try again or contact me directly.
-                  </div>
-                )}
-              </form>
+                </form>
+              </div>
             </div>
           </div>
         </div>
