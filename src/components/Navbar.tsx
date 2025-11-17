@@ -63,8 +63,8 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8">
-          <a 
-            href="#" 
+          <a
+            href="#"
             className="nav-link"
             onClick={(e) => {
               e.preventDefault();
@@ -74,6 +74,7 @@ const Navbar = () => {
             Home
           </a>
           <a href="#about" className="nav-link">About</a>
+          <a href="#experience" className="nav-link">Experience</a>
           <a href="#projects" className="nav-link">Projects</a>
           <a href="#achievements" className="nav-link">Achievements</a>
           <a href="#contact" className="nav-link">Contact</a>
@@ -106,9 +107,9 @@ const Navbar = () => {
         }}
       >
         <nav className="flex flex-col space-y-6 items-center mt-8" onClick={(e) => e.stopPropagation()}>
-          <a 
-            href="#" 
-            className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg transition-colors duration-200 hover:bg-accent" 
+          <a
+            href="#"
+            className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg transition-colors duration-200 hover:bg-accent"
             style={{ color: 'hsl(var(--foreground))' }}
             onClick={(e) => {
               e.preventDefault();
@@ -119,9 +120,9 @@ const Navbar = () => {
           >
             Home
           </a>
-          <a 
-            href="#about" 
-            className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg transition-colors duration-200 hover:bg-accent" 
+          <a
+            href="#about"
+            className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg transition-colors duration-200 hover:bg-accent"
             style={{ color: 'hsl(var(--foreground))' }}
             onClick={() => {
               setIsMenuOpen(false);
@@ -130,9 +131,20 @@ const Navbar = () => {
           >
             About
           </a>
-          <a 
-            href="#projects" 
-            className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg transition-colors duration-200 hover:bg-accent" 
+          <a
+            href="#experience"
+            className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg transition-colors duration-200 hover:bg-accent"
+            style={{ color: 'hsl(var(--foreground))' }}
+            onClick={() => {
+              setIsMenuOpen(false);
+              document.body.style.overflow = '';
+            }}
+          >
+            Experience
+          </a>
+          <a
+            href="#projects"
+            className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg transition-colors duration-200 hover:bg-accent"
             style={{ color: 'hsl(var(--foreground))' }}
             onClick={() => {
               setIsMenuOpen(false);
@@ -141,9 +153,9 @@ const Navbar = () => {
           >
             Projects
           </a>
-          <a 
-            href="#achievements" 
-            className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg transition-colors duration-200 hover:bg-accent" 
+          <a
+            href="#achievements"
+            className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg transition-colors duration-200 hover:bg-accent"
             style={{ color: 'hsl(var(--foreground))' }}
             onClick={() => {
               setIsMenuOpen(false);
@@ -152,9 +164,9 @@ const Navbar = () => {
           >
             Achievements
           </a>
-          <a 
-            href="#contact" 
-            className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg transition-colors duration-200 hover:bg-accent" 
+          <a
+            href="#contact"
+            className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg transition-colors duration-200 hover:bg-accent"
             style={{ color: 'hsl(var(--foreground))' }}
             onClick={() => {
               setIsMenuOpen(false);

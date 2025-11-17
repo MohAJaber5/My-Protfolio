@@ -6,6 +6,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 const Navbar = lazy(() => import("@/components/Navbar"));
 const Hero = lazy(() => import("@/components/HeroNew"));
 const About = lazy(() => import("@/components/AboutNew"));
+const Experience = lazy(() => import("@/components/Experience"));
 const Projects = lazy(() => import("@/components/Projects"));
 const Achievements = lazy(() => import("@/components/Achievements"));
 const Contact = lazy(() => import("@/components/Contact"));
@@ -70,6 +71,9 @@ const Index = () => {
         </Suspense>
         <Suspense fallback={<div className="h-64 flex items-center justify-center">Loading...</div>}>
           <About />
+        </Suspense>
+        <Suspense fallback={<div className="h-64 flex items-center justify-center">Loading...</div>}>
+          <Experience />
         </Suspense>
         <Suspense fallback={<div className="h-64 flex items-center justify-center">Loading...</div>}>
           <Projects />
