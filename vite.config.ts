@@ -4,11 +4,8 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 // 🔥 Important: Set base for GitHub Pages deployment
-const base = "/My-Protfolio/";
-
 export default defineConfig(({ mode }) => ({
-  base: process.env.NODE_ENV === 'production' ? '/pulse-robot-template-7669/' : '/',
-  base, // 🟡 Required for GitHub Pages
+  base: "/My-Protfolio/"
 
   server: {
     host: "::",
