@@ -13,7 +13,7 @@ const Hero = () => {
   return (
     <section className="min-h-screen flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        
+
         {/* Text Content */}
         <div className="text-center lg:text-left space-y-6">
           <div className="space-y-4">
@@ -27,25 +27,25 @@ const Hero = () => {
               Flutter Developer & Mobile App Specialist
             </p>
           </div>
-          
+
           <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-            Passionate about creating beautiful, high-performance mobile applications 
-            with Flutter. I transform ideas into exceptional digital experiences that 
+            Passionate about creating beautiful, high-performance mobile applications
+            with Flutter. I transform ideas into exceptional digital experiences that
             users love and businesses trust.
           </p>
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg font-semibold"
               onClick={() => scrollToSection('projects')}
             >
               View My Work
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               size="lg"
               className="px-8 py-3 text-lg font-semibold border-2"
               onClick={() => {
@@ -84,6 +84,7 @@ const Hero = () => {
               <Linkedin className="h-5 w-5 text-primary" />
             </a>
           </div>
+
         </div>
 
         {/* Profile Image */}

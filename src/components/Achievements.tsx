@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Trophy, Award, Users, Star } from 'lucide-react';
+import { Trophy, Award, Users, Sparkles, ArrowUpRight } from 'lucide-react';
 
 const Achievements = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -13,7 +13,7 @@ const Achievements = () => {
             elements.forEach((el, index) => {
               setTimeout(() => {
                 el.classList.add('animate-fade-in');
-              }, index * 200);
+              }, index * 100);
             });
             observer.unobserve(entry.target);
           }
@@ -34,137 +34,135 @@ const Achievements = () => {
   }, []);
 
   const achievements = [
-        {
-      icon: Award,
+    {
+      icon: Trophy,
       title: 'FinTech Rally 2025',
-      description: 'YOweMe AI-powered expense splitting solution',
+      subtitle: 'Winner',
+      description: 'YOweMe - AI-powered expense splitting solution with Google AI categorization and JoPACC API integration',
       year: '2025',
-      category: 'Competition',
-      color: 'hsl(var(--primary))',
-        variant: 'primary'
+      gradient: 'from-amber-500 to-orange-600'
+    },
+    {
+      icon: Award,
+      title: 'Crown Prince Award',
+      subtitle: 'Finalist',
+      description: 'Qanoni - Innovative legal technology platform with digital signatures and document processing',
+      year: '2024',
+      gradient: 'from-purple-500 to-pink-600'
     },
     {
       icon: Trophy,
-      title: 'Crown Prince Award Finalist',
-      description: 'Recognized for innovative legal technology platform Qanoni',
+      title: 'FinTech Rally 2024',
+      subtitle: '2nd Place',
+      description: 'Dispute management system solution for financial services',
       year: '2024',
-      category: 'Innovation',
-      variant: 'primary'
-    },
-    {
-      icon: Award,
-      title: 'FinTech Rally 2024 - 2nd Place',
-      description: 'Dispute management system solution',
-      year: '2024',
-      category: 'Competition',
-      variant: 'primary'
+      gradient: 'from-blue-500 to-cyan-600'
     },
     {
       icon: Users,
       title: 'CSD Team Leadership',
-      description: 'Leading community development and mentoring developers',
+      subtitle: 'Team Lead',
+      description: '15+ workshops, 200+ developers reached, 30+ junior developers mentored',
       year: '2024-2025',
-      category: 'Leadership',
-      variant: 'primary'
-    },
-    {
-      icon: Star,
-      title: 'Technical Excellence',
-      description: '4.8+ star rating across all published mobile applications',
-      year: '2022-2024',
-      category: 'Recognition',
-      variant: 'primary'
+      gradient: 'from-green-500 to-emerald-600'
     }
   ];
 
-  const stats = [
-    { number: '2', label: 'Major Awards', variant: 'primary' },
-    { number: '15+', label: 'Projects Delivered', variant: 'primary' },
-    { number: '10+', label: 'Developers Mentored', variant: 'primary' },
-{ number: '20+', label: 'App Testers', variant: 'primary' }
-  ];
-
   return (
-    <section className="py-16 md:py-24 relative" id="achievements" ref={sectionRef}>
-      <div className="section-container">
-        <div className="text-center mb-16">
-          <div className="pulse-chip mx-auto mb-4 opacity-0 fade-in-element">
-            <span>Recognition</span>
+    <section className="py-24 md:py-32 relative" id="achievements" ref={sectionRef}>
+      <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
+
+        {/* Section Header */}
+        <div className="mb-20 opacity-0 fade-in-element">
+          <div className="flex items-center gap-4 mb-8">
+            <span className="text-muted-foreground text-sm tracking-widest uppercase">Recognition</span>
+            <div className="flex-1 h-px bg-border" />
           </div>
-          <h2 className="section-title mb-4 opacity-0 fade-in-element">
-            Awards & Achievements
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground lowercase">
+            awards & milestones
           </h2>
-          <p className="section-subtitle mx-auto opacity-0 fade-in-element">
-            Recognition for technical excellence and innovation in mobile development
+        </div>
+
+        {/* Timeline Layout */}
+        <div className="relative">
+          {/* Vertical Line */}
+          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-border via-primary/30 to-border hidden md:block" />
+
+          <div className="space-y-12 md:space-y-0">
+            {achievements.map((achievement, index) => (
+              <div
+                key={index}
+                className={`
+                  relative flex flex-col md:flex-row items-start gap-8 opacity-0 fade-in-element
+                  ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}
+                `}
+                style={{ animationDelay: `${0.1 * index}s` }}
+              >
+                {/* Content Card */}
+                <div className={`
+                  flex-1 group
+                  ${index % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16 md:text-left'}
+                `}>
+                  <div className="relative overflow-hidden rounded-3xl bg-background/50 backdrop-blur-sm border border-border p-8 transition-all duration-500 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5">
+
+                    {/* Gradient Accent */}
+                    <div className={`absolute top-0 ${index % 2 === 0 ? 'right-0' : 'left-0'} w-32 h-32 bg-gradient-to-br ${achievement.gradient} opacity-10 blur-3xl`} />
+
+                    {/* Year Badge */}
+                    <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r ${achievement.gradient} text-white text-sm font-medium mb-6`}>
+                      <Sparkles className="w-4 h-4" />
+                      {achievement.year}
+                    </div>
+
+                    {/* Title & Subtitle */}
+                    <div className={`flex items-center gap-3 mb-4 ${index % 2 === 0 ? 'md:justify-end' : 'md:justify-start'}`}>
+                      <h3 className="text-2xl md:text-3xl font-bold text-foreground">
+                        {achievement.title}
+                      </h3>
+                      <span className={`px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${achievement.gradient} text-white`}>
+                        {achievement.subtitle}
+                      </span>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-muted-foreground leading-relaxed mb-6">
+                      {achievement.description}
+                    </p>
+
+                    {/* Icon */}
+                    <div className={`flex ${index % 2 === 0 ? 'md:justify-end' : 'md:justify-start'}`}>
+                      <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${achievement.gradient} flex items-center justify-center transition-transform duration-300 group-hover:scale-110`}>
+                        <achievement.icon className="w-7 h-7 text-white" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Timeline Dot */}
+                <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center justify-center">
+                  <div className={`w-5 h-5 rounded-full bg-gradient-to-br ${achievement.gradient} ring-4 ring-background`} />
+                </div>
+
+                {/* Empty Space for Layout */}
+                <div className="flex-1 hidden md:block" />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="mt-24 text-center opacity-0 fade-in-element">
+          <p className="text-muted-foreground mb-6">
+            Interested in collaborating on award-winning projects?
           </p>
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-foreground text-background font-medium transition-all duration-300 hover:scale-105 hover:bg-primary group"
+          >
+            Let's Connect
+            <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
         </div>
-
-        {/* Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-          {stats.map((stat, index) => (
-            <div
-              key={index}
-              className="text-center opacity-0 fade-in-element glass-card p-6 border border-border"
-              style={{ animationDelay: `${0.1 + index * 0.1}s` }}
-            >
-              <div className={`text-3xl font-bold mb-2 ${stat.variant === 'primary' ? 'text-primary' : 'text-secondary'}`}>
-                {stat.number}
-              </div>
-              <div className="text-sm font-medium text-muted-foreground">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Achievements Grid */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {achievements.map((achievement, index) => (
-            <div
-              key={index}
-              className="opacity-0 fade-in-element glass-card p-8 border border-border hover:scale-105 transition-transform duration-300"
-              style={{ animationDelay: `${0.3 + index * 0.1}s` }}
-            >
-              <div className="flex items-start gap-6">
-                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 border ${
-                  achievement.variant === 'primary' 
-                    ? 'bg-primary/10 border-primary/30' 
-                    : 'bg-secondary/10 border-secondary/30'
-                }`}>
-                  <achievement.icon className={`w-8 h-8 ${
-                    achievement.variant === 'primary' ? 'text-primary' : 'text-secondary'
-                  }`} />
-                </div>
-                
-                <div className="flex-1">
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-xl font-bold text-foreground">
-                      {achievement.title}
-                    </h3>
-                    <span className={`text-sm px-3 py-1 rounded-full border ${
-                      achievement.variant === 'primary'
-                        ? 'bg-primary/10 text-primary border-primary/30'
-                        : 'bg-secondary/10 text-secondary border-secondary/30'
-                    }`}>
-                      {achievement.category}
-                    </span>
-                  </div>
-                  
-                  <p className="leading-relaxed mb-3 text-muted-foreground">
-                    {achievement.description}
-                  </p>
-                  
-                  <div className={`text-sm font-semibold ${
-                    achievement.variant === 'primary' ? 'text-primary' : 'text-secondary'
-                  }`}>
-                    {achievement.year}
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
       </div>
     </section>
   );

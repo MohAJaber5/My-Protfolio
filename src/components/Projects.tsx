@@ -1,107 +1,110 @@
-import React, { useEffect, useRef } from 'react';
-import { cn } from '@/lib/utils';
-import { ExternalLink, Github } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { ArrowUpRight } from 'lucide-react';
 
 interface ProjectCardProps {
   title: string;
-  description: string;
-  tech: string[];
+  category: string;
   image: string;
-  liveUrl?: string;
-  githubUrl?: string;
+  gradient: string;
+  readTime?: string;
+  href: string;
   index: number;
 }
 
-const ProjectCard = ({ title, description, tech, image, liveUrl, githubUrl, index }: ProjectCardProps) => {
-  const cardRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
-    }
-
-    return () => {
-      if (cardRef.current) {
-        observer.unobserve(cardRef.current);
-      }
-    };
-  }, []);
-
+const ProjectCard = ({ title, category, image, gradient, readTime, href, index }: ProjectCardProps) => {
   return (
-    <div
-      ref={cardRef}
-      className="glass-card group hover:bg-white/10 transition-all duration-500 opacity-0 border border-white/10 overflow-hidden"
-      style={{ animationDelay: `${0.2 * index}s` }}
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex-shrink-0 w-[85vw] md:w-[50vw] lg:w-[40vw] transition-transform duration-300 hover:-translate-y-2"
+      style={{ animationDelay: `${0.1 * index}s` }}
     >
-      {/* Project Image */}
-      <div className="relative overflow-hidden h-48 bg-gradient-to-br from-gray-800 to-gray-900">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-6xl">{image}</div>
-        </div>
-        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
-          {liveUrl && (
-            <a
-              href={liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors duration-200"
-            >
-              <ExternalLink className="w-5 h-5 text-white" />
-            </a>
-          )}
-          {githubUrl && (
-            <a
-              href={githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors duration-200"
-            >
-              <Github className="w-5 h-5 text-white" />
-            </a>
-          )}
-        </div>
+      {/* Image Container */}
+      <div className="relative overflow-hidden rounded-2xl mb-5 aspect-[16/10] shadow-lg group-hover:shadow-2xl transition-shadow duration-300">
+        {/* Gradient Background (fallback) */}
+        <div
+          className="absolute inset-0 transition-transform duration-700 group-hover:scale-105"
+          style={{ background: gradient }}
+        />
+
+        {/* Project Image */}
+        <img
+          src={image}
+          alt={title}
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          loading="lazy"
+          draggable={false}
+        />
+
+        {/* Read Time Badge */}
+        {readTime && (
+          <div className="absolute top-4 left-4 px-4 py-2 rounded-full bg-black/60 backdrop-blur-md text-white text-sm font-medium z-10">
+            {readTime}
+          </div>
+        )}
+
+        {/* Hover Overlay */}
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
       </div>
 
       {/* Project Info */}
-      <div className="p-6">
-        <h3 className="text-xl font-semibold mb-2" style={{ color: 'hsl(var(--foreground))' }}>{title}</h3>
-        <p className="mb-4 leading-relaxed" style={{ color: 'hsl(var(--muted-foreground))' }}>{description}</p>
-        
-        {/* Tech Stack */}
-        <div className="flex flex-wrap gap-2">
-          {tech.map((technology, techIndex) => (
-            <span
-              key={techIndex}
-              className="px-3 py-1 rounded-full text-xs font-medium border"
-              style={{
-                backgroundColor: 'hsl(var(--primary) / 0.2)',
-                color: 'hsl(var(--primary))',
-                borderColor: 'hsl(var(--primary) / 0.3)'
-              }}
-            >
-              {technology}
-            </span>
-          ))}
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex-1">
+          <h3 className="text-xl md:text-2xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+            {title}
+          </h3>
+          <p className="text-muted-foreground text-sm md:text-base">
+            {category}
+          </p>
+        </div>
+
+        {/* Arrow Button */}
+        <div className="flex-shrink-0 w-12 h-12 rounded-full bg-foreground text-background flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:bg-primary">
+          <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 
 const Projects = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+
+  // Mouse drag scrolling
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!scrollContainerRef.current) return;
+    setIsDragging(true);
+    setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
+    setScrollLeft(scrollContainerRef.current.scrollLeft);
+    scrollContainerRef.current.style.cursor = 'grabbing';
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.style.cursor = 'grab';
+    }
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !scrollContainerRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - scrollContainerRef.current.offsetLeft;
+    const walk = (x - startX) * 1.5; // Scroll speed
+    scrollContainerRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.style.cursor = 'grab';
+    }
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -118,7 +121,7 @@ const Projects = () => {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.05 }
     );
 
     if (sectionRef.current) {
@@ -132,145 +135,114 @@ const Projects = () => {
     };
   }, []);
 
-  const projects = [
+  const projects: Omit<ProjectCardProps, 'index'>[] = [
     {
-      title: 'Hakk Shop at Mujeer - E-commerce Marketplace',
-      description: 'Comprehensive Flutter e-commerce marketplace with clean architecture, multi-language support (Arabic/English), Firebase authentication, real-time search, payment integration (eFawateer), and advanced filtering system.',
-      tech: ['Flutter', 'Clean Architecture', 'Firebase', 'BLoC/Cubit', 'Payment Gateway', 'Multi-language', 'Real-time Search'],
-      image: '🛍️',
-      liveUrl: '#',
-      githubUrl: 'https://github.com/mjaber5'
+      title: 'Hakk Shop E-commerce Platform',
+      category: 'Flutter Development / Clean Architecture / E-commerce',
+      image: './projects/hakk-shop.png',
+      gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      readTime: 'Lead Developer',
+      href: 'https://github.com/mjaber5'
     },
     {
-      title: 'YOweMe - AI-Powered Expense Splitting',
-      description: 'Fintech Rally 2025 hackathon project. AI-powered mobile & web solution for smart expense splitting with Google AI categorization, JoPACC API integration, and intelligent debt settlement system built in 48 hours.',
-      tech: ['Flutter', 'Google AI', 'JoPACC API', 'Web Dashboard', 'Biometric Auth', 'Arabic/English'],
-      image: '💸',
-      liveUrl: '#',
-      githubUrl: 'https://github.com/mjaber5'
+      title: 'YOweMe - AI Expense Splitting',
+      category: 'Fintech Rally 2025 Winner / Flutter / AI Integration',
+      image: './projects/yoweme.png',
+      gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+      readTime: '48hr Hackathon',
+      href: 'https://github.com/mjaber5'
     },
     {
-      title: 'TaskZen - Simplify Tasks, Amplify Focus',
-      description: 'Modern task management mobile application with Firebase authentication, Firestore integration, and customizable theming. Features animated splash screen, bottom navigation, and robust state management with flutter_bloc.',
-      tech: ['Flutter', 'Firebase Auth', 'Firestore', 'Flutter Bloc', 'Go Router', 'Dark/Light Theme'],
-      image: '✅',
-      liveUrl: '#',
-      githubUrl: 'https://github.com/mjaber5'
+      title: 'Qanoni Legal Tech App',
+      category: 'Crown Prince Award Finalist / Digital Signatures / PDF',
+      image: './projects/qanoni.png',
+      gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+      readTime: 'Award Winning',
+      href: 'https://github.com/mjaber5'
     },
     {
-      title: 'Emotion Prediction from Twitter Posts',
-      description: 'Machine learning project implementing multiple classification models (KNN, SVM, Decision Tree, Random Forest, Neural Network) to predict emotions from Twitter posts using NLP techniques and TF-IDF vectorization.',
-      tech: ['Python', 'Machine Learning', 'NLP', 'TF-IDF', 'Scikit-learn', 'Data Visualization'],
-      image: '🧠',
-      liveUrl: '#',
-      githubUrl: 'https://github.com/mjaber5'
+      title: 'Smart Home IoT Application',
+      category: 'IoT Integration / Real-time Control / MQTT / Firebase',
+      image: './projects/smart-home.png',
+      gradient: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+      readTime: 'Personal Project',
+      href: 'https://github.com/mjaber5'
     },
     {
-      title: 'Tweet Classification with Machine Learning',
-      description: 'Comprehensive tweet classification system using supervised ML algorithms. Features data preprocessing, TF-IDF vectorization, and comparative analysis of KNN, SVM, Decision Trees, Random Forest, and Neural Networks.',
-      tech: ['Python', 'Scikit-learn', 'NLP', 'TF-IDF', 'Data Science', 'Classification'],
-      image: '🐦',
-      liveUrl: '#',
-      githubUrl: 'https://github.com/mjaber5'
+      title: 'TaskZen - Task Management',
+      category: 'Flutter / Firebase Auth / Firestore / BLoC Pattern',
+      image: './projects/taskzen.png',
+      gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+      readTime: 'Open Source',
+      href: 'https://github.com/mjaber5'
     },
     {
-      title: 'Galaxy Coder Journey',
-      description: 'Interactive space-themed portfolio website with stunning galaxy navigation, animated starfield, planetary sections, and immersive coding experience. A journey through the coding universe with React + TypeScript.',
-      tech: ['React 18', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'shadcn/ui'],
-      image: '🌌',
-      liveUrl: '#',
-      githubUrl: 'https://github.com/mjaber5'
-    },
-    {
-      title: 'Smart-Home Flutter App',
-      description: 'IoT-integrated smart home application with real-time device control, energy tracking, automation, and security integration for comprehensive home management.',
-      tech: ['Flutter', 'Dart', 'IoT', 'Firebase', 'MQTT'],
-      image: '🏠',
-      liveUrl: '#',
-      githubUrl: 'https://github.com/mjaber5'
-    },
-    {
-      title: 'Qanoni-App',
-      description: 'Crown Prince Award Finalist - Legal tech application with advanced PDF processing, digital signatures, legal compliance, and document versioning capabilities.',
-      tech: ['Flutter', 'Dart', 'PDF Processing', 'Digital Signatures'],
-      image: '⚖️',
-      liveUrl: '#',
-      githubUrl: 'https://github.com/mjaber5'
-    },
-    {
-      title: 'Movie-API Android App',
-      description: 'MVVM architecture showcase with advanced search functionality, movie recommendations, and offline caching for seamless user experience.',
-      tech: ['Android', 'Kotlin', 'MVVM', 'Retrofit', 'Room DB'],
-      image: '🎬',
-      liveUrl: '#',
-      githubUrl: 'https://github.com/mjaber5'
-    },
-    {
-      title: 'Community Projects',
-      description: 'Open source contributions and developer mentoring initiatives. Led 6+ workshops as CSD Team Leader, building developer community and sharing knowledge.',
-      tech: ['Flutter', 'Dart', 'Community Building', 'Open Source'],
-      image: '👥',
-      liveUrl: '#',
-      githubUrl: 'https://github.com/mjaber5'
+      title: 'Movie Discovery Android App',
+      category: 'Kotlin / MVVM Architecture / Retrofit / Room DB',
+      image: './projects/movie-app.png',
+      gradient: 'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)',
+      readTime: 'Native Android',
+      href: 'https://github.com/mjaber5'
     }
   ];
 
+  // Reset scroll position to start
+  useEffect(() => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollLeft = 0;
+    }
+  }, []);
+
   return (
-    <section className="py-16 md:py-24 relative" id="projects" ref={sectionRef}>
-      <div className="section-container">
-        <div className="text-center mb-20">
-          <div className="pulse-chip mx-auto mb-6 opacity-0 fade-in-element">
-            <span>Portfolio</span>
-          </div>
-          <h2 className="section-title mb-6 opacity-0 fade-in-element">
-            Featured Projects & Solutions
+    <section className="py-24 md:py-32 relative" id="projects" ref={sectionRef}>
+      {/* Section Header */}
+      <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 mb-12 opacity-0 fade-in-element">
+        <div className="flex items-center gap-4 mb-6">
+          <span className="text-muted-foreground text-sm tracking-widest uppercase">Selected Work</span>
+          <div className="flex-1 h-px bg-border" />
+        </div>
+        <div className="flex items-end justify-between">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground lowercase">
+            work canvas
           </h2>
-          <p className="section-subtitle mx-auto max-w-3xl opacity-0 fade-in-element">
-            A curated selection of mobile applications and platforms that demonstrate technical excellence, 
-            innovative problem-solving, and measurable business impact across diverse industries.
-          </p>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <ProjectCard
-              key={index}
-              title={project.title}
-              description={project.description}
-              tech={project.tech}
-              image={project.image}
-              liveUrl={project.liveUrl}
-              githubUrl={project.githubUrl}
-              index={index}
-            />
-          ))}
         </div>
+      </div>
 
-        {/* CTA Section */}
-        <div className="text-center mt-20 opacity-0 fade-in-element">
-          <div className="max-w-3xl mx-auto glass-card p-12 border border-border">
-            <h3 className="text-3xl font-bold mb-6" style={{ color: 'hsl(var(--foreground))' }}>
-              Ready to Transform Your Ideas into Reality?
-            </h3>
-            <p className="text-lg mb-8 leading-relaxed" style={{ color: 'hsl(var(--muted-foreground))' }}>
-              Whether you're looking to build a cutting-edge mobile application, integrate IoT solutions, 
-              or scale your existing platform, I'm here to deliver exceptional results that drive business growth.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="#contact"
-                className="button-primary inline-flex items-center px-8 py-4 text-lg font-semibold"
-              >
-                Start Your Project
-              </a>
-              <a
-                href="#about"
-                className="button-secondary inline-flex items-center px-8 py-4 text-lg font-semibold"
-              >
-                Learn More About Me
-              </a>
-            </div>
-          </div>
+      {/* Horizontal Scroll Container */}
+      <div
+        ref={scrollContainerRef}
+        className="flex gap-6 md:gap-8 overflow-x-auto cursor-grab select-none"
+        style={{
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+          WebkitOverflowScrolling: 'touch',
+          paddingLeft: 'max(1.5rem, calc((100vw - 80rem) / 2 + 1.5rem))',
+          paddingRight: '1.5rem'
+        }}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+      >
+        {projects.map((project, index) => (
+          <ProjectCard
+            key={project.title}
+            {...project}
+            index={index}
+          />
+        ))}
+
+        {/* End spacer */}
+        <div className="flex-shrink-0 w-6 md:w-12" />
+      </div>
+
+
+      {/* Scroll Indicator */}
+      <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 mt-12 opacity-0 fade-in-element">
+        <div className="flex items-center gap-4">
+          <div className="flex-1 h-px bg-border" />
+          <span className="text-muted-foreground text-sm">{projects.length} projects</span>
         </div>
       </div>
     </section>

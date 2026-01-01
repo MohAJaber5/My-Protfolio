@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
@@ -6,83 +5,96 @@ import { Menu, X } from "lucide-react";
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
+
+      // Calculate scroll progress
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      setScrollProgress(progress);
     };
-    
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-    // Prevent background scrolling when menu is open
     document.body.style.overflow = !isMenuOpen ? 'hidden' : '';
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-    
-    // Close mobile menu if open
-    if (isMenuOpen) {
-      setIsMenuOpen(false);
-      document.body.style.overflow = '';
-    }
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    document.body.style.overflow = '';
   };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    closeMenu();
+  };
+
+  const navLinks = [
+    { href: '#about', label: 'About' },
+    { href: '#projects', label: 'Work' },
+    { href: '#contact', label: 'Contact' },
+  ];
 
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 py-2 sm:py-3 md:py-4 transition-all duration-300",
-        isScrolled 
-          ? "bg-background/90 shadow-sm border-b border-border" 
-          : "bg-transparent"
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        isScrolled
+          ? "py-4 bg-background/80 backdrop-blur-md border-b border-border/50"
+          : "py-6 bg-transparent"
       )}
     >
-      <div className="container flex items-center justify-between px-4 sm:px-6 lg:px-8">
-        <a 
-          href="#" 
-          className="flex items-center space-x-3 transition-all duration-300 hover:scale-105 group"
+      {/* Scroll Progress Bar */}
+      <div
+        className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-primary to-blue-500 transition-all duration-150"
+        style={{ width: `${scrollProgress}%` }}
+      />
+
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-8 lg:px-12">
+        {/* Logo / Name */}
+        <a
+          href="#"
+          className="group flex items-center gap-3"
           onClick={(e) => {
             e.preventDefault();
             scrollToTop();
           }}
-          aria-label="Mohammad Jaber Portfolio"
         >
-      
-          <div className="hidden sm:block">
-            <div className="font-bold text-lg tracking-tight" style={{ color: 'hsl(var(--foreground))' }}>Mohammad Jaber</div>
-            <div className="text-xs font-medium bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Flutter Developer</div>
-          </div>
+          <span className="text-base font-semibold text-foreground hover:text-primary transition-colors">Mohammad Jaber</span>
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-8">
-          <a 
-            href="#" 
-            className="nav-link"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToTop();
-            }}
+        <nav className="hidden md:flex items-center gap-2">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 rounded-full hover:bg-foreground/5"
+            >
+              {link.label}
+            </a>
+          ))}
+          <a
+            href="/My-Protfolio/Mohammed Jaber.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-2 px-5 py-2 text-sm font-medium rounded-full bg-foreground text-background hover:bg-primary transition-colors duration-200"
           >
-            Home
+            Resume
           </a>
-          <a href="#about" className="nav-link">About</a>
-          <a href="#projects" className="nav-link">Projects</a>
-          <a href="#achievements" className="nav-link">Achievements</a>
-          <a href="#contact" className="nav-link">Contact</a>
         </nav>
 
-        {/* Mobile menu button - increased touch target */}
-        <button 
-          className="md:hidden p-3 focus:outline-none" 
-          style={{ color: 'hsl(var(--foreground))' }}
+        {/* Mobile menu button */}
+        <button
+          className="md:hidden p-2 text-foreground"
           onClick={toggleMenu}
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         >
@@ -90,78 +102,42 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Navigation - improved for better touch experience */}
-      <div 
+      {/* Mobile Navigation */}
+      <div
         className={cn(
-          "fixed inset-0 z-40 flex flex-col pt-16 px-6 md:hidden transition-all duration-300 ease-in-out",
-          "bg-background/95",
-          isMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none"
+          "fixed inset-0 z-40 md:hidden transition-all duration-300 ease-out",
+          "bg-background",
+          isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
         )}
-        onClick={(e) => {
-          // Close menu when clicking the backdrop
-          if (e.target === e.currentTarget) {
-            setIsMenuOpen(false);
-            document.body.style.overflow = '';
-          }
-        }}
       >
-        <nav className="flex flex-col space-y-6 items-center mt-8" onClick={(e) => e.stopPropagation()}>
-          <a 
-            href="#" 
-            className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg transition-colors duration-200 hover:bg-accent" 
-            style={{ color: 'hsl(var(--foreground))' }}
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToTop();
-              setIsMenuOpen(false);
-              document.body.style.overflow = '';
-            }}
+        {/* Close button */}
+        <button
+          className="absolute top-6 right-6 p-2 text-foreground"
+          onClick={closeMenu}
+          aria-label="Close menu"
+        >
+          <X size={24} />
+        </button>
+
+        <nav className="flex flex-col items-center justify-center h-full gap-8">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="text-3xl font-medium text-foreground hover:text-primary transition-colors"
+              onClick={closeMenu}
+            >
+              {link.label}
+            </a>
+          ))}
+          <a
+            href="/My-Protfolio/Mohammed Jaber.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 px-8 py-3 text-lg font-medium rounded-full bg-foreground text-background hover:bg-primary transition-colors"
+            onClick={closeMenu}
           >
-            Home
-          </a>
-          <a 
-            href="#about" 
-            className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg transition-colors duration-200 hover:bg-accent" 
-            style={{ color: 'hsl(var(--foreground))' }}
-            onClick={() => {
-              setIsMenuOpen(false);
-              document.body.style.overflow = '';
-            }}
-          >
-            About
-          </a>
-          <a 
-            href="#projects" 
-            className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg transition-colors duration-200 hover:bg-accent" 
-            style={{ color: 'hsl(var(--foreground))' }}
-            onClick={() => {
-              setIsMenuOpen(false);
-              document.body.style.overflow = '';
-            }}
-          >
-            Projects
-          </a>
-          <a 
-            href="#achievements" 
-            className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg transition-colors duration-200 hover:bg-accent" 
-            style={{ color: 'hsl(var(--foreground))' }}
-            onClick={() => {
-              setIsMenuOpen(false);
-              document.body.style.overflow = '';
-            }}
-          >
-            Achievements
-          </a>
-          <a 
-            href="#contact" 
-            className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg transition-colors duration-200 hover:bg-accent" 
-            style={{ color: 'hsl(var(--foreground))' }}
-            onClick={() => {
-              setIsMenuOpen(false);
-              document.body.style.overflow = '';
-            }}
-          >
-            Contact
+            Resume
           </a>
         </nav>
       </div>
