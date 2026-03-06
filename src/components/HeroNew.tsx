@@ -24,14 +24,12 @@ const Hero = () => {
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground font-medium">
-              Flutter Developer & Mobile App Specialist
+              Mobile Software Engineer | Flutter & Android Specialist
             </p>
           </div>
 
           <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-            Passionate about creating beautiful, high-performance mobile applications
-            with Flutter. I transform ideas into exceptional digital experiences that
-            users love and businesses trust.
+            Specializing in secure, scalable, and production-grade mobile systems. I architect robust native security layers, multi-tenant SaaS platforms, and enterprise financial solutions. Crown Prince Award Finalist & FinTech Rally 2nd Place Winner.
           </p>
 
           {/* Action Buttons */}

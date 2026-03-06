@@ -24,77 +24,58 @@ const About = () => {
 • education - Education and certifications
 • contact - Contact information
 • clear - Clear terminal`,
-    
-    about: () => `Mohammad Jaber - Flutter Developer
+
+    about: () => `Mohammad Jaber - Mobile Software Engineer
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Location: Amman, Jordan
-Specialization: Flutter & Mobile Development
-Focus: Building scalable, beautiful mobile applications
+Specialization: Secure, Scalable & Production-Grade Mobile Systems
+Focus: Flutter & Android (Kotlin/Java)
 
-Passionate about creating innovative mobile experiences 
-that solve real-world problems with clean, efficient code.`,
+Designed and implemented a runtime security architecture for a digital banking platform featuring 40+ adaptive threat signals, risk-based access control, and OWASP MASVS-aligned resilience. Experienced in architecting multi-tenant SaaS applications and server-driven e-commerce platforms.`,
 
     skills: () => `Technical Skills:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Mobile Development:
-  • Flutter (Dart) - Advanced
-  • Android (Java/Kotlin) - Intermediate
-  • iOS Development - Intermediate
+  • Flutter, Dart, Android (Kotlin/Java)
+  • Platform Channels, Native Module Integration
+  
+Security & Architecture:
+  • OWASP MASVS, Runtime Threat Detection, Risk Engine Design
+  • AES Encryption, Biometric Authentication
+  • Clean Architecture, BLoC/Cubit, MVVM, get_it
   
 Backend & APIs:
-  • Node.js - Intermediate
-  • REST APIs - Advanced
-  • Firebase - Advanced
-  • Supabase - Intermediate
+  • RESTful APIs, Encrypted API Communication
+  • Firebase (Firestore, FCM, Auth)
+  • Real-time Systems (Pusher, WebSocket)
   
-Tools & Technologies:
-  • Git/GitHub - Advanced
-  • Docker - Intermediate
-  • CI/CD - Intermediate`,
+Tools & Practices:
+  • Git, Unit Testing, CI/CD, Performance Optimization`,
 
     experience: () => `Work Experience:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Flutter Developer - Mujeer
-Full-time | 2025 - Present | Amman, Jordan
-Leading mobile development initiatives with focus on scalable Flutter applications.
+Mobile Engineer — MUJEER | Jun 2025 – Present | Amman, Jordan
+• Walyt (Digital Banking): Architected a native security layer (Kotlin+Swift) with 40+ threat detections. 
+  Designed a centralized risk engine and AES encrypted API layer. Reduced cold start time by 3 seconds.
+• Basma (SaaS Workforce): Built a multi-tenant platform with biometric auth, role-based access, and BLoC.
+• Neelli (E-Commerce): Implemented a server-driven UI (SDUI) architecture enabling dynamic layout rendering.
+• WMS (Monitoring System): Created a workforce coordination app with VoIP, real-time fleet tracking, and live cameras.
 
-Key Achievements:
-• Architected and delivered 3+ enterprise mobile applications
-• Implemented real-time data synchronization reducing load times by 40%
-• Led code reviews and mentored junior developers
-• Integrated IoT devices with mobile applications for smart solutions
-
-CSD Team Leader - Community Development
-Leadership | 2024 - 2025 | Amman, Jordan
-Leading technical workshops and community development initiatives in software engineering.
-
-Key Achievements:
-• Organized 15+ technical workshops reaching 200+ developers
-• Mentored 30+ junior developers in mobile development
-• Built strategic partnerships with local tech companies
-• Established coding bootcamp curriculum for Flutter development
-
-Mobile Developer - Freelance
-Contract | 2023 - 2025 | Remote
-Developed custom mobile solutions for startups and small businesses across various industries.
-
-Key Achievements:
-• Delivered 7 mobile applications with 10k+ total downloads
-• Maintained 4.8+ star rating across all published apps
-• Reduced development time by 30% through reusable component libraries
-• Implemented payment gateways and e-commerce features`,
+Mobile Developer — Hakk Shop | E-Commerce Marketplace
+• Developed a Jordan-focused e-commerce marketplace with advanced filtering and multi-language support.
+• Integrated eFawateercom payment gateway and optimized app launch time by 2-3 seconds.`,
 
     education: () => `Education and Certifications:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-B.Sc. in Computing Smart Devices
-Tafila Technical University, Jordan (June 2025)
+B.Sc. in Computing Smart Devices (Very Good GPA)
+Tafila Technical University, Jordan (Graduated June 2025)
 
 Certifications:
-• The Complete 2022 Flutter & Dart Development Course | Udemy
-• Flutter Advanced Course Bloc and MVVM Pattern | Udemy
-• CI/CD for Mobile Applications | Udemy | 2024
-• Complete C# Masterclass | Udemy | 2025
-• Coaching Career Guidance (CCG) Program from Coach You`,
+• AWS Deploying Serverless Applications (2025)
+• AWS DevOps Guru Getting Started (2025)
+• Flutter Advanced: BLoC and MVVM Pattern (2024)
+• CI/CD for Mobile Applications (2024)
+• Complete C# Masterclass (2025)`,
 
     contact: () => `Contact Information:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -104,14 +85,14 @@ GitHub: https://github.com/mjaber5
 Phone: +962 779294486`,
 
     clear: () => 'CLEAR_TERMINAL',
-    
-    whoami: () => 'mohammad-jaber@portfolio:~$ Flutter Developer & Mobile App Specialist'
+
+    whoami: () => 'mohammad-jaber@portfolio:~$ Mobile Software Engineer & Security Specialist'
   };
 
   const executeCommand = (cmd: string) => {
     const command = cmd.toLowerCase().trim();
     const commandFunction = commands[command as keyof typeof commands];
-    
+
     if (commandFunction) {
       const output = commandFunction();
       if (output === 'CLEAR_TERMINAL') {
@@ -129,7 +110,7 @@ Phone: +962 779294486`,
     if (!input.trim()) return;
 
     setIsLoading(true);
-    
+
     setTimeout(() => {
       const output = executeCommand(input);
       const newCommand: Command = {
@@ -137,7 +118,7 @@ Phone: +962 779294486`,
         output,
         timestamp: new Date()
       };
-      
+
       setHistory(prev => [...prev, newCommand]);
       setInput('');
       setIsLoading(false);
@@ -205,8 +186,8 @@ Type 'help' to see available commands or try:
                 <span>terminal</span>
               </div>
             </div>
-            
-            <div 
+
+            <div
               ref={terminalRef}
               className="p-4 h-96 overflow-y-auto bg-background font-mono text-sm"
             >
@@ -221,7 +202,7 @@ Type 'help' to see available commands or try:
                   </div>
                 </div>
               ))}
-              
+
               <form onSubmit={handleSubmit} className="flex items-center space-x-2">
                 <span className="text-primary">$</span>
                 <input
