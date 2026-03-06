@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { ArrowUpRight, X, Image as ImageIcon, ExternalLink, Play, Linkedin } from 'lucide-react';
 
 interface ProjectCardProps {
@@ -77,105 +78,126 @@ const ProjectModal = ({ project, onClose }: { project: ProjectCardProps; onClose
     };
   }, []);
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-background/80 backdrop-blur-sm animate-in fade-in duration-300">
-      <div className="relative w-full max-w-5xl max-h-[90vh] bg-card border border-border rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row shadow-2xl animate-in zoom-in-95 duration-300">
+  return createPortal(
+    <div className="fixed inset-0 z-[200] flex items-center justify-center p-0 md:p-6 bg-background/95 backdrop-blur-md animate-in fade-in duration-300">
 
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 z-10 p-2 rounded-full bg-background/50 hover:bg-background/80 backdrop-blur-md transition-colors border border-border"
-        >
-          <X className="w-5 h-5 text-foreground" />
-        </button>
+      {/* Desktop Absolute Close Button */}
+      <button
+        onClick={onClose}
+        className="hidden md:flex absolute top-6 right-6 z-[210] p-3 rounded-full bg-background/50 hover:bg-background border border-border/50 shadow-xl transition-all"
+        aria-label="Close modal"
+      >
+        <X className="w-6 h-6 text-foreground" />
+      </button>
 
-        {/* Left Side: Hero Image / Screenshots Area */}
-        <div className="w-full md:w-1/2 md:max-h-full overflow-y-auto bg-muted border-r border-border">
-          {/* Main Cover Image */}
-          <div className="relative aspect-[16/10] w-full">
-            <div className="absolute inset-0" style={{ background: project.gradient }} />
-            <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover" />
-          </div>
+      {/* Main Modal Container */}
+      <div className="relative w-full h-full md:h-auto md:max-w-5xl md:max-h-[85vh] bg-card md:border md:border-border md:rounded-2xl shadow-2xl flex flex-col md:overflow-hidden animate-in zoom-in-95 slide-in-from-bottom-5 duration-300">
 
-          {/* LinkedIn Post Placeholder/Link */}
-          <div className="p-6">
-            <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4 flex items-center gap-2">
-              <Linkedin className="w-5 h-5 text-blue-500" />
-              Featured on LinkedIn
-            </h4>
-            {project.linkedinUrl ? (
-              <a
-                href={project.linkedinUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="flex flex-col items-center justify-center p-8 border-2 border-border rounded-xl text-primary bg-primary/5 hover:bg-primary/10 transition-colors group text-center"
-              >
-                <Linkedin className="w-8 h-8 mb-3 text-blue-500 group-hover:scale-110 transition-transform duration-300" />
-                <span className="font-medium text-lg">View Discussion & Demo</span>
-                <span className="text-sm text-muted-foreground mt-1">Check out the full post on LinkedIn</span>
-              </a>
-            ) : (
-              <div className="flex flex-col items-center justify-center p-8 border-2 border-dashed border-border rounded-xl text-muted-foreground bg-background/50 text-center">
-                <Linkedin className="w-8 h-8 mb-2 opacity-50" />
-                <p className="text-sm">LinkedIn post integration.</p>
-                <p className="text-xs mt-1 opacity-70">Add your LinkedIn post URL to highlight it here.</p>
-              </div>
-            )}
-          </div>
+        {/* Mobile Top Bar (Permanent flex header) */}
+        <div className="md:hidden flex-none z-[120] flex items-center justify-between px-5 py-3.5 bg-background border-b border-border shadow-sm">
+          <span className="font-semibold text-base truncate pr-4">{project.title}</span>
+          <button
+            onClick={onClose}
+            className="p-2 rounded-full bg-muted hover:bg-muted/80 transition-colors"
+            aria-label="Close modal"
+          >
+            <X className="w-5 h-5 text-foreground" />
+          </button>
         </div>
 
-        {/* Right Side: Details */}
-        <div className="w-full md:w-1/2 p-6 md:p-8 lg:p-10 flex flex-col overflow-y-auto">
-          <div className="mb-6">
-            <span className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-semibold mb-4">
-              {project.readTime || 'Project Details'}
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              {project.title}
-            </h2>
-            <p className="text-lg text-muted-foreground font-medium mb-6">
-              {project.category}
-            </p>
+        {/* Scrollable Content Area */}
+        <div className="flex-1 overflow-y-auto flex flex-col md:flex-row">
+
+          {/* Left Side: Hero Image / LinkedIn Area */}
+          <div className="w-full md:w-1/2 flex-shrink-0 md:max-h-full md:overflow-y-auto bg-muted/30 md:border-r border-border pb-8 md:pb-0">
+            {/* Main Cover Image */}
+            <div className="relative aspect-[16/10] w-full">
+              <div className="absolute inset-0 opacity-90" style={{ background: project.gradient }} />
+              <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover" />
+            </div>
+
+            {/* LinkedIn Post Placeholder/Link */}
+            <div className="p-6 md:p-8">
+              <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-5 flex items-center gap-2">
+                <Linkedin className="w-5 h-5 text-[#0A66C2]" />
+                Featured on LinkedIn
+              </h4>
+              {project.linkedinUrl ? (
+                <a
+                  href={project.linkedinUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex flex-col items-center justify-center p-8 border border-border/60 shadow-sm rounded-2xl text-foreground bg-background hover:bg-muted transition-colors group text-center"
+                >
+                  <Linkedin className="w-10 h-10 mb-4 text-[#0A66C2] group-hover:scale-110 transition-transform duration-300" />
+                  <span className="font-semibold text-lg mb-1">View Discussion & Demo</span>
+                  <span className="text-sm text-muted-foreground mt-1 px-4 leading-relaxed">Check out the full post, comments, and video demo on LinkedIn</span>
+                </a>
+              ) : (
+                <div className="flex flex-col items-center justify-center p-8 border border-dashed border-border/60 rounded-2xl text-muted-foreground bg-background/50 text-center">
+                  <Linkedin className="w-10 h-10 mb-3 opacity-30" />
+                  <p className="text-sm font-medium text-foreground mb-1">LinkedIn Integration</p>
+                  <p className="text-xs opacity-70">Add your LinkedIn post URL to highlight it here.</p>
+                </div>
+              )}
+            </div>
           </div>
 
-          <div className="prose prose-sm dark:prose-invert max-w-none mb-8 text-muted-foreground whitespace-pre-line leading-relaxed flex-1">
-            {project.description}
+          {/* Right Side: Details */}
+          <div className="w-full md:w-1/2 p-6 md:p-10 flex flex-col md:max-h-full md:overflow-y-auto bg-background">
+            <div className="mb-6">
+              <span className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-semibold tracking-wide uppercase mb-4">
+                {project.readTime || 'Project Details'}
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3 leading-tight pr-0">
+                {project.title}
+              </h2>
+              <p className="text-base md:text-lg text-muted-foreground/80 font-medium mb-6 leading-relaxed">
+                {project.category}
+              </p>
+            </div>
+
+            <div className="prose prose-base dark:prose-invert max-w-none mb-10 text-muted-foreground whitespace-pre-line leading-relaxed flex-1">
+              {project.description}
+            </div>
+
+            <div className="mt-auto pt-6 border-t border-border/50 flex flex-col sm:flex-row flex-wrap gap-4 pb-8 md:pb-0">
+              {project.playStore && (
+                <a
+                  href={project.playStore}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center justify-center gap-2.5 px-6 py-3.5 bg-foreground text-background rounded-xl font-medium hover:opacity-90 transition-opacity flex-1 sm:flex-none"
+                >
+                  <Play className="w-5 h-5 fill-current" />
+                  Google Play
+                </a>
+              )}
+              {project.appStore && (
+                <a
+                  href={project.appStore}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center justify-center gap-2.5 px-6 py-3.5 bg-background border border-border text-foreground hover:bg-muted/50 rounded-xl font-medium transition-colors flex-1 sm:flex-none shadow-sm"
+                >
+                  <ExternalLink className="w-5 h-5 opacity-80" />
+                  App Store
+                </a>
+              )}
+
+              {(!project.playStore && !project.appStore) && (
+                <div className="w-full text-sm flex items-center justify-center gap-2 px-4 py-3 border border-border/60 rounded-xl text-muted-foreground/80 bg-muted/20">
+                  <ExternalLink className="w-4 h-4 opacity-40" />
+                  Store links not available for this project
+                </div>
+              )}
+            </div>
           </div>
 
-          <div className="mt-auto pt-6 border-t border-border flex flex-wrap gap-4">
-            {project.playStore && (
-              <a
-                href={project.playStore}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2 px-6 py-3 bg-foreground text-background rounded-lg font-medium hover:opacity-90 transition-opacity"
-              >
-                <Play className="w-5 h-5" />
-                Google Play
-              </a>
-            )}
-            {project.appStore && (
-              <a
-                href={project.appStore}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2 px-6 py-3 bg-muted border border-border text-foreground hover:bg-muted/80 rounded-lg font-medium transition-colors"
-              >
-                <ExternalLink className="w-5 h-5" />
-                App Store
-              </a>
-            )}
-
-            {(!project.playStore && !project.appStore) && (
-              <div className="text-sm flex items-center gap-2 px-4 py-2 border border-border rounded-lg text-muted-foreground bg-muted/50">
-                <ExternalLink className="w-4 h-4 opacity-50" />
-                Store links not available
-              </div>
-            )}
-          </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 

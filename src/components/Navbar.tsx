@@ -46,7 +46,7 @@ const Navbar = () => {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-[60] transition-colors duration-300",
         isScrolled
           ? "py-4 bg-background/80 backdrop-blur-md border-b border-border/50"
           : "py-6 bg-transparent"
@@ -54,7 +54,7 @@ const Navbar = () => {
     >
       {/* Scroll Progress Bar */}
       <div
-        className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-primary to-blue-500 transition-all duration-150"
+        className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-primary to-blue-500 transition-all duration-150 z-[-1]"
         style={{ width: `${scrollProgress}%` }}
       />
 
@@ -105,9 +105,9 @@ const Navbar = () => {
       {/* Mobile Navigation */}
       <div
         className={cn(
-          "fixed inset-0 z-40 md:hidden transition-all duration-300 ease-out",
-          "bg-background",
-          isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
+          "fixed inset-0 z-[100] md:hidden transition-all duration-300 ease-out",
+          "bg-background/95 backdrop-blur-xl",
+          isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
         )}
       >
         {/* Close button */}
