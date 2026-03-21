@@ -292,7 +292,7 @@ const Projects = () => {
       readTime: 'SaaS Platform',
       description: 'Architected and developed a multi-tenant SaaS workforce management application enabling policy-driven attendance tracking and structured approval workflows. Implemented biometric auth, role-based access control, and leave request pipelines.',
       playStore: '',
-      appStore: '',
+      appStore: 'https://apps.apple.com/jo/app/basma-time-attendance/id6757984682',
       linkedinUrl: 'https://www.linkedin.com/posts/mohammad-jaber-profile_basma-saas-hrtech-activity-7427241424410050560-1EAY?utm_source=share&utm_medium=member_ios&rcm=ACoAADXz-4IBGANI8R5VFe1MtTXq-rt8j7o2fZs'
     },
     {
@@ -314,7 +314,7 @@ const Projects = () => {
       readTime: 'Architecture Design (Unpublished)',
       description: 'Architected a Server-Driven UI (SDUI) mobile application enabling dynamic layout rendering without requiring app updates. Engineered the full checkout pipeline including cart state management and delivery calculations.',
       playStore: '',
-      appStore: '',
+      appStore: 'https://apps.apple.com/jo/app/neelli-make-up-beauty/id1516417246',
       linkedinUrl: ''
     },
     {
