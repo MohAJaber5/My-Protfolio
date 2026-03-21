@@ -291,7 +291,7 @@ const Projects = () => {
       gradient: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
       readTime: 'SaaS Platform',
       description: 'Architected and developed a multi-tenant SaaS workforce management application enabling policy-driven attendance tracking and structured approval workflows. Implemented biometric auth, role-based access control, and leave request pipelines.',
-      playStore: '',
+      playStore: 'https://play.google.com/store/apps/details?id=cloud.basma.app',
       appStore: 'https://apps.apple.com/jo/app/basma-time-attendance/id6757984682',
       linkedinUrl: 'https://www.linkedin.com/posts/mohammad-jaber-profile_basma-saas-hrtech-activity-7427241424410050560-1EAY?utm_source=share&utm_medium=member_ios&rcm=ACoAADXz-4IBGANI8R5VFe1MtTXq-rt8j7o2fZs'
     },
