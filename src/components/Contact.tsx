@@ -116,7 +116,7 @@ const Contact = () => {
               Work
             </a>
             <a
-              href="/My-Protfolio/MohammedJaber.pdf"
+              href="/My-Protfolio/Mohammed Jaber.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground transition-colors text-sm uppercase tracking-widest"

@@ -271,18 +271,17 @@ const Projects = () => {
   }, []);
 
   const projects: ProjectCardProps[] = [
+
     {
-      title: 'Hakk Shop E-Commerce',
-      category: 'Flutter Development / E-commerce / Payments',
-      // To use an image from public folder, use `./image-name.png` or `/image-name.png`
-      image: './hakk-logo.png',
-      gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      readTime: 'Production App',
-      description: 'Developed a Jordan-focused e-commerce marketplace with OTP authentication, multi-language support (Arabic RTL/English), and advanced product filtering. Integrated eFawateercom payment gateway and optimized app launch times by 2-3 seconds.',
-      playStore: 'https://play.google.com/store/apps/details?id=hakk.shop.app',
-      appStore: 'https://apps.apple.com/jo/app/hakk-offers-deals-more/id6749207035',
-      // Place your linked post url here
-      linkedinUrl: 'https://www.linkedin.com/posts/mohammad-jaber-profile_softwareengineering-flutter-mobiledevelopment-activity-7418912098984001536-2y34?utm_source=share&utm_medium=member_ios&rcm=ACoAADXz-4IBGANI8R5VFe1MtTXq-rt8j7o2fZs'
+      title: 'Neelli',
+      category: 'Neelli - Makeup - Beauty',
+      image: './neelli-logo.png',
+      gradient: 'linear-gradient(135deg, #2e5ea9 0%, #ffffffff 100%)',
+      readTime: 'E-commerce App',
+      description: 'Architected a Server-Driven UI (SDUI) mobile application enabling dynamic layout rendering without requiring app updates. Engineered the full checkout pipeline including cart state management and delivery calculations.',
+      playStore: '',
+      appStore: 'https://apps.apple.com/jo/app/neelli-make-up-beauty/id1516417246',
+      linkedinUrl: 'https://www.linkedin.com/posts/mohammad-jaber-profile_eid-mubarak-everyone-hope-youre-all-activity-7441378164473245696-dxuz?utm_source=share&utm_medium=member_desktop&rcm=ACoAADXz-4IBGANI8R5VFe1MtTXq-rt8j7o2fZs'
     },
     {
       title: 'Basma SaaS Platform',
@@ -295,27 +294,19 @@ const Projects = () => {
       appStore: 'https://apps.apple.com/jo/app/basma-time-attendance/id6757984682',
       linkedinUrl: 'https://www.linkedin.com/posts/mohammad-jaber-profile_basma-saas-hrtech-activity-7427241424410050560-1EAY?utm_source=share&utm_medium=member_ios&rcm=ACoAADXz-4IBGANI8R5VFe1MtTXq-rt8j7o2fZs'
     },
+
     {
-      title: 'Qanoni Legal Tech App',
-      category: 'Crown Prince Award Finalist / Digital Signatures',
-      image: './qanoni-logo.png',
-      gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-      readTime: 'Award Winning (Unpublished)',
-      description: 'Led full development (A-Z) of a mobile application enabling digital contract creation with predefined legal templates. Implemented PDF processing, AI-powered chatbot for legal queries, real-time notifications, and secure payment integrations. (Currently showing screenshots only as it is strictly B2B/Unpublished)',
-      playStore: '',
-      appStore: '',
-      linkedinUrl: 'https://www.linkedin.com/posts/mohammad-jaber-profile_qanoniapp-graduationproject-legaltech-activity-7285579302174130177-mgTM?utm_source=share&utm_medium=member_desktop&rcm=ACoAADXz-4IBGANI8R5VFe1MtTXq-rt8j7o2fZs'
-    },
-    {
-      title: 'Neelli Server-Driven Platform',
-      category: 'Server-Driven UI / Adaptive Styling / Cart State',
-      image: './neelli-logo.png',
-      gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-      readTime: 'Architecture Design (Unpublished)',
-      description: 'Architected a Server-Driven UI (SDUI) mobile application enabling dynamic layout rendering without requiring app updates. Engineered the full checkout pipeline including cart state management and delivery calculations.',
-      playStore: '',
-      appStore: 'https://apps.apple.com/jo/app/neelli-make-up-beauty/id1516417246',
-      linkedinUrl: ''
+      title: 'Hakk Shop E-Commerce',
+      category: 'Flutter Development / E-commerce / Payments',
+      // To use an image from public folder, use `./image-name.png` or `/image-name.png`
+      image: './hakk-logo.png',
+      gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      readTime: 'E-commerce App',
+      description: 'Developed a Jordan-focused e-commerce marketplace with OTP authentication, multi-language support (Arabic RTL/English), and advanced product filtering. Integrated eFawateercom payment gateway and optimized app launch times by 2-3 seconds.',
+      playStore: 'https://play.google.com/store/apps/details?id=hakk.shop.app',
+      appStore: 'https://apps.apple.com/jo/app/hakk-offers-deals-more/id6749207035',
+      // Place your linked post url here
+      linkedinUrl: 'https://www.linkedin.com/posts/mohammad-jaber-profile_softwareengineering-flutter-mobiledevelopment-activity-7418912098984001536-2y34?utm_source=share&utm_medium=member_ios&rcm=ACoAADXz-4IBGANI8R5VFe1MtTXq-rt8j7o2fZs'
     },
     {
       title: 'Wali Monitoring System',
@@ -327,7 +318,18 @@ const Projects = () => {
       playStore: 'https://play.google.com/store/apps/details?id=alwali.wms.app',
       appStore: 'https://apps.apple.com/jo/app/wms-real-time-fleet-manager/id6755349368',
       linkedinUrl: 'https://www.linkedin.com/posts/mohammad-jaber-profile_mobile-app-presentation-activity-7383054787124297729--2As?utm_source=share&utm_medium=member_desktop&rcm=ACoAADXz-4IBGANI8R5VFe1MtTXq-rt8j7o2fZs'
-    }
+    },
+    {
+      title: 'Qanoni Legal Tech App',
+      category: 'Crown Prince Award Finalist / Digital Signatures',
+      image: './qanoni-logo.png',
+      gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+      readTime: 'Award Winning (Unpublished)',
+      description: 'Led full development (A-Z) of a mobile application enabling digital contract creation with predefined legal templates. Implemented PDF processing, AI-powered chatbot for legal queries, real-time notifications, and secure payment integrations. (Currently showing screenshots only as it is strictly B2B/Unpublished)',
+      playStore: '',
+      appStore: '',
+      linkedinUrl: 'https://www.linkedin.com/posts/mohammad-jaber-profile_qanoniapp-graduationproject-legaltech-activity-7285579302174130177-mgTM?utm_source=share&utm_medium=member_desktop&rcm=ACoAADXz-4IBGANI8R5VFe1MtTXq-rt8j7o2fZs'
+    },
   ];
 
   useEffect(() => {
