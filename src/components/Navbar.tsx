@@ -83,7 +83,7 @@ const Navbar = () => {
             </a>
           ))}
           <a
-            href="/My-Protfolio/Mohammed Jaber.pdf"
+            href="/Mohammed Jaber.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="ml-2 px-5 py-2 text-sm font-medium rounded-full bg-foreground text-background hover:bg-primary transition-colors duration-200"
@@ -131,7 +131,7 @@ const Navbar = () => {
             </a>
           ))}
           <a
-            href="/My-Protfolio/Mohammed Jaber.pdf"
+            href="/Mohammed Jaber.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-4 px-8 py-3 text-lg font-medium rounded-full bg-foreground text-background hover:bg-primary transition-colors"
