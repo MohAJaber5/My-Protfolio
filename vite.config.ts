@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // 🔥 Important: Set base for GitHub Pages deployment
 export default defineConfig(({ mode }) => ({
-  base: "/My-Protfolio/",
+  base: "/",
 
   server: {
     host: "::",
